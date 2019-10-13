@@ -1,0 +1,71 @@
+<div class="container col-12">
+    <div class="row align-items-center h-100">
+        <div class="mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Semillero IoTIC</h1>
+                    <p class="text-muted mb-0">Formulario de Registro</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!--Nombre-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <fa-icon [icon]="faUser"></fa-icon>
+                                </div>
+                            </div>
+                            <input id="name" type="text" class="form-control" placeholder="Nombre Completo" [(ngModel)]="user.name" name="name" required>
+                        </div>
+                        <!--Correo-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Correo Institucional" [(ngModel)]="user.email" name="email" required>
+                        </div>
+                        <!--Programa-->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <fa-icon [icon]="faGraduationCap"></fa-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Programa" [(ngModel)]="user.career" name="career" required>
+                        </div>
+                        <!--¿Soy Estudiante?-->
+                        <div class="input-group mb-3">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="switch" [(ngModel)]="user.student" name="student">
+                                <label class="custom-control-label" for="switch">Soy Estudiante</label>
+                            </div>
+                        </div>
+                        <!--Semestre-->
+                        <div class="input-group mb-3" *ngIf="user.student">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Semestre</div>
+                            </div>
+                            <select class="custom-select">
+                                <option *ngFor="let semester of semesters" [value]="semester">
+                                    {{semester}}
+                                </option>
+                            </select>
+                        </div>
+                        <!--Solicitar Registro-->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Solicitar Registro</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p class="mb-0">¿Ya te encuentras registrado?</p>
+                    <div class="text-center">
+                        <a href="/register">Inicia Sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
