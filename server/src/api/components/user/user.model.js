@@ -44,6 +44,10 @@ const userSchema = new Schema({
     admin: {
         type: Boolean
     },
+    student: {
+        type: Boolean,
+        required: true
+    },
     semester: {
         type: Number,
         required: true,

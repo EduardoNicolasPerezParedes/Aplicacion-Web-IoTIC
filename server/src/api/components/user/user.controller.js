@@ -12,9 +12,9 @@ const user_controller = {
         // busca atributos que no se encuentren dentro de la petición
         let name = req.body.name;
         let email = req.body.email;
-        let password = req.body.password;
         let birth_date = req.body.birth_date;
         let career = req.body.career;
+        let student = req.body.student;
         let semester = req.body.semester;
 
         if (!name) {
@@ -25,11 +25,6 @@ const user_controller = {
         if (!email) {
             // retorna error si el e-mail no se encuentra
             res.status(422).send({error: ERRORS.INVALID_EMAIL});
-            return;
-        }
-        if (!password) {
-            // retorna error si la contraseña no se encuentra
-            res.status(422).send({error: ERRORS.INVALID_PASSWORD});
             return;
         }
         if (!birth_date) {
@@ -62,10 +57,10 @@ const user_controller = {
             let new_user = new User({
                 name: name,
                 email: email,
-                password: password,
                 birth_date: birth_date,
                 career: career,
-                semester: semester
+                semester: semester,
+                student: student
             });
             let user_saved = await new_user.save();
 
