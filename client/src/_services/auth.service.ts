@@ -19,15 +19,21 @@ export class AuthService extends HttpService {
      * @param password contraseña del usuario
      */
     login(email: string, password: string) {
-        throw Error("Método 'login' no implementado");
+        return this.http.post(
+            this.apiUrl,
+            {
+                email: email,
+                password: password
+            },
+            { headers: this.headers }
+        )
     }
 
     /**
      * Cierra la sesión del usuario actual.
-     * 
-     * @param user usuario que desea cerrar la sesión
      */
-    logout(user: User) {
-        throw Error("Método 'logout' no implementado");
+    logout(): void {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
     }
 }

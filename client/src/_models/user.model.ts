@@ -1,6 +1,6 @@
 export class User {
     constructor(
-        private name: string,
+        public name: string,
         private email: string,
         private career: string,
         private birth_date: string,
@@ -12,7 +12,19 @@ export class User {
         }
     }
 
-    public parseToJSON() {
+    public parseToJSON(): JSON {
         return JSON.parse(JSON.stringify(this));
+    }
+
+    public static fromJSON(json): User {
+        if (json === null) { return null; }
+        return new User(
+            json.name,
+            json.email,
+            json.career,
+            json.birth_date,
+            json.student,
+            json.semester
+        )
     }
 }

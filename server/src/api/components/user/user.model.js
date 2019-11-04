@@ -18,8 +18,7 @@ const userSchema = new Schema({
         required: true
     },
     hashed_password: {
-        type: String,
-        required: true
+        type: String
     },
     admin: {
         type: Boolean,
@@ -50,7 +49,6 @@ const userSchema = new Schema({
     },
     semester: {
         type: Number,
-        required: true,
         min: 1,
         max: 10
     },
@@ -74,10 +72,13 @@ userSchema.virtual('password')
 // Métodos
 //
 userSchema.methods = {
-    encryptPassword: function (password) {
+    encryptPassword: function(password) {
         let salt = bcrypt.genSaltSync();
         let hash = bcrypt.hashSync(password, salt);
         return hash;
+    },
+    comparePassword: function(password) {
+        return bcrypt.compareSync(password, this.hashed_password);
     }
 }
 

@@ -6,7 +6,7 @@ connect().catch((err) => {
     console.log('server: database connection error: %s', err.message);
 });
 
-// server
+// Servidor
 app.listen(config.port, (err) => {
     if (err) {
         console.error('server: error: %s', err.message);

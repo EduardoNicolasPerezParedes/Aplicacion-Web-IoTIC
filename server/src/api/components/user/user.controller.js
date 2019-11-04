@@ -37,7 +37,14 @@ const user_controller = {
             res.status(422).send({error: ERRORS.INVALID_CAREER});
             return;
         }
-        if (!semester) {
+        if (student === undefined) {
+            // retorna error si el campo estudiante no se encuentra
+            res.status(422).send({error: ERRORS.INVALID_STUDENT});
+            return;
+        }
+        if (!student) {
+            semester = null;
+        } else if (!semester){
             // retorna error si el semestre no se encuentra
             res.status(422).send({error: ERRORS.INVALID_SEMESTER});
             return;
@@ -52,6 +59,10 @@ const user_controller = {
                 res.status(422).send({error: ERRORS.ALREADY_REGISTERED});
                 return;
             } 
+
+            if (student === false) {
+                semester = null;
+            }
 
             // registra al nuevo usuario
             let new_user = new User({

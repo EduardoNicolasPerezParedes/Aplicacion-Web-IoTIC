@@ -1,7 +1,7 @@
 const db = require('./config/database');
 const mongoose = require('mongoose');
 
-// connection events
+// Eventos de conexión
 mongoose.connection.on('connected', () => {
     console.log('server: database connected.');
 });

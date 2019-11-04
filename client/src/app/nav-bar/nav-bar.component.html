@@ -1,27 +1,42 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-            <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-            Semillero
-        </a>    
-    <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Nosotros</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contáctanos</a>
-        </li>
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <button class="btn btn-primary my-2 my-sm-0 mr-2" (click)="signupOnClick()">Registrarse</button>
-        <button class="btn btn-primary shadow my-2 my-sm-0" (click)="loginOnClick()">Iniciar Sesión</button>
-      </form>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary shadow col-12 position-fixed">
+  <!-- Logo -->
+  <a class="navbar-brand" href="#">
+      <img src="" width="30" height="30" class="mx-auto d-inline-block align-top" alt="Logo">
+      Semillero
+  </a>
+  <!-- Menú Hamburguesa -->
+  <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <!-- Incio -->
+      <li class="nav-item active mr-3 ml-3">
+        <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <!-- Nosotros -->
+      <li class="nav-item mr-3">
+        <a class="nav-link" href="#">Nosotros</a>
+      </li>
+      <!-- Contáctanos -->
+      <li class="nav-item mr-3">
+        <a class="nav-link" href="#">Contáctanos</a>
+      </li>
+    </ul>
+    <!-- Cuando no hay una sesión iniciada -->
+    <form class="form-inline mt-2 mt-md-0" *ngIf="!loggedIn">
+      <button class="btn btn-success my-2 my-sm-0 mr-3" (click)="signupOnClick()">Registrarse</button>
+      <button class="btn btn-primary shadow my-2 my-sm-0" (click)="loginOnClick()">Iniciar Sesión</button>
+    </form>
+    <!-- Cuando hay una sesión iniciada -->
+    <form class="form-inline mt-2 mt-md-0 mr-5 pr-2" *ngIf="loggedIn">
+      <div ngbDropdown class="shadow">
+        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Aquí debería ir el nombre</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="logoutOnClick()">Cerrar Sesión</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
