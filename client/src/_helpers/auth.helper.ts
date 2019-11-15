@@ -1,3 +1,4 @@
+import * as jwt_decode from 'jwt-decode';
 import { User } from '../_models/user.model';
 
 export class AuthHelper {
@@ -5,17 +6,17 @@ export class AuthHelper {
      * Obtiene el usuario de la sesión actual. 
      */
     public static getLoggedUser(): User {
-        let user_str = localStorage.getItem('user');
-        return User.fromJSON(JSON.parse(user_str));
+        let token = localStorage.getItem('token');
+        if (!token) { return null; }
+        return User.fromJSON(jwt_decode(token).user);
     }
 
     /**
      * Setea el usuario de la sesión actual.
      * 
-     * @param res respuesta del servidor al iniciar sesión. Contiene el token y el usuario.
+     * @param res respuesta del servidor al iniciar sesión. Contiene el token.
      */
     public static setLoggedUser(res): void {
-        localStorage.setItem('user', JSON.stringify(res.user));
         localStorage.setItem('token', JSON.stringify(res.token));
     }   
 }

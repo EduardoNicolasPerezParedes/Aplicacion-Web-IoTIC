@@ -24,23 +24,22 @@ const auth_controller = {
             return;
         }
         
-        let user_found = await User.findOne({email: email});
+        let user = await User.findOne({email: email});
 
-        if (!user_found) {
+        if (!user) {
             // el usuario no se encuentra registrado 
             res.status(401).send({error: ERRORS.UNAUTHORIZED});
             return;
         } else {
-            if (!user_found.admitted) {
+            if (!user.admitted) {
                 // el usuario todavía no ha sido admitido
                 res.status(401).send({error: ERRORS.NOT_ADMITTED});
                 return;    
             }
-            if (user_found.comparePassword(password)) {
-                token = await generateToken({user_found});
+            if (user.comparePassword(password)) {
+                token = await generateToken({user});
                 res.status(200).json({
-                    token: `JWT ${token}`,
-                    user: user_found
+                    token: `${token}`
                 });
             } else {
                 // la contraseña es incorrecta
