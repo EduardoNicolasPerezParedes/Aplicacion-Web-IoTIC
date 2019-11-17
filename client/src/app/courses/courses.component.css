@@ -1,0 +1,14 @@
+.card .card-img {
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+}
+
+.card .card-img img {
+    border-radius:5px;
+}
+
+.card h5 {
+    font-weight:600;
+}

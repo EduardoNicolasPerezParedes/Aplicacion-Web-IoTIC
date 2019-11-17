@@ -16,7 +16,8 @@ import { AuthService } from 'src/_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CoursesComponent } from './courses/courses.component';
-import { AuthInterceptor } from 'src/_interceptors/auth.interceptor';
+import { CourseService } from 'src/_services/course.service';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthInterceptor } from 'src/_interceptors/auth.interceptor';
     LoginComponent,
     HomeComponent,
     NavBarComponent,
-    CoursesComponent
+    CoursesComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -39,11 +41,7 @@ import { AuthInterceptor } from 'src/_interceptors/auth.interceptor';
   providers: [
     UserService,
     AuthService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    CourseService
   ],
   bootstrap: [AppComponent]
 })
