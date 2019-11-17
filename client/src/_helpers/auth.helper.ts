@@ -8,7 +8,14 @@ export class AuthHelper {
     public static getLoggedUser(): User {
         let token = localStorage.getItem('token');
         if (!token) { return null; }
-        return User.fromJSON(jwt_decode(token).user);
+        return User.fromJSON(jwt_decode(token));
+    }
+
+    /**
+     * Retorna el token de la sesión actual.
+     */
+    public static getToken(): string {
+        return localStorage.getItem('token');
     }
 
     /**

@@ -41,7 +41,8 @@ const userSchema = new Schema({
         required: true
     },
     admin: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     student: {
         type: Boolean,

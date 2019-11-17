@@ -37,7 +37,13 @@ const auth_controller = {
                 return;    
             }
             if (user.comparePassword(password)) {
-                token = await generateToken({user});
+                let user_data = {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    admin: user.admin
+                }
+                token = await generateToken(user_data);
                 res.status(200).json({
                     token: `${token}`
                 });
