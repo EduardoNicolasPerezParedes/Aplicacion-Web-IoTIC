@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/_models/course.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CourseService } from 'src/_services/course.service';
+import { MsgHelper } from 'src/_helpers/msg.helper';
+import { User } from 'src/_models/user.model';
+import { AuthHelper } from 'src/_helpers/auth.helper';
 
 @Component({
   selector: 'app-course',
@@ -17,9 +21,14 @@ export class CourseComponent implements OnInit {
   /**
    * Contiene la información del curso.
    */
-  course: Course;
+  public course: Course;
 
-  constructor(private route: ActivatedRoute) { }
+  /**
+   * Contiene al usuario de la sesión actual.
+   */
+  public user: User;
+
+  constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -27,6 +36,12 @@ export class CourseComponent implements OnInit {
   }
 
   private setCourse() {
-    // TODO: obtener el curso del servidor y setearlo a la variable 'course'
+    this.courseService.get(this.id).toPromise().then((course) => {
+      this.course = Course.fromJSON(course);
+      this.user = AuthHelper.getLoggedUser();
+    }).catch((err) => {
+      console.error(err);
+      this.router.navigateByUrl("home");
+    });
   }
 }

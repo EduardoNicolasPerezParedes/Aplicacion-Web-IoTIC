@@ -13,4 +13,9 @@ course_router.post('/', course_controller.create);
  */
 course_router.get('/', course_controller.list);
 
+/**
+ * ruta que permite obtener la información de un curso.
+ */
+course_router.get('/:id', course_controller.get);
+
 module.exports = course_router;

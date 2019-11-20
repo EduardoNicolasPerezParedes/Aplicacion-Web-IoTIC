@@ -46,10 +46,9 @@ export class CourseService extends HttpService {
         params.set('id', id);
 
         return this.http.get(
-            this.apiUrl,
+            `${this.apiUrl}/${id}`,
             { 
-                headers: this.headers,
-                params: params
+                headers: this.headers
             },
         );
     }

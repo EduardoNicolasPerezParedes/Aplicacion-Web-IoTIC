@@ -1,5 +1,6 @@
 const Course = require('./course.model');
 const ERRORS = require('./course.errors');
+const mongoose = require('mongoose');
 
 const course_controller = {
     /**
@@ -68,6 +69,33 @@ const course_controller = {
     async list(req, res) {
         let courses = await Course.find({});
         return res.status(200).json(courses);
+    },
+
+    /**
+     * Retorna la información de un curso.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async get(req, res) {
+        let id = req.params.id;
+
+        try {
+            mongoose.Types.ObjectId(id);
+        } catch(err) {
+            // retornar error si el id no es valido
+            res.status(422).send({error: ERRORS.INVALID_COURSE});
+            return;
+        }
+        
+        let course = await Course.findOne({_id: id}).exec();
+
+        if (!course) {
+            // retornar error si el curso no se encuentra en la base de datos
+            res.status(422).send({error: ERRORS.INVALID_COURSE});
+            return;
+        }
+
+        res.status(200).send(course);
     }
 }
 
