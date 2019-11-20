@@ -1,3 +1,42 @@
 <!-- Barra de navegación -->
 <app-nav-bar></app-nav-bar>
 
+<div class="container col-12">
+    <div class="row px-5">
+        <!-- Carta del curso -->
+        <div class="card shadow mt-4 mx-2 mb-4 mx-auto">
+            <div class="card-body">
+                <h1 class="card-title text-center">{{course.name}}</h1>
+                <!-- TODO: Agregar la imágen del curso -->
+                <p class="text-muted text-justify">{{course.description}}</p>
+                <div class="row px-2">
+                    <!-- Instructor -->
+                    <div class="card-container p-2 col-md">
+                        <div class="card mb-3 pt-2 shadow-sm text-center">
+                            <h5>Instructor</h5>
+                            <p class="text-muted">{{course.teacher}}</p>
+                        </div> 
+                    </div>
+                    <!-- Fecha Inicio -->
+                    <div class="card-container p-2 col-md">
+                        <div class="card mb-3 pt-2 shadow-sm text-center">
+                            <h5>Fecha Inicio</h5>
+                            <p class="text-muted">{{course.getStartsAt()}}</p>
+                        </div> 
+                    </div>
+                    <!-- Fecha Fin -->
+                    <div class="card-container p-2 col-md">
+                        <div class="card mb-3 pt-2 shadow-sm text-center">
+                            <h5>Fecha Fin</h5>
+                            <p class="text-muted">{{course.getEndsAt()}}</p>
+                        </div> 
+                    </div>
+                </div>
+                <!-- TODO: Obtener el link y mostarlo al dar click -->
+                <div *ngIf="user != null" class="text-center">
+                    <button class="btn btn-success">Obtener link de Moodle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
