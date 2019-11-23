@@ -1,0 +1,53 @@
+<!-- Barra de Navegación -->
+<app-nav-bar></app-nav-bar>
+
+<div class="container my-3">
+    <div class="row mx-auto">
+        <div class="card shadow-sm mx-auto">
+            <div class="card-body">
+                <!-- Título -->
+                <div class="text-center card-title mb-3">
+                    <h2>Contacto</h2>
+                </div>
+                <!-- Formulario -->
+                <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                    <!-- Nombre -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <fa-icon [icon]="faUser"></fa-icon>
+                            </div>
+                        </div>
+                        <input formControlName="name" type="text" class="form-control" placeholder="Nombre Completo">
+                    </div>
+                    <!-- Correo -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <fa-icon [icon]="faEnvelope"></fa-icon>
+                            </div>
+                        </div>
+                        <input formControlName="email" type="text" class="form-control" placeholder="Correo">
+                    </div>
+                    <!-- Teléfono -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <fa-icon [icon]="faPhone"></fa-icon>
+                            </div>
+                        </div>
+                        <input formControlName="email" type="text" class="form-control" placeholder="Teléfono">
+                    </div>
+                    <!-- Mensaje -->
+                    <div class="input-group mb-3">
+                        <textarea placeholder="Mensaje" class="form-control shadow-sm" formControlName="message" cols="30" rows="5"></textarea>
+                    </div>
+                    <!--Solicitar Registro-->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary shadow-sm">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
