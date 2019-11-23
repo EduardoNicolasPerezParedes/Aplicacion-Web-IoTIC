@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/_models/course.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/_services/course.service';
-import { MsgHelper } from 'src/_helpers/msg.helper';
 import { User } from 'src/_models/user.model';
 import { AuthHelper } from 'src/_helpers/auth.helper';
 
