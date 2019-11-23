@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthHelper } from './../../_helpers/auth.helper';
 import { AuthService } from 'src/_services/auth.service';
+import { User } from 'src/_models/user.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,31 +14,58 @@ export class NavBarComponent implements OnInit {
   /**
    * Controla el menú hamburguesa
    */
-  isCollapsed = true;
-
-  /**
-   * ¿El usuario es Administrador?
-   */
-  isAdmin = false;
+  public isCollapsed = true;
 
   /**
    * ¿Hay una sesión iniciada?
    */
-  loggedIn = false;
+  public loggedIn = false;
 
-  /**
-   * Nombre del usuario de la sesión actual
-   */
-  userName = '';
+  /** 
+   * Contiene al usuario de la sesión actual
+  */
+  public user: User;
+
+  /** 
+   * ¿Es /home la ruta activa?
+  */
+  public homeActiveRoute = false;
+
+  /** 
+   * ¿Es /contact la ruta activa?
+  */
+  public contactActiveRoute = false;
+
+  /** 
+   * ¿Es /contact la ruta activa?
+  */
+  public aboutActiveRoute = false;
+
+  /** 
+   * ¿Es /contact la ruta activa?
+  */
+  public resourceActiveRoute = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    let user = AuthHelper.getLoggedUser();
-    this.loggedIn = user ? true : false;
+    this.user = AuthHelper.getLoggedUser();
+    this.loggedIn = this.user ? true : false;
 
-    if (this.loggedIn) {
-      this.userName = user.name;
+    let url = this.router.url;
+    switch(url) {
+      case '/contact':
+        this.contactActiveRoute = true;
+        break;
+      case '/about':
+        this.aboutActiveRoute = true;
+        break;
+      case '/resource':
+        this.resourceActiveRoute = true;
+        break;
+      default:
+        this.homeActiveRoute = true;
+        break;
     }
   }
 

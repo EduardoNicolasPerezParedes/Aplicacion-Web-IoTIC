@@ -12,26 +12,46 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <!-- Incio -->
-      <li class="nav-item active mr-3 ml-3">
-        <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
+      <li *ngIf="homeActiveRoute" class="nav-item active mx-auto">
+        <a class="nav-link" href="home">Inicio</a>
+      </li>
+      <li *ngIf="!homeActiveRoute" class="nav-item mx-auto">
+        <a class="nav-link" href="home">Inicio</a>
       </li>
       <!-- Nosotros -->
-      <li class="nav-item mr-3">
+      <li *ngIf="aboutActiveRoute" class="nav-item active mx-auto">
         <a class="nav-link" href="#">Nosotros</a>
       </li>
-      <!-- Contáctanos -->
-      <li class="nav-item mr-3">
-        <a class="nav-link" href="#">Contáctanos</a>
+      <li *ngIf="!aboutActiveRoute" class="nav-item mx-auto">
+        <a class="nav-link" href="#">Nosotros</a>
       </li>
+      <!-- Contacto -->
+      <li *ngIf="contactActiveRoute" class="nav-item active mx-auto">
+        <a class="nav-link" href="contact">Contacto</a>
+      </li>
+      <li *ngIf="!contactActiveRoute" class="nav-item mx-auto">
+        <a class="nav-link" href="contact">Contacto</a>
+      </li>
+      <!-- Recursos -->
+      <div *ngIf="loggedIn" class="mx-auto">
+        <li *ngIf="resourceActiveRoute" class="nav-item active">
+          <a class="nav-link" href="resource">Recursos</a>
+        </li>
+        <li *ngIf="!resourceActiveRoute" class="nav-item">
+          <a class="nav-link" href="resource">Recursos</a>
+        </li>
+      </div>
     </ul>
     <!-- Cuando no hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0" *ngIf="!loggedIn">
-      <button class="btn btn-success my-2 my-sm-0 mr-3" (click)="signupOnClick()">Registrarse</button>
-      <button class="btn btn-primary shadow my-2 my-sm-0" (click)="loginOnClick()">Iniciar Sesión</button>
+      <div class="pr-2 mx-auto">
+        <button class="btn btn-success my-2 my-sm-0" (click)="signupOnClick()">Registrarse</button>
+      </div>
+      <button class="btn btn-primary shadow my-2 my-sm-0 mx-auto" (click)="loginOnClick()">Iniciar Sesión</button>
     </form>
     <!-- Cuando hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0 pr-2" *ngIf="loggedIn">
-      <div ngbDropdown class="shadow">
+      <div ngbDropdown class="shadow mx-auto">
         <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Aquí debería ir el nombre</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="logoutOnClick()">Cerrar Sesión</button>
