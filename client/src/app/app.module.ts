@@ -18,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseService } from 'src/_services/course.service';
 import { CourseComponent } from './course/course.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CourseComponent } from './course/course.component';
     HomeComponent,
     NavBarComponent,
     CoursesComponent,
-    CourseComponent
+    CourseComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
