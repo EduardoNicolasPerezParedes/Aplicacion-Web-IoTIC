@@ -1,22 +1,20 @@
 <div class="container col-12">
     <!-- Título -->
     <div class="text-center mt-5">
-        <h3>Cursos</h3>
+        <h2>Cursos</h2>
         <!-- En caso de que no hayan cursos disponibles -->
         <p class="text-muted" *ngIf="!weHaveCourses">En el momento no tenemos cursos disponibles</p>
     </div>
     <div class="row">
         <!-- Cartas de los Cursos -->
-        <div class="col mt-5 mb-5 mx-auto" *ngFor="let course of courses">
-            <div class="card shadow">
+        <div class="col mt-5 mb-3 mx-auto" *ngFor="let course of courses">
+            <div class="card shadow-sm">
+                <!-- Imágen del curso -->
                 <div class="card-img">
-                    <img class="card-img-top shadow" src="" alt="Imágen del curso">
+                    <img class="card-img-top shadow-sm" src="" alt="Imágen del curso">
                 </div>
-                <div class="card-body text-center pt-0">
-                    <h5 class="card-title">{{course.name}}</h5>
-                    <p class="card-text text-muted">
-                        {{course.description}}
-                    </p>
+                <div class="card-body text-center pt-0 pb-0">
+                    <h3 class="card-title">{{course.name}}</h3>
                 </div>
             <button class="btn btn-primary mx-auto mb-3" (click)="showCourse(course.id)">Más Información</button>
         </div>

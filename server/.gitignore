@@ -1,5 +1,5 @@
 # Dependency directory
-node_modules
+/node_modules
 
 # MacOS only
 .DS_Store
