@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark  col-12 shadow-sm">
+    <!-- Logo -->
+    <a class="navbar-brand" href="admin">
+        Administrador
+    </a>
+    <!-- Menú Hamburguesa -->
+    <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <!-- Semillero -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="shadow mx-auto">
+              <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>Semillero</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Eventos</button>
+                <button ngbDropdownItem>Cursos</button>
+                <button ngbDropdownItem>Noticias</button>
+                <button ngbDropdownItem (click)="messagesOnClick()">Mensajes</button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <!-- Recursos -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="shadow mx-auto">
+              <button class="btn btn-dark" id="dropdownBasic2" ngbDropdownToggle>Recursos</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <button ngbDropdownItem>Recursos</button>
+              </div>
+            </div>
+          </form>
+        </li>
+        <!-- Integrantes -->
+        <li class="nav-item mx-auto">
+          <form class="form-inline mt-2 mt-md-0 pr-3">
+            <div ngbDropdown class="shadow mx-auto">
+              <button class="btn btn-dark" id="dropdownBasic3" ngbDropdownToggle>Integrantes</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                <button ngbDropdownItem>Aprovados</button>
+                <button ngbDropdownItem>Pendientes</button>
+              </div>
+            </div>
+          </form>
+        </li>
+      </ul>
+      <!-- Usuario -->
+      <form class="form-inline mt-2 mt-md-0 pr-2">
+        <div ngbDropdown class="shadow mx-auto">
+          <button class="btn btn-light" id="dropdownBasic4" ngbDropdownToggle>Aquí debería ir el nombre</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic4">
+            <button ngbDropdownItem (click)="backOnClick()">Volver a la App</button>
+            <button ngbDropdownItem (click)="logoutOnClick()">Cerrar Sesión</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nav>

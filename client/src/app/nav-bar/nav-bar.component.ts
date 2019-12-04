@@ -90,4 +90,11 @@ export class NavBarComponent implements OnInit {
     this.authService.logout();
     location.reload();
   }
+
+  /**
+   * Es invocada al dar click en 'Admin Dashboard'
+   */
+  dashboardOnClick(): void {
+    this.router.navigateByUrl("admin");
+  }
 }

@@ -4,6 +4,8 @@ export class MsgHelper {
     
     private toast;
 
+    private confirmDialog;
+
     constructor() {
         this.toast = Swal.mixin({
             toast: true,
@@ -11,6 +13,16 @@ export class MsgHelper {
             showConfirmButton: false,
             timer: 3000
         }); 
+
+        this.confirmDialog = Swal.mixin({
+            customClass: {
+                cancelButton: 'btn btn-light shadow-sm',
+                confirmButton: 'btn btn-danger shadow-sm ml-2',
+                title: 'text-dark',
+            },
+            width: 300,
+            buttonsStyling: false
+        });
     }
 
     /**
@@ -34,6 +46,18 @@ export class MsgHelper {
         this.toast.fire({
             type: 'error',
             title: err
+        });
+    }
+
+    public async showConfirmDialog(title: string, question: string) {
+        return this.confirmDialog.fire({
+            title: title,
+            text: question,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
         });
     }
 }

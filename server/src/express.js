@@ -13,10 +13,10 @@ app.use(express.urlencoded({extended: false}));
 // development
 if (config.env === 'dev') { 
     app.use(morgan('dev'));
-    app.use(cors({ origin: 'http://localhost:4200' }));
 }
 
 // REST router
+app.use(cors());
 app.use('/api', restRouter);
 
 module.exports = app;

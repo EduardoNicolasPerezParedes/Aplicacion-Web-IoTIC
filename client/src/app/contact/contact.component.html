@@ -18,7 +18,7 @@
                                 <fa-icon [icon]="faUser"></fa-icon>
                             </div>
                         </div>
-                        <input formControlName="name" type="text" class="form-control" placeholder="Nombre Completo">
+                        <input formControlName="sender" type="text" class="form-control" placeholder="Nombre Completo" [ngClass]="{ 'is-invalid': submitted && f.sender.errors }">
                     </div>
                     <!-- Correo -->
                     <div class="input-group mb-3">
@@ -27,7 +27,7 @@
                                 <fa-icon [icon]="faEnvelope"></fa-icon>
                             </div>
                         </div>
-                        <input formControlName="email" type="text" class="form-control" placeholder="Correo">
+                        <input formControlName="email" type="text" class="form-control" placeholder="Correo" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                     </div>
                     <!-- Teléfono -->
                     <div class="input-group mb-3">
@@ -36,11 +36,11 @@
                                 <fa-icon [icon]="faPhone"></fa-icon>
                             </div>
                         </div>
-                        <input formControlName="email" type="text" class="form-control" placeholder="Teléfono">
+                        <input formControlName="phone_number" type="tel" class="form-control" placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }">
                     </div>
                     <!-- Mensaje -->
                     <div class="input-group mb-3">
-                        <textarea placeholder="Mensaje" class="form-control shadow-sm" formControlName="message" cols="30" rows="5"></textarea>
+                        <textarea placeholder="Mensaje" class="form-control shadow-sm" formControlName="message" cols="30" rows="5" [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
                     </div>
                     <!--Solicitar Registro-->
                     <div class="text-center">

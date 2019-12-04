@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,10 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseService } from 'src/_services/course.service';
 import { CourseComponent } from './course/course.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { AdminSemilleroComponent } from './admin-semillero/admin-semillero.component';
+import { AdminSemilleroMsgComponent } from './admin-semillero-msg/admin-semillero-msg.component';
+import { MessageService } from 'src/_services/message.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { ContactComponent } from './contact/contact.component';
     NavBarComponent,
     CoursesComponent,
     CourseComponent,
-    ContactComponent
+    ContactComponent,
+    AdminNavbarComponent,
+    AdminSemilleroComponent,
+    AdminSemilleroMsgComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +50,8 @@ import { ContactComponent } from './contact/contact.component';
   providers: [
     UserService,
     AuthService,
-    CourseService
+    CourseService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

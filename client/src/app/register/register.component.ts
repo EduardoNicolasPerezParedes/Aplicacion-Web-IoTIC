@@ -82,7 +82,8 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.career,
       this.registerForm.value.birth_date,
       this.registerForm.value.student,
-      this.registerForm.value.semester
+      this.registerForm.value.semester,
+      false
       /**
        * TODO:  - Agregar los campos: 'Hoja de vida' y  'CVLAC'.
        *        - Utilizar el servicio 'userService' para registar al nuevo usuario.

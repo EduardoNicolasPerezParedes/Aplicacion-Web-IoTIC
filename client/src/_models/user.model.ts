@@ -1,11 +1,12 @@
 export class User {
     constructor(
         public name: string,
-        private email: string,
-        private career: string,
-        private birth_date: string,
-        private student: boolean,
-        private semester: number
+        public email: string,
+        public career: string,
+        public birth_date: string,
+        public student: boolean,
+        public semester: number,
+        public admin: boolean
     ) { 
         if (this.student === false) {
             this.semester = null;
@@ -24,7 +25,8 @@ export class User {
             json.career,
             json.birth_date,
             json.student,
-            json.semester
+            json.semester,
+            json.admin
         )
     }
 }

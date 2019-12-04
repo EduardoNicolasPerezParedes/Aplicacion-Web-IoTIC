@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CourseComponent } from './course/course.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminSemilleroComponent } from './admin-semillero/admin-semillero.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'course/:id', component: CourseComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'admin', component: AdminSemilleroComponent },
+  { path: 'admin/messages', component: AdminSemilleroComponent },
   { path: '**', component: HomeComponent }
 ];
 

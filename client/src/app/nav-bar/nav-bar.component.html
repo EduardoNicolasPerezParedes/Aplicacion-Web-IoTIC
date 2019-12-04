@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary col-12">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary col-12 shadow-sm">
   <!-- Logo -->
   <a class="navbar-brand" href="#">
       <img src="" width="30" height="30" class="mx-auto d-inline-block align-top" alt="Logo">
@@ -51,9 +51,10 @@
     </form>
     <!-- Cuando hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0 pr-2" *ngIf="loggedIn">
-      <div ngbDropdown class="shadow mx-auto">
+      <div ngbDropdown class="shadow-sm mx-auto">
         <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Aquí debería ir el nombre</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button *ngIf="user.admin" ngbDropdownItem (click)="dashboardOnClick()">Admin Dashboard</button>
           <button ngbDropdownItem (click)="logoutOnClick()">Cerrar Sesión</button>
         </div>
       </div>
