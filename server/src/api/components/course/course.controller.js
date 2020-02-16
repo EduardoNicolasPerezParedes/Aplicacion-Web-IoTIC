@@ -104,7 +104,23 @@ const course_controller = {
         }
 
         res.status(200).send(course);
-    }
+    },
+    /**
+     * Elimina un curso.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async delete(req, res) {
+        try {
+            let id = req.params.id;
+
+            await Course.findByIdAndRemove({_id: id});
+
+            res.sendStatus(200);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
+    },
 }
 
 module.exports = course_controller;

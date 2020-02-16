@@ -18,4 +18,10 @@ course_router.get('/', course_controller.list);
  */
 course_router.get('/:id', course_controller.get);
 
+/**
+ * ruta que permite eliminar un curso.
+ */
+course_router.delete('/:id', course_controller.delete);
+
+
 module.exports = course_router;
