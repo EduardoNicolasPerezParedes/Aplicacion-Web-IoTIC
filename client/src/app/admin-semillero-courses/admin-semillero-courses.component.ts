@@ -43,6 +43,11 @@ export class AdminSemilleroCoursesComponent implements OnInit {
    */
   public weHaveCourses: boolean;
 
+  /**
+   * ¿Está cargando la petición?
+   */
+  public isLoading: boolean;
+
   constructor(private courseService: CourseService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -52,12 +57,19 @@ export class AdminSemilleroCoursesComponent implements OnInit {
   }
 
   public async setCourses() {
-    let res:any = await this.courseService.list().toPromise();
-    this.courses = new Array<Course>();
-
-    res.forEach(course => {
-      this.courses.push(Course.fromJSON(course))
-    });
+    this.isLoading = true;
+    try {
+      let res:any = await this.courseService.list().toPromise();
+      this.courses = new Array<Course>();
+  
+      res.forEach(course => {
+        this.courses.push(Course.fromJSON(course))
+      });
+    } catch(err) {
+      new MsgHelper().showError(err.message);
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   public async addOnClick() {
@@ -65,12 +77,12 @@ export class AdminSemilleroCoursesComponent implements OnInit {
   }
 
   public showOnClick() {
-    
+    // TODO: Mostrar la información del curso
   }
 
   public async deleteOnClick(id: string) {
     let msg = new MsgHelper();
-    let res = await msg.showConfirmDialog('Confirmación', '¿Está seguro que desea eliminar el curso?');
+    let res = await msg.showConfirmDialog('¿Está seguro?', 'El curso será eliminado de forma permanente');
     
     if (res.value) {
       try {

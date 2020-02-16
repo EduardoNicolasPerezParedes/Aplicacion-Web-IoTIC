@@ -1,13 +1,19 @@
-<div class="container bg-light big-container">
+<div class="container bg-light big-container" style="height: 100vh;">
     <h3 class="mt-3">Cursos</h3>
     <div class="container text-center">
         <button class="btn btn-success mb-2 shadow rounded-circle" style="font-size: 20px;" (click)="addOnClick()">
             <fa-icon [icon]="faPlus"></fa-icon>
         </button>
     </div>
+
+    <div class="row">
+        <!-- Loader -->
+        <img class="mx-auto" *ngIf="isLoading" src="assets/loaders/admin-loader.gif">
+    </div>
+
     <!-- Cursos -->
     <div class="row">
-        <div class="container col-md-4 mt-5 mx-0" *ngFor="let course of courses">
+        <div class="container col-md-4 my-5 mx-0" *ngFor="let course of courses">
             <div class="card border-0 shadow-sm pb-2">
                 <div class="card-img">
                     <img class="card-img-top shadow-sm" src="https://image.shutterstock.com/z/stock-photo-fantastic-evening-panorama-of-bachalp-lake-bachalpsee-switzerland-picturesque-autumn-sunset-in-1216555750.jpg" alt="Imágen del curso">
@@ -26,7 +32,7 @@
             </div>
         </div>
         <div class="container">
-            <p *ngIf="!weHaveCourses" class="text-center" id="weDontHaveCourses">
+            <p *ngIf="!weHaveCourses && !isLoading" class="text-center" id="weDontHaveCourses">
                 No existen cursos actualmente
             </p>
         </div>
