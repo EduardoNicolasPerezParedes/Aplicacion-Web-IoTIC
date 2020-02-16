@@ -1,0 +1,45 @@
+<div class="modal-body" id="course-form">
+    <div class="text-center container">
+        <h4>Formulario de Curso</h4>
+    </div>
+    <hr>
+    <form>
+        <!-- Nombre -->
+        <input [(ngModel)]="course.name" name="name" class="form-control bg-light border-0 rounded-pill inner-shadow my-3" placeholder="Nombre del curso" id="name" type="text">
+        
+        <!-- Descripción -->
+        <textarea [(ngModel)]="course.description" name="desc" placeholder="Descripción" id="rounded" class="bg-light border-0 inner-shadow form-control mb-3" rows="10"></textarea>
+
+        <!-- Profesor -->
+        <input [(ngModel)]="course.teacher" name="teacher" class="form-control rounded-pill bg-light border-0 inner-shadow mb-3" placeholder="Instructor" id="teacher" type="text">
+
+        <!-- Fecha inicio y Fecha fin -->
+        <div class="row">
+            <div class="input-group col-6">
+                <input [(ngModel)]="course.starts_at" name="starts_at" class="form-control rounded-pill bg-light border-0 inner-shadow" placeholder="Fecha Inicio" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-light border rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="input-group col-6 text-right">
+                <input [(ngModel)]="course.ends_at" name="ends_at" class="form-control rounded-pill bg-light border-0 inner-shadow" placeholder="Fecha Fin" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker">
+                <div class="input-group-append">
+                    <button class="btn btn-light border rounded-circle ml-2" (click)="d2.toggle()" type="button">
+                        <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row px-3">
+        <button type="button" class="btn mr-4 shadow-sm rounded-pill" (click)="cancelOnClick()">
+            Cancelar
+        </button>
+        <button type="button" class="ml-auto btn btn-success rounded-pill" (click)="addOnClick()">
+            Agregar
+        </button>
+    </div>
+</div>

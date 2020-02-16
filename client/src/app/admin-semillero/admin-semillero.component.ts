@@ -28,8 +28,12 @@ export class AdminSemilleroComponent implements OnInit {
     let url = this.router.url;
     
     switch(url) {
+      case '/admin/courses':
+        this.selectedOption = this.OPTIONS.COURSES;
+        break;
       case '/admin/messages':
         this.selectedOption = this.OPTIONS.MSG;
+        break;
     }
   }
 }

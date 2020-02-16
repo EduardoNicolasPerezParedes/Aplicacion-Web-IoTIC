@@ -50,12 +50,20 @@ const course_controller = {
             return;
         }
 
+        let starts_at_formated = new Date(starts_at.year, starts_at.month, starts_at.day);
+        let ends_at_formated = new Date(ends_at.year, ends_at.month, ends_at.day);
+
+        if (starts_at_formated > ends_at_formated) {
+            res.status(422).send({error: ERRORS.INVALID_DATE});
+            return;
+        }
+
         let new_course = await Course.create({
             name: name,
             description: description,
             teacher: teacher,
-            starts_at: starts_at,
-            ends_at: ends_at
+            starts_at: starts_at_formated,
+            ends_at: ends_at_formated
         });
 
         res.status(200).send(new_course);

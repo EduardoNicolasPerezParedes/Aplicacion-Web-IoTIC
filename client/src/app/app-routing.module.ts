@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminSemilleroComponent },
   { path: 'admin/messages', component: AdminSemilleroComponent },
+  { path: 'admin/courses', component: AdminSemilleroComponent },
   { path: '**', component: HomeComponent }
 ];
 

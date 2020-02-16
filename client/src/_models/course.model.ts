@@ -1,12 +1,35 @@
 export class Course {
-    constructor(
-        public id: string,
-        public name: string,
-        public description: string,
-        public teacher: string,
-        public starts_at: Date,
-        public ends_at: Date
-    ) { }
+    /**
+     * Identificador del curso
+     */
+    public id: string;
+
+    /**
+     * Nombre del curso
+     */
+    public name: string;
+
+    /**
+     * Descripción
+     */
+    public description: string;
+
+    /**
+     * Profesor que imparte el curso
+     */
+    public teacher: string;
+
+    /**
+     * Fecha de inicio
+     */
+    public starts_at: Date;
+
+    /**
+     * Fecha fin
+     */
+    public ends_at: Date;
+
+    constructor() { }
 
     public getStartsAt(): string {
         var starts_at_str = '';
@@ -34,15 +57,17 @@ export class Course {
         return JSON.parse(JSON.stringify(this));
     }
 
-    public static fromJSON(json): Course{
+    public static fromJSON(json): Course {
         if (json === null) { return null; }
-        return new Course(
-            json._id,
-            json.name,
-            json.description,
-            json.teacher,
-            new Date(json.starts_at),
-            new Date(json.ends_at)
-        )
+        var course = new Course();
+
+        course.id = json._id;
+        course.name = json.name;
+        course.description = json.description;
+        course.teacher = json.teacher;
+        course.starts_at = new Date(json.starts_at);
+        course.ends_at = new Date(json.ends_at);
+
+        return course;
     }
 }

@@ -19,6 +19,10 @@ export class AdminNavbarComponent implements OnInit {
 
   ngOnInit() { }
 
+  coursesOnClick(): void {
+    this.router.navigateByUrl("admin/courses");
+  }
+
   messagesOnClick(): void {
     this.router.navigateByUrl("admin/messages");
   }

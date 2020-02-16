@@ -17,6 +17,8 @@ const user_controller = {
         let student = req.body.student;
         let semester = req.body.semester;
 
+        console.log(req.body);
+
         if (!name) {
             // retorna error si el nombre no se encuentra
             res.status(422).send({error: ERRORS.INVALID_NAME});
@@ -78,6 +80,7 @@ const user_controller = {
             // envía la información del usuario registrado
             res.status(200).send(user_saved);
         } catch (err) {
+            console.log(err.message);
             res.status(500).send({error: err.message});
         }
     }

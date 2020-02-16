@@ -6,6 +6,7 @@ const ERRORS = {
     INVALID_END_DATE: 'Debe ingresar la fecha de finalización del curso',
     NAME_ALREADY_TAKEN: 'Ya existe un curso con ese nombre',
     INVALID_COURSE: 'El curso no existe',
+    INVALID_DATE: 'La fecha de inicio no puede ser mayor a la fecha fin',
 }
 
 module.exports = ERRORS;

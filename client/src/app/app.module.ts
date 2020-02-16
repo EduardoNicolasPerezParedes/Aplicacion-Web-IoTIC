@@ -23,6 +23,8 @@ import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { AdminSemilleroComponent } from './admin-semillero/admin-semillero.component';
 import { AdminSemilleroMsgComponent } from './admin-semillero-msg/admin-semillero-msg.component';
 import { MessageService } from 'src/_services/message.service';
+import { AdminSemilleroCoursesComponent } from './admin-semillero-courses/admin-semillero-courses.component';
+import { CourseFormComponent } from './admin-semillero-courses/course-form/course-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { MessageService } from 'src/_services/message.service';
     ContactComponent,
     AdminNavbarComponent,
     AdminSemilleroComponent,
-    AdminSemilleroMsgComponent
+    AdminSemilleroMsgComponent,
+    AdminSemilleroCoursesComponent,
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,9 @@ import { MessageService } from 'src/_services/message.service';
     CourseService,
     MessageService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CourseFormComponent
+  ]
 })
 export class AppModule { }

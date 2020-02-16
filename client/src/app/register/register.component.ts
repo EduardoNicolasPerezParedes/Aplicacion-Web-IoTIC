@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
    */
   get f() { return this.registerForm.controls; }
 
-  onSubmit() {
+  async onSubmit() {
     this.submitted = true;
     // Si el formulario es inválido, no se registra el usuario
     if (this.registerForm.invalid) { return; }
@@ -89,5 +89,8 @@ export class RegisterComponent implements OnInit {
        *        - Utilizar el servicio 'userService' para registar al nuevo usuario.
        */
     );
+
+    alert(JSON.stringify(newUser));
+    let res = await this.userService.create(newUser).toPromise();
   }
 }

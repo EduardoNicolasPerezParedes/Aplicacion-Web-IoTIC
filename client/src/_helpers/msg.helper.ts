@@ -9,7 +9,7 @@ export class MsgHelper {
     constructor() {
         this.toast = Swal.mixin({
             toast: true,
-            position: 'top-end',
+            position: "top",
             showConfirmButton: false,
             timer: 3000
         }); 
@@ -42,7 +42,7 @@ export class MsgHelper {
      * 
      * @param err error a ser mostrado.
      */
-    public showError(err: string): void{
+    public showError(err: string): void {
         this.toast.fire({
             type: 'error',
             title: err

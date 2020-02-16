@@ -3,7 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { HttpService } from './http.service';
 import { Course } from '../_models/course.model';
-import { parse } from 'querystring';
  
 @Injectable()
 export class CourseService extends HttpService {
@@ -42,10 +41,16 @@ export class CourseService extends HttpService {
      * @param id identificador del curso.
      */
     get(id: string) {
-        let params = new HttpParams();
-        params.set('id', id);
-
         return this.http.get(
+            `${this.apiUrl}/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
+
+    delete(id: string) {
+        return this.http.delete(
             `${this.apiUrl}/${id}`,
             { 
                 headers: this.headers

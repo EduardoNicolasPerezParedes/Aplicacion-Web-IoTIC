@@ -31,19 +31,11 @@ export class CoursesComponent implements OnInit {
   }
 
   public async setCourses() {
-    let res = await this.courseService.list().toPromise();
-    let courses = res as Array<any>;
+    let res:any = await this.courseService.list().toPromise();
     this.courses = new Array<Course>();
 
-    courses.forEach(course => {
-      this.courses.push(new Course(
-        course._id,
-        course.name,
-        course.description,
-        course.teacher,
-        course.starts_at,
-        course.ends_at
-      ));
+    res.forEach(course => {
+      this.courses.push(Course.fromJSON(course));
     });
   }
 
