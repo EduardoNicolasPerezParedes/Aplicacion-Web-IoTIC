@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { faUser, faEnvelope, faCalendarAlt, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -80,7 +81,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.name,
       this.registerForm.value.email,
       this.registerForm.value.career,
-      this.registerForm.value.birth_date,
+      this.registerForm.value.birth_date = new Date().toISOString().slice(0,10),
       this.registerForm.value.student,
       this.registerForm.value.semester,
       false
@@ -90,7 +91,8 @@ export class RegisterComponent implements OnInit {
        */
     );
 
-    alert(JSON.stringify(newUser));
     let res = await this.userService.create(newUser).toPromise();
+    alert("Tu solicitud ha sido registrada correctamente");
+    this.router.navigateByUrl("home");
   }
 }
