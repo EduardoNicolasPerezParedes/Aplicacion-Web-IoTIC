@@ -85,8 +85,13 @@ export class CourseInfoComponent implements OnInit {
   public async updateOnClick() {
     try {
       let res = await this.courseService.update(this.course.id, this.course).toPromise();
+      new MsgHelper().showSuccess("Curso actualizado exitosamente");
+      alert(JSON.stringify(res));
     } catch (err) {
-      
+      if (err.status == 422) {
+        new MsgHelper().showError(err.error.error);
+        this.setCourse();
+      }
     } finally {
       this.isEditable = false;
     }

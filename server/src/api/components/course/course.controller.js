@@ -135,20 +135,60 @@ const course_controller = {
             let starts_at = req.body.starts_at;
             let ends_at = req.body.ends_at;
 
-            let course = await Course.findOne({_id: id});
+            if (!name) {
+                // retorna error si el nombre del curso no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_NAME});
+                return;
+            }
+            if (!description) {
+                // retorna error si la descripción del curso no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_DESCRIPTION});
+                return;
+            }
+            if (!teacher) {
+                // retorna error si el instructor del curso no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_TEACHER});
+                return;
+            }
+            if (!starts_at) {
+                // retorna error si la fecha de inicio no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_START_DATE});
+                return;
+            }
+            if (!ends_at) {
+                // retorna error si la fecha de finalización no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_END_DATE});
+                return;
+            }
+    
+            let formated_name = name.toLowerCase();
+            let course = await Course.findOne({name: formated_name}).exec();
+            if (course && course._id != id) {
+                // ya existe un curso con ese nombre
+                res.status(422).send({error: ERRORS.NAME_ALREADY_TAKEN});
+                return;
+            }
 
-            // Se actualiza la información
-            course.name = name;
-            course.description = description;
-            course.teacher = teacher;
             let starts_at_formated = new Date(starts_at.year, starts_at.month, starts_at.day);
             let ends_at_formated = new Date(ends_at.year, ends_at.month, ends_at.day);
-            course.starts_at = starts_at_formated;
-            course.ends_at = ends_at_formated;
 
-            await course.save();
+            if (starts_at_formated > ends_at_formated) {
+                res.status(422).send({error: ERRORS.INVALID_DATE});
+                return;
+            }
 
-            res.sendStatus(200);
+            let updated_course = await Course.findOne({_id: id});
+
+            // Se actualiza la información
+            updated_course.name = name;
+            updated_course.description = description;
+            updated_course.teacher = teacher;
+            updated_course.starts_at = starts_at_formated;
+            updated_course.ends_at = ends_at_formated;
+
+            let updated = await updated_course.save();
+
+            res.status(200).send(updated);
         } catch (err) {
             res.status(500).send({error: err.message});
         }
