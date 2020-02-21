@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { faCalendarAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faTimes, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { CourseService } from 'src/_services/course.service';
 import { Course } from 'src/_models/course.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
@@ -15,6 +15,16 @@ export class CourseFormComponent implements OnInit {
    * Icono de Fecha Inicio y Fecha Fin
    */
   faCalendarAlt = faCalendarAlt;
+
+  /**
+   * Icono de Cerrar
+   */
+  faTimes = faTimes
+
+  /**
+   * Icono de Agregar
+   */
+  faCheck = faCheck
 
   /**
    * Curso a ser registrado

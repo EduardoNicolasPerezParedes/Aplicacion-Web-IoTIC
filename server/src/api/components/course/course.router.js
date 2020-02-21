@@ -23,10 +23,5 @@ course_router.get('/:id', course_controller.get);
  */
 course_router.delete('/:id', course_controller.delete);
 
-/**
- * ruta que permite actualizar un curso.
- */
-course_router.put('/:id', course_controller.update);
-
 
 module.exports = course_router;

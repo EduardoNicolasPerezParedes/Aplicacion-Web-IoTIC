@@ -25,7 +25,6 @@ import { AdminSemilleroMsgComponent } from './admin-semillero-msg/admin-semiller
 import { MessageService } from 'src/_services/message.service';
 import { AdminSemilleroCoursesComponent } from './admin-semillero-courses/admin-semillero-courses.component';
 import { CourseFormComponent } from './admin-semillero-courses/course-form/course-form.component';
-import { CourseInfoComponent } from './admin-semillero-courses/course-info/course-info.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { CourseInfoComponent } from './admin-semillero-courses/course-info/cours
     AdminSemilleroComponent,
     AdminSemilleroMsgComponent,
     AdminSemilleroCoursesComponent,
-    CourseFormComponent,
-    CourseInfoComponent
+    CourseFormComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +59,7 @@ import { CourseInfoComponent } from './admin-semillero-courses/course-info/cours
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    CourseFormComponent,
-    CourseInfoComponent
+    CourseFormComponent
   ]
 })
 export class AppModule { }

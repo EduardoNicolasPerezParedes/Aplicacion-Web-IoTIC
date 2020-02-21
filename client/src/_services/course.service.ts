@@ -49,31 +49,12 @@ export class CourseService extends HttpService {
         );
     }
 
-    /**
-     * Elimina un curso.
-     * 
-     * @param id identificador del curso.
-     */
     delete(id: string) {
         return this.http.delete(
             `${this.apiUrl}/${id}`,
             { 
                 headers: this.headers
             },
-        );
-    }
-
-    /**
-     * Elimina un curso.
-     * 
-     * @param id identificador del curso.
-     * @param course Contiene la información actualizada del curso
-     */
-    update(id: string, course: Course) {
-        return this.http.put(
-            `${this.apiUrl}/${id}`,
-            course.parseToJSON(),
-            { headers: this.headers },
         );
     }
 }
