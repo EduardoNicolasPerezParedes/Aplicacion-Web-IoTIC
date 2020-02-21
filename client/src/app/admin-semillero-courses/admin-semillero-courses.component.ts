@@ -5,6 +5,7 @@ import { faPlus, faEye, faPen, faTrashAlt } from '@fortawesome/free-solid-svg-ic
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { MsgHelper } from 'src/_helpers/msg.helper';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
 @Component({
   selector: 'app-admin-semillero-courses',
@@ -56,6 +57,9 @@ export class AdminSemilleroCoursesComponent implements OnInit {
     });
   }
 
+  /**
+   * Obtiene y setea los cursos registrados
+   */
   public async setCourses() {
     this.isLoading = true;
     try {
@@ -72,14 +76,26 @@ export class AdminSemilleroCoursesComponent implements OnInit {
     }
   }
 
+  /**
+   * Invaca al dar click en Agregar
+   */
   public async addOnClick() {
     this.modalService.open(CourseFormComponent);
   }
 
-  public showOnClick() {
-    // TODO: Mostrar la información del curso
+  /**
+   * Invocada al dar click en Mostrar
+   * @param course Curso a mostrar
+   */
+  public showOnClick(id: string) {
+    CourseInfoComponent.id = id;
+    this.modalService.open(CourseInfoComponent);
   }
 
+  /**
+   * Invocada al dar click en Eliminar
+   * @param id Identificador del curso
+   */
   public async deleteOnClick(id: string) {
     let msg = new MsgHelper();
     let res = await msg.showConfirmDialog('¿Está seguro?', 'El curso será eliminado de forma permanente');

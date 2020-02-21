@@ -121,6 +121,38 @@ const course_controller = {
             res.status(500).send({error: err.message});
         }
     },
+    /**
+     * Actualiza un producto.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async update(req, res) {
+        try {
+            let id = req.params.id;
+            let name = req.body.name;
+            let description = req.body.description;
+            let teacher = req.body.teacher;
+            let starts_at = req.body.starts_at;
+            let ends_at = req.body.ends_at;
+
+            let course = await Course.findOne({_id: id});
+
+            // Se actualiza la información
+            course.name = name;
+            course.description = description;
+            course.teacher = teacher;
+            let starts_at_formated = new Date(starts_at.year, starts_at.month, starts_at.day);
+            let ends_at_formated = new Date(ends_at.year, ends_at.month, ends_at.day);
+            course.starts_at = starts_at_formated;
+            course.ends_at = ends_at_formated;
+
+            await course.save();
+
+            res.sendStatus(200);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
+    }
 }
 
 module.exports = course_controller;
