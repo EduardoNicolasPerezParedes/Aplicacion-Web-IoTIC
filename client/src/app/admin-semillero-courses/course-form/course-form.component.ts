@@ -4,6 +4,7 @@ import { faCalendarAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-ico
 import { CourseService } from 'src/_services/course.service';
 import { Course } from 'src/_models/course.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
+import { CourseSharedService } from 'src/_services/course.shared.service';
 
 @Component({
   selector: 'app-course-form',
@@ -21,7 +22,10 @@ export class CourseFormComponent implements OnInit {
    */
   public course: Course;
 
-  constructor(public modalContent: NgbActiveModal, private courseService: CourseService) { 
+  constructor(
+    public modalContent: NgbActiveModal, 
+    private courseService: CourseService,
+    private courseSharedService: CourseSharedService) { 
     this.course = new Course();
   }
 
@@ -32,6 +36,13 @@ export class CourseFormComponent implements OnInit {
    * Invocada al dar click en Cancelar
    */
   public cancelOnClick() {
+    this.close();
+  }
+
+  /**
+   * Cierra el formulario
+   */
+  private close() {
     this.modalContent.close();
   }
 
@@ -41,7 +52,10 @@ export class CourseFormComponent implements OnInit {
   public async addOnClick() {
     let msg = new MsgHelper();
     try {
-      await this.courseService.create(this.course).toPromise();
+      let res = await this.courseService.create(this.course).toPromise();
+      msg.showSuccess('Curso agregado exitosamente');
+      this.close();
+      this.courseSharedService.add(Course.fromJSON(res));
     } catch(err) {
       if (err.status == 422) { msg.showError(err.error.error); }
     }

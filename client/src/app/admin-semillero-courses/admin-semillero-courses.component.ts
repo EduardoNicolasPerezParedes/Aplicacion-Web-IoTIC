@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { CourseSharedService } from 'src/_services/course.shared.service';
 
 @Component({
   selector: 'app-admin-semillero-courses',
@@ -49,12 +50,17 @@ export class AdminSemilleroCoursesComponent implements OnInit {
    */
   public isLoading: boolean;
 
-  constructor(private courseService: CourseService, private modalService: NgbModal) { }
+  constructor(
+    private courseService: CourseService, 
+    private modalService: NgbModal,
+    private courseSharedService: CourseSharedService) { }
 
   ngOnInit() {
     this.setCourses().then(() => {
-      this.weHaveCourses = this.courses.length > 0;
+      this.courseSharedService.courses = this.courses;
+      this.weHaveCourses = this.courseSharedService.courses.length > 0;
     });
+    this.courseSharedService.refCourses().subscribe(courses => this.courses = courses);
   }
 
   /**

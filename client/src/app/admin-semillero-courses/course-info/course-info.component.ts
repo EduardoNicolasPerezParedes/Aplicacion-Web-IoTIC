@@ -4,6 +4,7 @@ import { Course } from 'src/_models/course.model';
 import { CourseService } from 'src/_services/course.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { faCalendarAlt, faTimes, faCheck, faPen } from '@fortawesome/free-solid-svg-icons';
+import { CourseSharedService } from 'src/_services/course.shared.service';
 
 @Component({
   selector: 'app-course-info',
@@ -46,7 +47,10 @@ export class CourseInfoComponent implements OnInit {
    */
   public static id: string;
 
-  constructor(private modalContent: NgbActiveModal, private courseService: CourseService) { }
+  constructor(
+    private modalContent: NgbActiveModal, 
+    private courseService: CourseService,
+    private courseSharedService: CourseSharedService) { }
 
   ngOnInit() {
     this.setCourse();
@@ -85,8 +89,8 @@ export class CourseInfoComponent implements OnInit {
   public async updateOnClick() {
     try {
       let res = await this.courseService.update(this.course.id, this.course).toPromise();
+      this.courseSharedService.update(Course.fromJSON(res));
       new MsgHelper().showSuccess("Curso actualizado exitosamente");
-      alert(JSON.stringify(res));
     } catch (err) {
       if (err.status == 422) {
         new MsgHelper().showError(err.error.error);

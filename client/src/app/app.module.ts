@@ -26,6 +26,7 @@ import { MessageService } from 'src/_services/message.service';
 import { AdminSemilleroCoursesComponent } from './admin-semillero-courses/admin-semillero-courses.component';
 import { CourseFormComponent } from './admin-semillero-courses/course-form/course-form.component';
 import { CourseInfoComponent } from './admin-semillero-courses/course-info/course-info.component';
+import { CourseSharedService } from 'src/_services/course.shared.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CourseInfoComponent } from './admin-semillero-courses/course-info/cours
     UserService,
     AuthService,
     CourseService,
-    MessageService
+    MessageService,
+    CourseSharedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
