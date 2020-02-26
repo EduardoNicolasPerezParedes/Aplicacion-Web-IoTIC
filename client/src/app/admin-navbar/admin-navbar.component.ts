@@ -11,7 +11,7 @@ export class AdminNavbarComponent implements OnInit {
   /**
    * Controla el menú hamburguesa
    */
-  public isCollapsed;
+  public isCollapsed: boolean;
 
   constructor(private router: Router, private authService: AuthService) { 
     this.isCollapsed = true;
@@ -19,15 +19,19 @@ export class AdminNavbarComponent implements OnInit {
 
   ngOnInit() { }
 
-  coursesOnClick(): void {
+  public eventsOnClick(): void {
+    this.router.navigateByUrl("admin/events");
+  }
+
+  public coursesOnClick(): void {
     this.router.navigateByUrl("admin/courses");
   }
 
-  messagesOnClick(): void {
+  public messagesOnClick(): void {
     this.router.navigateByUrl("admin/messages");
   }
 
-  logoutOnClick(): void {
+  public logoutOnClick(): void {
     this.authService.logout();
     this.router.navigateByUrl("home");
   }

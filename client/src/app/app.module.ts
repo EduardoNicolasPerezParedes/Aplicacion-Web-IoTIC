@@ -27,6 +27,10 @@ import { AdminSemilleroCoursesComponent } from './admin-semillero-courses/admin-
 import { CourseFormComponent } from './admin-semillero-courses/course-form/course-form.component';
 import { CourseInfoComponent } from './admin-semillero-courses/course-info/course-info.component';
 import { CourseSharedService } from 'src/_services/course.shared.service';
+import { AdminSemilleroEventsComponent } from './admin-semillero-events/admin-semillero-events.component';
+import { EventService } from 'src/_services/event.service';
+import { EventFormComponent } from './admin-semillero-events/event-form/event-form.component';
+import { EventSharedService } from 'src/_services/event.shared.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { CourseSharedService } from 'src/_services/course.shared.service';
     AdminSemilleroMsgComponent,
     AdminSemilleroCoursesComponent,
     CourseFormComponent,
-    CourseInfoComponent
+    CourseInfoComponent,
+    AdminSemilleroEventsComponent,
+    EventFormComponent
   ],
   imports: [
     BrowserModule,
@@ -59,12 +65,15 @@ import { CourseSharedService } from 'src/_services/course.shared.service';
     AuthService,
     CourseService,
     MessageService,
-    CourseSharedService
+    CourseSharedService,
+    EventService,
+    EventSharedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     CourseFormComponent,
-    CourseInfoComponent
+    CourseInfoComponent,
+    EventFormComponent
   ]
 })
 export class AppModule { }

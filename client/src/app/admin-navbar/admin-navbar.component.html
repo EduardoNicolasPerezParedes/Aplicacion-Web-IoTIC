@@ -16,7 +16,7 @@
             <div ngbDropdown class="shadow mx-auto">
               <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>Semillero</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>Eventos</button>
+                <button ngbDropdownItem (click)="eventsOnClick()">Eventos</button>
                 <button ngbDropdownItem (click)="coursesOnClick()">Cursos</button>
                 <button ngbDropdownItem>Noticias</button>
                 <button ngbDropdownItem (click)="messagesOnClick()">Mensajes</button>

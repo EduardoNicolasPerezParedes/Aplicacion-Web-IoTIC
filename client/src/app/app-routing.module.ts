@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminSemilleroComponent },
   { path: 'admin/messages', component: AdminSemilleroComponent },
   { path: 'admin/courses', component: AdminSemilleroComponent },
+  { path: 'admin/events', component: AdminSemilleroComponent },
   { path: '**', component: HomeComponent }
 ];
 

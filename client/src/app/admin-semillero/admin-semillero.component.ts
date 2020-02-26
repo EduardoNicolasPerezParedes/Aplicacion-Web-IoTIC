@@ -28,6 +28,9 @@ export class AdminSemilleroComponent implements OnInit {
     let url = this.router.url;
     
     switch(url) {
+      case '/admin/events':
+        this.selectedOption = this.OPTIONS.EVENTS;
+        break;
       case '/admin/courses':
         this.selectedOption = this.OPTIONS.COURSES;
         break;

@@ -1,0 +1,35 @@
+<div class="modal-body" id="course-form">
+    <div class="text-center container">
+        <h4>Formulario de Evento</h4>
+    </div>
+    <hr>
+    <form>
+        <!-- Nombre -->
+        <input [(ngModel)]="event.name" name="name" class="form-control bg-light border-0 rounded-pill inner-shadow my-3" placeholder="Nombre del evento" id="name" type="text">
+        
+        <!-- Descripción -->
+        <textarea [(ngModel)]="event.description" name="desc" placeholder="Descripción" id="rounded" class="bg-light border-0 inner-shadow form-control mb-3" rows="10"></textarea>
+
+        <!-- Score -->
+        <input [(ngModel)]="event.score" name="score" min="0" class="form-control bg-light border-0 rounded-pill inner-shadow my-3" placeholder="Score" id="name" type="number">
+
+        <!-- Fecha -->
+        <div class="input-group">
+            <input [(ngModel)]="event.date" name="date" class="form-control rounded-pill bg-light border-0 inner-shadow" placeholder="Fecha" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker">
+            <div class="input-group-append">
+                <button class="btn btn-light border rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                    <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row px-3">
+        <button type="button" class="btn btn-light mr-4 shadow-sm rounded-pill" (click)="cancelOnClick()">
+            Cancelar
+        </button>
+        <button type="button" class="ml-auto btn btn-success rounded-pill" (click)="addOnClick()">
+            Agregar
+        </button>
+    </div>
+</div>
