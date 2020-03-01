@@ -5,7 +5,8 @@ export class Message {
         public email: string,
         public phone_number: string,
         public message: string,
-        public send_at: Date
+        public send_at: Date,
+        public visible = false
     ) { }
 
     public getSendAt(): string {

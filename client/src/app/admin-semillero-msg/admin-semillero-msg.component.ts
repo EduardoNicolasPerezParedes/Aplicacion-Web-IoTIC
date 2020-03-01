@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/_services/message.service';
 import { Message } from 'src/_models/message.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
+import { faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin-semillero-msg',
@@ -9,6 +10,16 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
   styleUrls: ['./admin-semillero-msg.component.css']
 })
 export class AdminSemilleroMsgComponent implements OnInit {
+  /**
+   * Icono de Ver Mensaje
+   */
+  faEye = faEye;
+
+  /**
+   * Icono de Eliminar Mensaje
+   */
+  faTrashAlt = faTrashAlt;
+
   /**
    * Mensajes
    */
