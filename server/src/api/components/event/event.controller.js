@@ -35,8 +35,7 @@ const event_controller = {
                 res.status(422).send(ERRORS.INVALID_DATE);
                 return;
             }
-
-            if (Event.findOne({name: name})) {
+            if (await Event.findOne({name: name})) {
                 res.status(422).send(ERRORS.NAME_ALREADY_TAKEN);
                 return;
             }
