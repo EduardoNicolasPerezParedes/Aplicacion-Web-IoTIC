@@ -29,6 +29,20 @@ export class EventSharedService {
     }
 
     /**
+     * Actualiza un evento
+     * @param event Evento con la información actualizada
+     */
+    public update(event: Event) {
+      for (var i = 0; i < this._events.length; i++) {
+        if (this._events[i].id == event.id) {
+            this._events[i] = event;
+            break;
+        }
+      }
+      this.eventsEmitter.emit(this._events);
+    }
+
+    /**
      * Retorna la referencia a los eventos
      */
     public refEvents() {

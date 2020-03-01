@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventFormComponent } from './event-form/event-form.component';
 import { Event } from 'src/_models/event.model';
 import { EventSharedService } from 'src/_services/event.shared.service';
+import { EventInfoComponent } from './event-info/event-info.component';
 
 @Component({
   selector: 'app-admin-semillero-events',
@@ -58,7 +59,7 @@ export class AdminSemilleroEventsComponent implements OnInit {
       let res: any = await this.eventService.list().toPromise();
       this.events = new Array<Event>();
       res.forEach((e: Object) => {
-        this.events.push(Event.formJSON(e));
+        this.events.push(Event.fromJSON(e));
       }); 
       this.eventSharedService.events = this.events;
       this.isLoading = false;
@@ -70,7 +71,8 @@ export class AdminSemilleroEventsComponent implements OnInit {
   }
 
   public showOnClick(id: string) {
-
+    EventInfoComponent.id = id;
+    this.modalService.open(EventInfoComponent);
   }
 
   public async deleteOnClick(id: string) {

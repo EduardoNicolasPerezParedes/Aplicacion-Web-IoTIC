@@ -39,7 +39,7 @@ export class EventFormComponent implements OnInit {
   public async addOnClick() {
     try {
       let created = await this.eventService.create(this.event).toPromise();
-      this.eventsSharedService.add(Event.formJSON(created));
+      this.eventsSharedService.add(Event.fromJSON(created));
       this.close();
       new MsgHelper().showSuccess('Evento registrado exitosamente');
     } catch (err) {

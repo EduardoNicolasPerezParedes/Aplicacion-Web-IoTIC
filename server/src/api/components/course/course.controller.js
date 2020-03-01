@@ -122,7 +122,7 @@ const course_controller = {
         }
     },
     /**
-     * Actualiza un producto.
+     * Actualiza un curso.
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor
      */

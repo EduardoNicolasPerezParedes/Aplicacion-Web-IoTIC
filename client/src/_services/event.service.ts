@@ -25,6 +25,31 @@ export class EventService extends HttpService {
     }
 
     /**
+     * Actualiza un evento.
+     * 
+     * @param id identificador del evento.
+     * @param event Contiene la información actualizada del evento
+     */
+    update(id: string, event: Event) {
+        return this.http.put(
+            `${this.apiUrl}/${id}`,
+            event.parseToJSON(),
+            { headers: this.headers }
+        )
+    }
+
+    /**
+     * Obtiene un evento
+     * @param id Identificador del evento
+     */
+    get(id: string) {
+        return this.http.get(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        )
+    }
+
+    /**
      * Obtiene los eventos registrados.
      * 
      */

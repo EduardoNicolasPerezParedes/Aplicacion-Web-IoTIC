@@ -18,4 +18,14 @@ event_router.get('/', event_controller.list);
  */
 event_router.delete('/:id', event_controller.delete);
 
+/**
+ * ruta que permite obtener un evento.
+ */
+event_router.get('/:id', event_controller.get);
+
+/**
+ * ruta que permite actualizar un evento.
+ */
+event_router.put('/:id', event_controller.update);
+
 module.exports = event_router;

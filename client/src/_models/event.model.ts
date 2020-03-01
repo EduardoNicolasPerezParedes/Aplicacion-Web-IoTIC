@@ -28,7 +28,7 @@ export class Event {
 
     constructor() {}
 
-    public static formJSON(json: any): Event {
+    public static fromJSON(json: any): Event {
         if (json === null) { return null; }
         var event = new Event();
 
