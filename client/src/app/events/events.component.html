@@ -1,0 +1,22 @@
+<div class="container col-12">
+    <!-- Título -->
+    <div class="text-center mt-5">
+        <h2>Eventos</h2>
+        <!-- En caso de que no hayan eventos disponibles -->
+        <p class="text-muted" *ngIf="!weHaveEvents">En el momento no tenemos eventos disponibles</p>
+    </div>
+    <div class="row">
+        <!-- Cartas de los Eventos -->
+        <div class="col-md-6 mt-3 mb-3 mx-auto" *ngFor="let event of events">
+            <div class="card shadow-sm btn p-0 btn-light border-0" (click)="showEvent(event.id)">
+                <!-- Imágen del evento -->
+                <div class="card-img">
+                    <img class="card-img-top" src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?cs=srgb&dl=daylight-environment-forest-idyllic-459225.jpg&fm=jpg" alt="Imágen del curso">
+                </div>
+                <div class="card-body pb-0">
+                    <h3>{{event.name}}</h3>
+                    <p>{{event.getDescPreview()}}...</p>
+                </div>
+        </div>
+    </div>
+</div>

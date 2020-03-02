@@ -44,4 +44,8 @@ export class Event {
     public parseToJSON(): JSON {
         return JSON.parse(JSON.stringify(this));
     }
+
+    public getDescPreview(): string {
+        return this.description.slice(0, 50);
+    }
 }

@@ -1,0 +1,15 @@
+.card .card-img img {
+    border-radius: 0px;
+}
+
+.card {
+    border-radius: 0px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+button {
+    border-radius: 0;
+}
