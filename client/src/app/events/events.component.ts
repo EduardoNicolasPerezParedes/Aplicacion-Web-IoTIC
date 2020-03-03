@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/_models/event.model';
 import { EventService } from 'src/_services/event.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EventComponent } from '../event/event.component';
 
 @Component({
   selector: 'app-events',
@@ -18,7 +20,10 @@ export class EventsComponent implements OnInit {
    */
   public events: Array<Event>;
 
-  constructor(private eventService: EventService) { }
+  constructor(
+    private eventService: EventService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit() {
     this.setEvents().then(() => {
@@ -27,8 +32,8 @@ export class EventsComponent implements OnInit {
   }
 
   public showEvent(id: string) {
-    // TODO: Mostrar la información del evento
-    alert(id);
+    EventComponent.EventId = id;
+    this.modalService.open(EventComponent);
   }
 
   /**

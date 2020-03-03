@@ -33,6 +33,8 @@ import { EventFormComponent } from './admin-semillero-events/event-form/event-fo
 import { EventSharedService } from 'src/_services/event.shared.service';
 import { EventInfoComponent } from './admin-semillero-events/event-info/event-info.component';
 import { EventsComponent } from './events/events.component';
+import { EventComponent } from './event/event.component';
+import { DateHelper } from 'src/_helpers/date.helper';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { EventsComponent } from './events/events.component';
     AdminSemilleroEventsComponent,
     EventFormComponent,
     EventInfoComponent,
-    EventsComponent
+    EventsComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
@@ -71,14 +74,16 @@ import { EventsComponent } from './events/events.component';
     MessageService,
     CourseSharedService,
     EventService,
-    EventSharedService
+    EventSharedService,
+    DateHelper
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     CourseFormComponent,
     CourseInfoComponent,
     EventFormComponent,
-    EventInfoComponent
+    EventInfoComponent,
+    EventComponent
   ]
 })
 export class AppModule { }
