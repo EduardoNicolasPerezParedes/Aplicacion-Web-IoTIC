@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-
   /**
    * Contiene los cursos disponibles
    */
@@ -30,6 +29,9 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Obtiene y setea los cursos
+   */
   public async setCourses() {
     let res:any = await this.courseService.list().toPromise();
     this.courses = new Array<Course>();

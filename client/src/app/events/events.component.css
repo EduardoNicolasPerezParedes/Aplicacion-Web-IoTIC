@@ -1,5 +1,6 @@
 .card .card-img img {
     border-radius: 0px;
+    max-height: 20rem;
 }
 
 .card {

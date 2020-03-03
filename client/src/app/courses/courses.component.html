@@ -7,16 +7,16 @@
     </div>
     <div class="row">
         <!-- Cartas de los Cursos -->
-        <div class="col mt-5 mb-3 mx-auto" *ngFor="let course of courses">
-            <div class="card shadow-sm">
+        <div class="col-md-6 mt-3 mx-auto" *ngFor="let course of courses">
+            <div class="card border-0 shadow-sm btn p-0 btn-light" (click)="showCourse(course.id)">
                 <!-- Imágen del curso -->
                 <div class="card-img">
-                    <img class="card-img-top shadow-sm" src="" alt="Imágen del curso">
+                    <img class="card-img-top" src="https://previews.123rf.com/images/stevanovicigor/stevanovicigor1512/stevanovicigor151200259/50260323-old-book-wooden-library-desk-retro-toned-image-selective-focus.jpg" alt="Imágen del curso">
                 </div>
-                <div class="card-body text-center pt-0 pb-0">
-                    <h3 class="card-title">{{course.name}}</h3>
+                <div class="card-body text-justify pb-0">
+                    <h3>{{course.name}}</h3>
+                    <p class="text-muted">{{course.description}}</p>
                 </div>
-            <button class="btn btn-primary mx-auto mb-3" (click)="showCourse(course.id)">Más Información</button>
         </div>
     </div>
 </div>
