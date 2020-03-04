@@ -70,4 +70,8 @@ export class Course {
 
         return course;
     }
+
+    public getDescPreview(): string {
+        return this.description.slice(0, 30);
+    }
 }
