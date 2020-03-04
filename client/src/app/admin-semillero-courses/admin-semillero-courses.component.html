@@ -12,14 +12,15 @@
     </div>
 
     <!-- Cursos -->
-    <div class="row">
-        <div class="container col-md-4 my-5 mx-0" *ngFor="let course of courses">
+    <div class="row mb-4" style="overflow: auto; max-height: 80vh;">
+        <div class="container col-md-4 mt-3 mb-2 mx-0" *ngFor="let course of courses">
             <div class="card border-0 shadow-sm pb-2">
                 <div class="card-img">
-                    <img class="card-img-top shadow-sm" src="https://image.shutterstock.com/z/stock-photo-fantastic-evening-panorama-of-bachalp-lake-bachalpsee-switzerland-picturesque-autumn-sunset-in-1216555750.jpg" alt="Imágen del curso">
+                    <img class="card-img-top" src="https://previews.123rf.com/images/stevanovicigor/stevanovicigor1512/stevanovicigor151200259/50260323-old-book-wooden-library-desk-retro-toned-image-selective-focus.jpg" alt="Imágen del curso">
                 </div>
-                <div class="card-body text-center pt-0 pb-0">
+                <div class="card-body text-justify pb-0">
                     <h5 class="card-title">{{course.name}}</h5>
+                    <p class="text-muted">{{course.getDescPreview()}}...</p>
                 </div>
                 <div class="container text-center">
                     <button class="btn btn-light mr-3 rounded-circle shadow-sm" (click)="showOnClick(course.id)">
@@ -30,11 +31,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <p *ngIf="!weHaveCourses && !isLoading" class="text-center" id="weDontHaveCourses">
-                No existen cursos actualmente
-            </p>
         </div>
     </div>
 </div>

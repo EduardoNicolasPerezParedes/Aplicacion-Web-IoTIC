@@ -1,22 +1,8 @@
-#weDontHaveCourses {
-    font-size: large;
-}
-
-.card .card-img {
-    max-width: 300px;
-    margin: 0 auto;
-    position: relative;
-    top: -20px;
-}
-
 .card {
-    border-radius: 15px;
+    border-radius: 0px;
 }
 
 .card .card-img img {
-    border-radius:5px;
-}
-
-.card h5 {
-    font-weight:600;
+    border-radius: 0px;
+    height: 10rem;
 }
