@@ -1,61 +1,67 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary col-12 shadow-sm">
+<nav class="navbar navbar-expand-md navbar bg-white col-12 py-4 shadow-sm">
   <!-- Logo -->
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand text-dark" href="#">
       <img src="" width="30" height="30" class="mx-auto d-inline-block align-top" alt="Logo">
-      Semillero
+      <b class="ml-2">Semillero IoTIC</b>
   </a>
   <!-- Menú Hamburguesa -->
   <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <fa-icon [icon]="faBars"></fa-icon>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mx-auto">
       <!-- Incio -->
-      <li *ngIf="homeActiveRoute" class="nav-item active mx-auto">
-        <a class="nav-link" href="home">Inicio</a>
+      <li *ngIf="homeActiveRoute" class="nav-item active mx-auto px-2">
+        <a class="nav-link text-muted" href="home">Inicio</a>
       </li>
-      <li *ngIf="!homeActiveRoute" class="nav-item mx-auto">
-        <a class="nav-link" href="home">Inicio</a>
+      <li *ngIf="!homeActiveRoute" class="nav-item mx-auto px-2">
+        <a class="nav-link text-muted" href="home">Inicio</a>
       </li>
       <!-- Nosotros -->
-      <li *ngIf="aboutActiveRoute" class="nav-item active mx-auto">
-        <a class="nav-link" href="#">Nosotros</a>
+      <li *ngIf="aboutActiveRoute" class="nav-item active mx-auto px-2">
+        <a class="nav-link text-muted" href="#">Nosotros</a>
       </li>
-      <li *ngIf="!aboutActiveRoute" class="nav-item mx-auto">
-        <a class="nav-link" href="#">Nosotros</a>
+      <li *ngIf="!aboutActiveRoute" class="nav-item mx-auto px-2">
+        <a class="nav-link text-muted" href="#">Nosotros</a>
       </li>
       <!-- Contacto -->
-      <li *ngIf="contactActiveRoute" class="nav-item active mx-auto">
-        <a class="nav-link" href="contact">Contacto</a>
+      <li *ngIf="contactActiveRoute" class="nav-item active mx-auto px-2">
+        <a class="nav-link text-muted" href="contact">Contacto</a>
       </li>
-      <li *ngIf="!contactActiveRoute" class="nav-item mx-auto">
-        <a class="nav-link" href="contact">Contacto</a>
+      <li *ngIf="!contactActiveRoute" class="nav-item mx-auto px-2">
+        <a class="nav-link text-muted" href="contact">Contacto</a>
       </li>
       <!-- Recursos -->
       <div *ngIf="loggedIn" class="mx-auto">
         <li *ngIf="resourceActiveRoute" class="nav-item active">
-          <a class="nav-link" href="resource">Recursos</a>
+          <a class="nav-link text-muted" href="resource">Recursos</a>
         </li>
         <li *ngIf="!resourceActiveRoute" class="nav-item">
-          <a class="nav-link" href="resource">Recursos</a>
+          <a class="nav-link text-muted" href="resource">Recursos</a>
         </li>
       </div>
     </ul>
     <!-- Cuando no hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0" *ngIf="!loggedIn">
-      <div class="pr-2 mx-auto">
-        <button class="btn btn-success my-2 my-sm-0" (click)="signupOnClick()">Registrarse</button>
+      <button class="btn my-2 my-sm-0 mx-auto" (click)="loginOnClick()">Iniciar Sesión</button>
+      <div class="pl-2 mx-auto">
+        <button class="btn text-primary my-2 my-sm-0" (click)="signupOnClick()">Registrarse</button>
       </div>
-      <button class="btn btn-primary shadow my-2 my-sm-0 mx-auto" (click)="loginOnClick()">Iniciar Sesión</button>
     </form>
     <!-- Cuando hay una sesión iniciada -->
-    <form class="form-inline mt-2 mt-md-0 pr-2" *ngIf="loggedIn">
-      <div ngbDropdown class="shadow-sm mx-auto">
-        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Aquí debería ir el nombre</button>
+    <form class="form-inline mt-2 mt-md-0 pr-2 ml-5" *ngIf="loggedIn">
+      <div ngbDropdown class="mx-auto">
+        <button class="btn shadow-sm mr-4" style="border-radius: 30px;" id="dropdownBasic1" ngbDropdownToggle>
+          <fa-icon [icon]="faCog"></fa-icon>
+        </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button *ngIf="user.admin" ngbDropdownItem (click)="dashboardOnClick()">Admin Dashboard</button>
-          <button ngbDropdownItem (click)="logoutOnClick()">Cerrar Sesión</button>
+          <button *ngIf="user.admin" ngbDropdownItem (click)="dashboardOnClick()">
+            <fa-icon [icon]="faClipboard"></fa-icon>
+          </button>
+          <button ngbDropdownItem (click)="logoutOnClick()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          </button>
         </div>
       </div>
     </form>

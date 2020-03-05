@@ -14,7 +14,7 @@
         <li class="nav-item mx-auto">
           <form class="form-inline mt-2 mt-md-0 pr-3">
             <div ngbDropdown class="mx-auto">
-              <button class="btn shadow-sm" id="dropdownBasic1" ngbDropdownToggle>Semillero</button>
+              <button class="btn" id="dropdownBasic1" ngbDropdownToggle>Semillero</button>
               <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="py-2 btn-light" ngbDropdownItem (click)="eventsOnClick()">Eventos</button>
                 <button class="py-2 btn-light" ngbDropdownItem (click)="coursesOnClick()">Cursos</button>
@@ -28,7 +28,7 @@
         <li class="nav-item mx-auto">
           <form class="form-inline mt-2 mt-md-0 pr-3">
             <div ngbDropdown class="mx-auto">
-              <button class="btn shadow-sm" id="dropdownBasic2" ngbDropdownToggle>Recursos</button>
+              <button class="btn" id="dropdownBasic2" ngbDropdownToggle>Recursos</button>
               <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic2">
                 <button class="py-2 btn-light" ngbDropdownItem>Recursos</button>
               </div>
@@ -39,7 +39,7 @@
         <li class="nav-item mx-auto">
           <form class="form-inline mt-2 mt-md-0 pr-3">
             <div ngbDropdown class="mx-auto">
-              <button class="btn shadow-sm" id="dropdownBasic3" ngbDropdownToggle>Integrantes</button>
+              <button class="btn" id="dropdownBasic3" ngbDropdownToggle>Integrantes</button>
               <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic3">
                 <button class="py-2 btn-light" ngbDropdownItem>Aprovados</button>
                 <button class="py-2 btn-light" ngbDropdownItem>Pendientes</button>
@@ -51,7 +51,7 @@
       <!-- Usuario -->
       <form class="form-inline mt-2 mt-md-0 pr-2">
         <div class="mx-auto">
-          <button class="btn shadow-sm mr-3" (click)="backOnClick()">
+          <button class="btn mr-3" (click)="backOnClick()">
             <fa-icon [icon]="faArrowLeft" class="mr-2"></fa-icon>Volver a la App
           </button>
           <button class="btn shadow-sm btn-outline-danger rounded-circle" (click)="logoutOnClick()">

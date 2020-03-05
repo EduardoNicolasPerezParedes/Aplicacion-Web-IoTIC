@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faCog, faBars, faSignOutAlt, faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthHelper } from './../../_helpers/auth.helper';
 import { AuthService } from 'src/_services/auth.service';
@@ -11,6 +12,20 @@ import { User } from 'src/_models/user.model';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+  /**
+   * Icono de Ajustes
+   */
+  public faCog = faCog;
+
+  faSignOutAlt = faSignOutAlt;
+
+  faClipboard = faClipboard
+
+  /**
+   * Icono de Menú Hamburguesa
+   */
+  public faBars = faBars;
+
   /**
    * Controla el menú hamburguesa
    */
