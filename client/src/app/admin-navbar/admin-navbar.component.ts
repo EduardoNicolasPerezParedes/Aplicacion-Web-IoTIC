@@ -47,12 +47,16 @@ export class AdminNavbarComponent implements OnInit {
     this.router.navigateByUrl("admin/messages");
   }
 
+  public categoriesOnClick() {
+    this.router.navigateByUrl("admin/categories");
+  }
+
   public logoutOnClick(): void {
     this.authService.logout();
     this.router.navigateByUrl("home");
   }
 
-  backOnClick(): void {
+  public backOnClick(): void {
     this.router.navigateByUrl("home");
   }
 }

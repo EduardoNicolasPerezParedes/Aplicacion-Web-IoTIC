@@ -14,7 +14,9 @@ export class AdminSemilleroComponent implements OnInit {
     EVENTS: 0,
     COURSES: 1,
     NEWS: 2,
-    MSG: 3
+    MSG: 3,
+    RESOURCES: 4,
+    CATEGORIES: 5
   };
 
   /**
@@ -36,6 +38,9 @@ export class AdminSemilleroComponent implements OnInit {
         break;
       case '/admin/messages':
         this.selectedOption = this.OPTIONS.MSG;
+        break;
+      case '/admin/categories':
+        this.selectedOption = this.OPTIONS.CATEGORIES;
         break;
     }
   }

@@ -35,6 +35,9 @@ import { EventInfoComponent } from './admin-semillero-events/event-info/event-in
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './event/event.component';
 import { DateHelper } from 'src/_helpers/date.helper';
+import { AdminSemilleroCategoriesComponent } from './admin-semillero-categories/admin-semillero-categories.component';
+import { CategoryFormComponent } from './admin-semillero-categories/category-form/category-form.component';
+import { CategoryInfoComponent } from './admin-semillero-categories/category-info/category-info.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,10 @@ import { DateHelper } from 'src/_helpers/date.helper';
     EventFormComponent,
     EventInfoComponent,
     EventsComponent,
-    EventComponent
+    EventComponent,
+    AdminSemilleroCategoriesComponent,
+    CategoryFormComponent,
+    CategoryInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +89,9 @@ import { DateHelper } from 'src/_helpers/date.helper';
     CourseInfoComponent,
     EventFormComponent,
     EventInfoComponent,
-    EventComponent
+    EventComponent,
+    CategoryFormComponent,
+    CategoryInfoComponent
   ]
 })
 export class AppModule { }
