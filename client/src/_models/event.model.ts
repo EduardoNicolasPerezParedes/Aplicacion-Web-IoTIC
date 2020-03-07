@@ -46,6 +46,6 @@ export class Event {
     }
 
     public getDescPreview(): string {
-        return this.description.slice(0, 50);
+        return this.description.slice(0, 30);
     }
 }

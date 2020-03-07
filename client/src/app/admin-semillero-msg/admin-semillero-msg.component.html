@@ -2,7 +2,7 @@
   <h3 class="my-3">
     Mensajes
   </h3>
-  <p *ngIf="!weHaveMessages" class="text-center" id="weDontHaveMessages">
+  <p *ngIf="!weHaveMessages" class="text-center text-muted" >
     No ha recibido ningún mensaje
   </p>
 
@@ -10,7 +10,7 @@
   <div style="overflow: auto; max-height: 90vh;">
     <div class="container mb-3" *ngFor="let msg of messages">
       <!-- Cabecera -->
-      <div class="card border-0 shadow-sm p-2" style="border-radius: 15px">
+      <div class="card border-0 shadow-sm p-2" style="border-radius: 0px">
         <div class="text-center">
           <p class="py-2 mr-2 align-items-center">
             Enviado por
@@ -20,7 +20,7 @@
           </p>
         </div>
         <div class="text-center">
-          <button aria-controls="collapseExample1" class="btn btn-primary shadow-sm mb-2 rounded-circle" (click)="msg.visible = !msg.visible">
+          <button aria-controls="collapseExample1" class="btn btn-outline-primary shadow-sm mb-2 rounded-circle" (click)="msg.visible = !msg.visible">
             <fa-icon [icon]="faEye"></fa-icon>
           </button>
           <button class="btn btn-light ml-3 shadow-sm mb-2 rounded-circle" (click)="deleteOnClick(msg.id)">
