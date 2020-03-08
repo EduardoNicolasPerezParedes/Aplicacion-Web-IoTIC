@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { faEnvelope, faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faUser, faPhone, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'src/_services/message.service';
 import { Message } from 'src/_models/message.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  faPaperPlane = faPaperPlane;
     /**
    * Icono del nombre
    */
