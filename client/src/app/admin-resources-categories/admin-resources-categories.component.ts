@@ -6,11 +6,11 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryInfoComponent } from './category-info/category-info.component';
 
 @Component({
-  selector: 'app-admin-semillero-categories',
-  templateUrl: './admin-semillero-categories.component.html',
-  styleUrls: ['./admin-semillero-categories.component.css']
+  selector: 'app-admin-resources-categories',
+  templateUrl: './admin-resources-categories.component.html',
+  styleUrls: ['./admin-resources-categories.component.css']
 })
-export class AdminSemilleroCategoriesComponent implements OnInit {
+export class AdminResourcesCategoriesComponent implements OnInit {
   /**
    * Icono de Agregar Categoría
    */

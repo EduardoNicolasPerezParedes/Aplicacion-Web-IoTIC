@@ -1,0 +1,36 @@
+<div class="col-12">
+    <div class="row">
+        <!-- Categorías -->
+        <div class="col-md-2 bg-white shadow-sm p-0">
+            <nav class="navbar navbar-expand-md navbar bg-white col-12 p-0">
+                <!-- Menú Hamburguesa -->
+                <button class="text-muted navbar-toggler d-lg-none mt-3 mb-2 col-12 mx-auto" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
+                    Categorías
+                    <fa-icon [icon]="faCaretDown"></fa-icon>
+                </button>
+                <div class="collapse navbar-collapse col-12 px-0" id="navbarsExampleDefault" [ngbCollapse]="isCollapsed">
+                    <div class="col-12" style="max-height: 80vh; overflow: auto;">
+                        <div class="px-0" *ngFor="let cat of categories; let i = index">
+                            <hr class="mt-0">
+                            <button class="btn mx-auto col-12 pb-3">Categoría {{i}}</button>
+                        </div>
+                    </div>
+                </div>
+              </nav>
+        </div>
+
+        <!-- Recursos -->
+        <div class="col-md-10 px-4 pt-2">
+            <div class="row mb-4" style="overflow: auto; max-height: 80vh;">
+                <div class="container col-md-4 mt-3 mb-2 mx-auto" *ngFor="let resource of resources">
+                    <div class="card btn-light btn p-0 border-0 shadow-sm pb-2" (click)="resourceOnClick()">
+                        <img style="width: 100%; height: 8rem;" src="https://images.unsplash.com/photo-1505252772853-08ed4d526ceb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2600&q=80" alt="">
+                        <div class="card-body text-justify pb-0">
+                            <p class="card-title">Recurso {{resource}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

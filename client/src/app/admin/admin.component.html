@@ -3,9 +3,12 @@
 
 <div class="row bg-light" style="height: 100vh;">
   <div class="container px-4">
+    <!-- Semillero -->
     <app-admin-semillero-msg *ngIf="selectedOption == OPTIONS.MSG"></app-admin-semillero-msg>
     <app-admin-semillero-courses *ngIf="selectedOption == OPTIONS.COURSES"></app-admin-semillero-courses>
     <app-admin-semillero-events *ngIf="selectedOption == OPTIONS.EVENTS"></app-admin-semillero-events>
-    <app-admin-semillero-categories *ngIf="selectedOption == OPTIONS.CATEGORIES"></app-admin-semillero-categories>
+
+    <!-- Recursos -->
+    <app-admin-resources-categories *ngIf="selectedOption == OPTIONS.CATEGORIES"></app-admin-resources-categories>
   </div>
 </div>

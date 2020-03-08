@@ -17,9 +17,15 @@ export class NavBarComponent implements OnInit {
    */
   public faCog = faCog;
 
-  faSignOutAlt = faSignOutAlt;
+  /**
+   * Icono de Cerrar Sesión
+   */
+  public faSignOutAlt = faSignOutAlt;
 
-  faClipboard = faClipboard
+  /**
+   * Icono de Admin
+   */
+  public faClipboard = faClipboard
 
   /**
    * Icono de Menú Hamburguesa
@@ -75,7 +81,7 @@ export class NavBarComponent implements OnInit {
       case '/about':
         this.aboutActiveRoute = true;
         break;
-      case '/resource':
+      case '/resources':
         this.resourceActiveRoute = true;
         break;
       default:

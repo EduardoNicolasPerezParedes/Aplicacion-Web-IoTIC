@@ -20,7 +20,7 @@ import { CourseService } from 'src/_services/course.service';
 import { CourseComponent } from './course/course.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
-import { AdminSemilleroComponent } from './admin-semillero/admin-semillero.component';
+import { AdminComponent } from './admin/admin.component';
 import { AdminSemilleroMsgComponent } from './admin-semillero-msg/admin-semillero-msg.component';
 import { MessageService } from 'src/_services/message.service';
 import { AdminSemilleroCoursesComponent } from './admin-semillero-courses/admin-semillero-courses.component';
@@ -35,9 +35,11 @@ import { EventInfoComponent } from './admin-semillero-events/event-info/event-in
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './event/event.component';
 import { DateHelper } from 'src/_helpers/date.helper';
-import { AdminSemilleroCategoriesComponent } from './admin-semillero-categories/admin-semillero-categories.component';
-import { CategoryFormComponent } from './admin-semillero-categories/category-form/category-form.component';
-import { CategoryInfoComponent } from './admin-semillero-categories/category-info/category-info.component';
+import { AdminResourcesCategoriesComponent } from './admin-resources-categories/admin-resources-categories.component';
+import { CategoryFormComponent } from './admin-resources-categories/category-form/category-form.component';
+import { CategoryInfoComponent } from './admin-resources-categories/category-info/category-info.component';
+import { ResourcesComponent } from './resources/resources.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { CategoryInfoComponent } from './admin-semillero-categories/category-inf
     CourseComponent,
     ContactComponent,
     AdminNavbarComponent,
-    AdminSemilleroComponent,
+    AdminComponent,
     AdminSemilleroMsgComponent,
     AdminSemilleroCoursesComponent,
     CourseFormComponent,
@@ -60,9 +62,11 @@ import { CategoryInfoComponent } from './admin-semillero-categories/category-inf
     EventInfoComponent,
     EventsComponent,
     EventComponent,
-    AdminSemilleroCategoriesComponent,
+    AdminResourcesCategoriesComponent,
     CategoryFormComponent,
-    CategoryInfoComponent
+    CategoryInfoComponent,
+    ResourcesComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

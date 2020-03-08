@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar bg-white col-12 py-4 shadow-sm">
+<nav class="navbar navbar-expand-md navbar bg-white col-12 py-4 shadow-sm" style="z-index: 1;">
   <!-- Logo -->
   <a class="navbar-brand text-dark" href="#">
       <img src="" width="30" height="30" class="mx-auto d-inline-block align-top" alt="Logo">
@@ -35,10 +35,10 @@
       <!-- Recursos -->
       <div *ngIf="loggedIn" class="mx-auto">
         <li *ngIf="resourceActiveRoute" class="nav-item active">
-          <a class="nav-link text-muted" href="resource">Recursos</a>
+          <a class="nav-link text-muted" href="resources">Recursos</a>
         </li>
         <li *ngIf="!resourceActiveRoute" class="nav-item">
-          <a class="nav-link text-muted" href="resource">Recursos</a>
+          <a class="nav-link text-muted" href="resources">Recursos</a>
         </li>
       </div>
     </ul>

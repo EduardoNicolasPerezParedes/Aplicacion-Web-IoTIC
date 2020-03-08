@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-semillero',
-  templateUrl: './admin-semillero.component.html',
-  styleUrls: ['./admin-semillero.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class AdminSemilleroComponent implements OnInit {
+export class AdminComponent implements OnInit {
   /**
    * Opciones disponibles para el usuario.
    */
