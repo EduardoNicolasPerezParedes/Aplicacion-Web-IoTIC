@@ -1,0 +1,36 @@
+<div class="modal-body bg-light" id="course-form">
+    <div class="text-center container">
+        <h4>Formulario de Recurso</h4>
+    </div>
+    <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+        <!-- Nombre -->
+        <input formControlName="name" class="form-control shadow-sm bg-white border-0 my-3" placeholder="Nombre" id="name" type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+        
+        <!-- Descripción -->
+        <textarea formControlName="description" class="form-control shadow-sm bg-white border-0 mb-3" placeholder="Descripción" rows="10" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+
+        <!-- Cantidad -->
+        <input formControlName="quantity" class="form-control shadow-sm bg-white border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
+
+        <!-- Disponible -->
+        <div class="custom-control custom-switch mr-4 pt-2 mb-3">
+            <input formControlName="available" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="available">
+            <label class="custom-control-label" for="customSwitch2">¿Se encuentra disponible?</label>
+        </div>
+
+        <!-- Categoría -->
+        <label>Categoría</label>
+        <select formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+            <option class="text-muted" value="">Seleccione la categoría</option>
+        </select>
+
+        <div class="row px-3 mt-4">
+            <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+                Cancelar
+            </button>
+            <button type="submit" class="ml-auto btn btn-outline-success">
+                Agregar
+            </button>
+        </div>
+    </form>
+</div>

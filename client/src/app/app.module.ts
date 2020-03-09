@@ -40,6 +40,9 @@ import { CategoryFormComponent } from './admin-resources-categories/category-for
 import { CategoryInfoComponent } from './admin-resources-categories/category-info/category-info.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { MainComponent } from './main/main.component';
+import { AdminResourcesComponent } from './admin-resources/admin-resources.component';
+import { ResourceFormComponent } from './admin-resources/resource-form/resource-form.component';
+import { ResourceInfoComponent } from './admin-resources/resource-info/resource-info.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { MainComponent } from './main/main.component';
     CategoryFormComponent,
     CategoryInfoComponent,
     ResourcesComponent,
-    MainComponent
+    MainComponent,
+    AdminResourcesComponent,
+    ResourceFormComponent,
+    ResourceInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +101,9 @@ import { MainComponent } from './main/main.component';
     EventInfoComponent,
     EventComponent,
     CategoryFormComponent,
-    CategoryInfoComponent
+    CategoryInfoComponent,
+    ResourceFormComponent,
+    ResourceInfoComponent
   ]
 })
 export class AppModule { }

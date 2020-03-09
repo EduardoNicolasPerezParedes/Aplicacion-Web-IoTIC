@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'admin/messages', component: AdminComponent },
   { path: 'admin/courses', component: AdminComponent },
   { path: 'admin/events', component: AdminComponent },
+  { path: 'admin/resources', component: AdminComponent },
   { path: 'admin/categories', component: AdminComponent },
   { path: '**', component: MainComponent }
 ];

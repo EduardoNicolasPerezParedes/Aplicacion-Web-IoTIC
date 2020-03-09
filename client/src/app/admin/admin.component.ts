@@ -39,6 +39,9 @@ export class AdminComponent implements OnInit {
       case '/admin/messages':
         this.selectedOption = this.OPTIONS.MSG;
         break;
+      case '/admin/resources':
+        this.selectedOption = this.OPTIONS.RESOURCES;
+        break;
       case '/admin/categories':
         this.selectedOption = this.OPTIONS.CATEGORIES;
         break;
