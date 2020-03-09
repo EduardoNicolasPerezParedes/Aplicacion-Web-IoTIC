@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/_services/auth.service';
 import { AuthHelper } from 'src/_helpers/auth.helper';
 import { MsgHelper } from 'src/_helpers/msg.helper';
@@ -17,12 +17,9 @@ export class LoginComponent implements OnInit {
   /**
    * Icono del Correo
    */
-  faEnvelope = faEnvelope;
+  faUsers = faUsers;
 
-  /**
-   * Icono de la Contraseña
-   */
-  faKey = faKey;
+  faSignInAlt = faSignInAlt;
 
   /**
    * Formulario de Inicio de Sesión
@@ -49,6 +46,10 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls }
+
+  public logoOnClick() {
+    this.router.navigateByUrl("home");
+  }
 
   async onSubmit() {
     this.submitted = true;
