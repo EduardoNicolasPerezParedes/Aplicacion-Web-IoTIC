@@ -72,6 +72,8 @@ export class RegisterComponent implements OnInit {
    */
   get f() { return this.registerForm.controls; }
 
+  public logoOnClick() { this.router.navigateByUrl("home"); }
+
   async onSubmit() {
     this.submitted = true;
     // Si el formulario es inválido, no se registra el usuario
