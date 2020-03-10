@@ -43,6 +43,12 @@ import { MainComponent } from './main/main.component';
 import { AdminResourcesComponent } from './admin-resources/admin-resources.component';
 import { ResourceFormComponent } from './admin-resources/resource-form/resource-form.component';
 import { ResourceInfoComponent } from './admin-resources/resource-info/resource-info.component';
+import { NewsComponent } from './news/news.component';
+import { NewsService } from 'src/_services/news.service';
+import { AdminSemilleroNewsComponent } from './admin-semillero-news/admin-semillero-news.component';
+import { NewsFormComponent } from './admin-semillero-news/news-form/news-form.component';
+import { NewsSharedService } from 'src/_services/news.shared.service';
+import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +78,11 @@ import { ResourceInfoComponent } from './admin-resources/resource-info/resource-
     MainComponent,
     AdminResourcesComponent,
     ResourceFormComponent,
-    ResourceInfoComponent
+    ResourceInfoComponent,
+    NewsComponent,
+    AdminSemilleroNewsComponent,
+    NewsFormComponent,
+    NewsInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -91,10 +101,14 @@ import { ResourceInfoComponent } from './admin-resources/resource-info/resource-
     CourseSharedService,
     EventService,
     EventSharedService,
-    DateHelper
+    DateHelper,
+    NewsService,
+    NewsSharedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    NewsInfoComponent,
+    NewsFormComponent,
     CourseFormComponent,
     CourseInfoComponent,
     EventFormComponent,

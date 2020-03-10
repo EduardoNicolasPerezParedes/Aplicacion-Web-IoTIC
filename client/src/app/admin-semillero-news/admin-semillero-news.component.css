@@ -1,0 +1,26 @@
+#weDontHaveNews {
+    font-size: large;
+}
+
+.card .card-img {
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.card .card-img img {
+    border-radius:5px;
+}
+
+.card h5 {
+    font-weight:600;
+}
+
+.big-container {
+    height: 100vh;
+}

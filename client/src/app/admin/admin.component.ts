@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     let url = this.router.url;
-    
+    console.log(url);
     switch(url) {
       case '/admin/events':
         this.selectedOption = this.OPTIONS.EVENTS;
@@ -44,6 +44,9 @@ export class AdminComponent implements OnInit {
         break;
       case '/admin/categories':
         this.selectedOption = this.OPTIONS.CATEGORIES;
+        break;
+      case '/admin/news':
+         this.selectedOption = this.OPTIONS.NEWS;
         break;
     }
   }

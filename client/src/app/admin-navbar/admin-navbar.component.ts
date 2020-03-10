@@ -42,6 +42,9 @@ export class AdminNavbarComponent implements OnInit {
   public coursesOnClick(): void {
     this.router.navigateByUrl("admin/courses");
   }
+  public newsOnClick(): void {
+    this.router.navigateByUrl("admin/news");
+  }
 
   public messagesOnClick(): void {
     this.router.navigateByUrl("admin/messages");

@@ -35,9 +35,10 @@ export class CoursesComponent implements OnInit {
   public async setCourses() {
     let res:any = await this.courseService.list().toPromise();
     this.courses = new Array<Course>();
-
+    
     res.forEach(course => {
       this.courses.push(Course.fromJSON(course));
+      console.log(this.courses);
     });
   }
 

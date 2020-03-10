@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'admin/events', component: AdminComponent },
   { path: 'admin/resources', component: AdminComponent },
   { path: 'admin/categories', component: AdminComponent },
+  { path: 'admin/news', component: AdminComponent },
   { path: '**', component: MainComponent }
 ];
 
