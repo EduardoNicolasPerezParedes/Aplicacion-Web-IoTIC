@@ -1,65 +1,44 @@
-<!-- Barra de navegación -->
-<app-nav-bar></app-nav-bar>
-<div class="container col-12 bg-primary">
+<div class="container col-12 bg-light">
     <div class="row align-items-center h-100">
-        <div class="mx-auto pt-5">
-            <div class="card shadow-lg">
-                <!-- Logo -->
-                <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container shadow">
-                        
-                    </div>
-                </div>
+        <div class="mx-auto py-5 col-md-5">
+            <div class="card shadow-sm">
                 <div class="card-body">
+                    <!-- Logo -->
+                    <div class="d-flex justify-content-center logo" (click)="logoOnClick()">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/98/Microsoft_Edge_logo_%282019%29.svg" alt="">
+                    </div>
                     <!-- Formulario -->
-                    <form class="mt-5 pt-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <form class="pt-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                         <!-- Nombre -->
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <fa-icon [icon]="faUser"></fa-icon>
-                                </div>
-                            </div>
-                            <input formControlName="name" type="text" class="form-control" placeholder="Nombre Completo" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                            <input formControlName="name" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Nombre Completo" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
                         </div>
                         <!-- Correo -->
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <fa-icon [icon]="faEnvelope"></fa-icon>
-                                </div>
-                            </div>
-                            <input formControlName="email" type="text" class="form-control" placeholder="Correo Institucional" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                            <input formControlName="email" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Correo Institucional" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                         </div>
                         <!-- Programa -->
                         <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <fa-icon [icon]="faGraduationCap"></fa-icon>
-                                </div>
-                            </div>
-                            <input formControlName="career" type="text" class="form-control" placeholder="Programa" [ngClass]="{ 'is-invalid': submitted && f.career.errors }">
+                            <input formControlName="career" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Programa" [ngClass]="{ 'is-invalid': submitted && f.career.errors }">
                         </div>
                         <!-- Fecha de Nacimiento -->
                         <div class="input-group mb-3">
-                            <button class="btn btn-primary" (click)="d.toggle()" type="button">
+                            <input [formControl]="f.birth_date" type="date" class="form-control bg-light border-0 shadow-sm" placeholder="Fecha de Nacimiento" ngbDatepicker #d="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors }" readonly>
+                            <button class="btn btn-primary rounded-circle ml-2 shadow-sm" (click)="d.toggle()" type="button">
                                 <fa-icon [icon]="faCalendarAlt"></fa-icon>
                             </button>
-                            <input [formControl]="f.birth_date" type="date" class="form-control" placeholder="Fecha de Nacimiento" ngbDatepicker #d="ngbDatepicker" [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors }" readonly>
                         </div>
                         <!-- ¿Soy Estudiante? -->
                         <div class="input-group mb-3">
                             <div class="custom-control custom-switch">
-                                <input fromControlName="student" (change)="studentOnChange()" type="checkbox" class="custom-control-input" id="student" [ngClass]="{ 'is-invalid': submitted && f.student.errors }">
+                                <input fromControlName="student" (change)="studentOnChange()" type="checkbox" class="custom-control-input bg-light border-0 shadow-sm" id="student" [ngClass]="{ 'is-invalid': submitted && f.student.errors }">
                                 <label class="custom-control-label" for="student">Soy Estudiante</label>
                             </div>
                         </div>
                         <!-- Semestre -->
-                        <div class="input-group mb-3" *ngIf="f.student.value">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Semestre</div>
-                            </div>
-                            <select class="custom-select">
+                        <div class="form-group mb-3" *ngIf="f.student.value">
+                            <label>Semestre</label>
+                            <select id="semester" class="custom-select bg-light border-0 shadow-sm">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -74,12 +53,12 @@
                         </div>
                         <!--Solicitar Registro-->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Solicitar Registro</button>
+                            <button type="submit" class="col-12 btn btn-success">Solicitar Registro</button>
                         </div>
                     </form>
                 </div>
-                <div class="card-footer text-center">
-                    <p class="mb-0">¿Ya te encuentras registrado?</p>
+                <div class="card-footer text-center bg-white">
+                    <p class="text-muted mb-0">¿Ya te encuentras registrado?</p>
                     <a href="/login">Inicia Sesión</a>
                 </div>
             </div>

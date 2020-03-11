@@ -4,24 +4,17 @@
 }
 
 .card {
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
-.brand_logo_container {
-    position: absolute;
-    height: 170px;
-    width: 170px;
-    top: -75px;
-    border-radius: 50%;
-    border: 1px black;
-    background: white;
-    padding: 10px;
-    text-align: center;
+.card, input, button {
+    border-radius: 0px;
 }
 
-.brand_logo {
-    border: 1px  black;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
+img {
+    max-height: 10rem;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
