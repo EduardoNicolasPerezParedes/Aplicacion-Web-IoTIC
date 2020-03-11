@@ -59,8 +59,7 @@ export class AdminSemilleroMsgComponent implements OnInit {
   public async deleteOnClick(id: string) {
     let msg = new MsgHelper();
 
-    let res = await msg.showConfirmDialog('Confirmación', '¿Está seguro que desea eliminar el mensaje?');
-
+    let res = await msg.showConfirmDialog('¿Está seguro?', 'El mensaje será eliminado permanentemente');
     if (res.value) {
       try {
         await this.messageService.delete(id).toPromise();

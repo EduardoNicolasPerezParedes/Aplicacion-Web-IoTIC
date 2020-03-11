@@ -16,8 +16,8 @@ export class MsgHelper {
 
         this.confirmDialog = Swal.mixin({
             customClass: {
-                cancelButton: 'btn btn-light shadow-sm mr-5 rounded-pill',
-                confirmButton: 'btn btn-danger shadow-sm rounded-pill',
+                cancelButton: 'btn btn-light shadow-sm mr-5 rounded-0',
+                confirmButton: 'btn btn-outline-danger shadow-sm rounded-0',
                 title: 'text-dark',
             },
             width: 300,

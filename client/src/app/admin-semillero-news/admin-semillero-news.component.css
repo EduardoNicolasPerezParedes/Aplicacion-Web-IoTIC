@@ -1,26 +1,18 @@
-#weDontHaveNews {
-    font-size: large;
-}
-
-.card .card-img {
-    max-width: 300px;
-    margin: 0 auto;
-    position: relative;
-    top: -20px;
+.card .card-img img {
+    border-radius: 0px;
+    height: 10rem;
 }
 
 .card {
-    border-radius: 15px;
+    border-radius: 0px;
 }
 
-.card .card-img img {
-    border-radius:5px;
-}
-
-.card h5 {
-    font-weight:600;
-}
-
-.big-container {
-    height: 100vh;
+.float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    font-size: 25px;
 }

@@ -13,21 +13,21 @@
     <ul class="navbar-nav mx-auto">
       <!-- Incio -->
       <li *ngIf="homeActiveRoute" class="nav-item active mx-auto px-2">
-        <a class="nav-link text-muted" href="home">Inicio</a>
+        <a class="nav-link text-dark" href="home">Inicio</a>
       </li>
       <li *ngIf="!homeActiveRoute" class="nav-item mx-auto px-2">
         <a class="nav-link text-muted" href="home">Inicio</a>
       </li>
       <!-- Nosotros -->
       <li *ngIf="aboutActiveRoute" class="nav-item active mx-auto px-2">
-        <a class="nav-link text-muted" href="#">Nosotros</a>
+        <a class="nav-link text-dark" href="#">Nosotros</a>
       </li>
       <li *ngIf="!aboutActiveRoute" class="nav-item mx-auto px-2">
         <a class="nav-link text-muted" href="#">Nosotros</a>
       </li>
       <!-- Contacto -->
       <li *ngIf="contactActiveRoute" class="nav-item active mx-auto px-2">
-        <a class="nav-link text-muted" href="contact">Contacto</a>
+        <a class="nav-link text-dark" href="contact">Contacto</a>
       </li>
       <li *ngIf="!contactActiveRoute" class="nav-item mx-auto px-2">
         <a class="nav-link text-muted" href="contact">Contacto</a>
@@ -44,7 +44,7 @@
     </ul>
     <!-- Cuando no hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0" *ngIf="!loggedIn">
-      <button class="btn my-2 my-sm-0 mx-auto" (click)="loginOnClick()">Iniciar Sesión</button>
+      <button class="btn my-2 my-sm-0 mx-auto text-muted" (click)="loginOnClick()">Iniciar Sesión</button>
       <div class="pl-2 mx-auto">
         <button class="btn text-primary my-2 my-sm-0" (click)="signupOnClick()">Registrarse</button>
       </div>

@@ -1,26 +1,16 @@
-<div class="modal-body" id="news-form">
+<div class="modal-body bg-light" id="news-form">
     <div class="text-center container">
-        <h4>Formulario de la noticia</h4>
+        <h4>Formulario de Noticia</h4>
     </div>
-    <hr>
     <form>
         <!-- Titulo -->
-        <input [(ngModel)]="news.title" name="title" class="form-control bg-light border-0 rounded-pill inner-shadow my-3" placeholder="Titulo de la noticia" id="name" type="text">
+        <input [(ngModel)]="news.title" name="title" class="form-control bg-white border-0 my-3 shadow-sm" placeholder="Titulo de la noticia" id="name" type="text">
         
         <!-- Descripción -->
-        <textarea [(ngModel)]="news.description" name="desc" placeholder="Descripción" id="rounded" class="bg-light border-0 inner-shadow form-control mb-3" rows="7"></textarea>
+        <textarea [(ngModel)]="news.description" name="desc" placeholder="Descripción" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="7"></textarea>
 
         <!-- Desarrollo -->
-        <textarea [(ngModel)]="news.development" name="deve" placeholder="Desarrollo" id="rounded" class="bg-light border-0 inner-shadow form-control mb-3" rows="10"></textarea>
-
-        <!-- fecha -->
-        <input [(ngModel)]="news.date" name="date" class="form-control rounded-pill bg-light border-0 inner-shadow" placeholder="Fecha Inicio" name="dp1" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker">
-                <div class="input-group-append">
-                    <button class="btn btn-light border rounded-circle ml-2" (click)="d1.toggle()" type="button">
-                        <fa-icon [icon]="faCalendarAlt"></fa-icon>
-                    </button>
-                </div>
-                
+        <!-- <textarea [(ngModel)]="news.development" name="deve" placeholder="Desarrollo" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="10"></textarea> -->
             <!-- imagen -->
             <!-- 
             <div class="form-group my-3 rounded-pill">
@@ -31,10 +21,10 @@
     </form>
     <br>
     <div class="row px-3">
-        <button type="button" class="btn mr-4 shadow-sm rounded-pill" (click)="cancelOnClick()">
+        <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
             Cancelar
         </button>
-        <button type="button" class="ml-auto btn btn-success rounded-pill" (click)="addOnClick()">
+        <button type="button" class="ml-auto btn btn-outline-success" (click)="addOnClick()">
             Agregar
         </button>
     </div>

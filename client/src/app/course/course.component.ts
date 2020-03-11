@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/_models/course.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from 'src/_services/course.service';
 import { User } from 'src/_models/user.model';
 import { AuthHelper } from 'src/_helpers/auth.helper';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DateHelper } from 'src/_helpers/date.helper';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course',
@@ -11,11 +13,15 @@ import { AuthHelper } from 'src/_helpers/auth.helper';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+  /**
+   * Icono de Cerrar
+   */
+  faTimes = faTimes;
 
   /**
    * Identificador del curso.
    */
-  private id: string;
+  public static courseId: string;
 
   /**
    * Contiene la información del curso.
@@ -27,20 +33,23 @@ export class CourseComponent implements OnInit {
    */
   public user: User;
 
-  constructor(private route: ActivatedRoute, private router: Router, private courseService: CourseService) { }
+  constructor(
+    private courseService: CourseService, 
+    private modal: NgbActiveModal,
+    private dateHelper: DateHelper) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
     this.setCourse();
   }
 
-  private setCourse() {
-    this.courseService.get(this.id).toPromise().then((course) => {
-      this.course = Course.fromJSON(course);
-      this.user = AuthHelper.getLoggedUser();
-    }).catch((err) => {
-      console.error(err);
-      this.router.navigateByUrl("home");
-    });
+  /**
+   * Cierra el modal
+   */
+  private close() { this.modal.close(); }
+
+  private async setCourse() {
+    let res = await this.courseService.get(CourseComponent.courseId).toPromise();
+    this.course = Course.fromJSON(res);
+    this.user = AuthHelper.getLoggedUser();
   }
 }

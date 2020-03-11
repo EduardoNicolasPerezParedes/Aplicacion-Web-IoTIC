@@ -42,7 +42,7 @@ export class AdminSemilleroNewsComponent implements OnInit {
   public news: Array<News>;
 
   /**
-   * ¿Hay cursos registrados?
+   * ¿Hay noticias registradas?
    */
   public weHaveNews: boolean;
 

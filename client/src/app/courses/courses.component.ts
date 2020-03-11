@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/_services/course.service';
 import { Course } from 'src/_models/course.model';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CourseComponent } from '../course/course.component';
 
 @Component({
   selector: 'app-courses',
@@ -19,7 +21,7 @@ export class CoursesComponent implements OnInit {
    */
   public weHaveCourses;
 
-  constructor(private courseService: CourseService, private router: Router) { 
+  constructor(private courseService: CourseService, private modalService: NgbModal) { 
     this.setCourses().then(() => {
         this.weHaveCourses = this.courses.length > 0;
       }
@@ -38,11 +40,11 @@ export class CoursesComponent implements OnInit {
     
     res.forEach(course => {
       this.courses.push(Course.fromJSON(course));
-      console.log(this.courses);
     });
   }
 
   public showCourse(id: string) {
-    this.router.navigateByUrl(`course/${id}`);
+    CourseComponent.courseId = id;
+    this.modalService.open(CourseComponent);
   }
 }

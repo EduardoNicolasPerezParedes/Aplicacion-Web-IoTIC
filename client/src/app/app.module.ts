@@ -117,7 +117,8 @@ import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.co
     CategoryFormComponent,
     CategoryInfoComponent,
     ResourceFormComponent,
-    ResourceInfoComponent
+    ResourceInfoComponent,
+    CourseComponent
   ]
 })
 export class AppModule { }
