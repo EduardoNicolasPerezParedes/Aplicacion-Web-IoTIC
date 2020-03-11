@@ -4,6 +4,7 @@ import { faCalendarAlt, faTimes, faCheck, faPen } from '@fortawesome/free-solid-
 import { EventService } from 'src/_services/event.service';
 import { EventSharedService } from 'src/_services/event.shared.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-event-info',
@@ -48,11 +49,19 @@ export class EventInfoComponent implements OnInit {
 
   constructor(
     private eventService: EventService, 
-    private eventSharedService: EventSharedService
+    private eventSharedService: EventSharedService,
+    private modal: NgbActiveModal
     ) { }
 
   ngOnInit() {
     this.setEvent();
+  }
+
+  /**
+   * Cierra el modal
+   */
+  public close() {
+    this.modal.close();
   }
 
   /**
@@ -87,6 +96,8 @@ export class EventInfoComponent implements OnInit {
       if (err.status == 422) {
         new MsgHelper().showError(err.error.error);
         this.setEvent();
+      } else {
+        new MsgHelper().showError(err.message);
       }
     } finally {
       this.isEditable = false;
