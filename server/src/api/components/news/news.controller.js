@@ -13,8 +13,6 @@ const news_controller = {
         console.log(req.body)
         let title = req.body.title;
         let description = req.body.description;
-        let development = req.body.development;
-        let date = req.body.date;
 
         if (!title) {
             // retorna error si el nombre de la noticia no se encuentra
@@ -24,16 +22,6 @@ const news_controller = {
         if (!description) {
             // retorna error si la descripcion de la noticia no se encuentra
             res.status(422).send({error: ERRORS.INVALID_DESCRIPTION});
-            return;
-        }
-        if (!development) {
-            // retorna error si el desarrollo de la noticia no se encuentra
-            res.status(422).send({error: ERRORS.INVALID_DEVELOPMENT});
-            return;
-        }
-        if (!date) {
-            // retorna error si la fecha de la noticia no se encuentra
-            res.status(422).send({error: ERRORS.INVALID_DATE});
             return;
         }
 
@@ -46,20 +34,9 @@ const news_controller = {
             return;
         }
 
-        let date_formated = new Date(date.year, date.month-1, date.day);
-        let date_now = new Date();
-
-        if (date_formated > date_now) {
-            res.status(422).send({error: ERRORS.INVALID_DATE});
-            return;
-        }
-        console.log("pasamos")
-
         let new_news = await News.create({
             title: title,
-            description: description,
-            development: development,
-            date: date_formated,
+            description: description
         });
 
         res.status(200).send(new_news);

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { faCalendarAlt, faTimes, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { NewsService } from 'src/_services/news.service';
 import { News } from 'src/_models/news.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { NewsSharedService } from 'src/_services/news.shared.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -18,23 +19,31 @@ interface HtmlInputEvent extends Event{
 })
 export class NewsFormComponent implements OnInit {
   /**
-   * Icono de Fecha noticia
+   * Formulario de la Noticia
    */
-  faCalendarAlt = faCalendarAlt;
+  private newsForm: FormGroup;
+
   /**
-   * Noticia a ser registrada
+   * ¿Se ha dado click en Agregar?
    */
-  public news: News;
+  private submitted: boolean;
   
   constructor(
     public modalContent: NgbActiveModal,
     private newsService: NewsService,
-    private newsSharedService: NewsSharedService) {
-    this.news = new News();
+    private newsSharedService: NewsSharedService,
+    private formBuilder: FormBuilder) {
+    this.submitted = false;
+    this.newsForm = formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required]
+    });
    }
 
   ngOnInit() {
   }
+
+  get f() { return this.newsForm.controls; }
 
   /**
    * Invocada al dar click en Cancelar
@@ -42,6 +51,7 @@ export class NewsFormComponent implements OnInit {
   public cancelOnClick() {
     this.close();
   }
+
   /**
    * Cierra el formulario
    */
@@ -52,11 +62,17 @@ export class NewsFormComponent implements OnInit {
   /**
    * Invocada al dar click en Agregar
    */
-  public async addOnClick() {
+  public async onSubmit() {
+    this.submitted = true;
+    if (this.newsForm.invalid) { return; }
+
+    let news = new News();
+    news.title = this.newsForm.controls.title.value;
+    news.description = this.newsForm.controls.description.value;
+
     let msg = new MsgHelper();
     try {
-      console.log(this.news);
-      let res = await this.newsService.create(this.news).toPromise();
+      let res = await this.newsService.create(news).toPromise();
       msg.showSuccess('Noticia agregada exitosamente');
       this.close();
       this.newsSharedService.add(News.fromJSON(res));

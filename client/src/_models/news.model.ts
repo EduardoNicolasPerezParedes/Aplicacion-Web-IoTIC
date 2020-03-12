@@ -26,17 +26,6 @@ export class News {
 
     constructor() { }
 
-    public getDate(): string {
-        var date_str = '';
-
-        let year = this.date.getFullYear().toString();
-        let month = this.date.getMonth().toString();
-        let day = this.date.getDate().toString();
-        date_str = `${day}/${month}/${year}`;
-
-        return date_str;
-    }
-
     public parseToJSON(): JSON {
         return JSON.parse(JSON.stringify(this));
     }

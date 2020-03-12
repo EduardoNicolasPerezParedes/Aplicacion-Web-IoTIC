@@ -15,13 +15,9 @@ const newsSchema = new Schema({
         lowercase: true,
         unique: true
     },
-    development: {
-        type: String,
-        required: true
-    },
-    date: {
+    created_at: {
         type: Date,
-        required: true
+        default: Date.now()
     }
 });
 

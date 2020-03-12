@@ -2,30 +2,20 @@
     <div class="text-center container">
         <h4>Formulario de Noticia</h4>
     </div>
-    <form>
+    <form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
         <!-- Titulo -->
-        <input [(ngModel)]="news.title" name="title" class="form-control bg-white border-0 my-3 shadow-sm" placeholder="Titulo de la noticia" id="name" type="text">
+        <input formControlName="title" name="title" class="form-control bg-white border-0 my-3 shadow-sm" placeholder="Titulo de la noticia" type="text" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
         
         <!-- Descripción -->
-        <textarea [(ngModel)]="news.description" name="desc" placeholder="Descripción" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="7"></textarea>
+        <textarea formControlName="description" name="desc" placeholder="Descripción" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="7" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
 
-        <!-- Desarrollo -->
-        <!-- <textarea [(ngModel)]="news.development" name="deve" placeholder="Desarrollo" id="rounded" class="bg-white border-0 shadow-sm form-control mb-3" rows="10"></textarea> -->
-            <!-- imagen -->
-            <!-- 
-            <div class="form-group my-3 rounded-pill">
-                <label for="exampleFormControlFile1">Imagen de la noticia</label>
-                <input name="image" type="file" class="form-control-file bg-light border-0 inner-shadow" id="exampleFormControlFile1" enctype="multipart/from-data" (change)="onFileChange($event)">
-            </div>
-            -->
+        <div class="row px-3">
+            <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+                Cancelar
+            </button>
+            <button type="submit" class="ml-auto btn btn-outline-success">
+                Agregar
+            </button>
+        </div>
     </form>
-    <br>
-    <div class="row px-3">
-        <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
-            Cancelar
-        </button>
-        <button type="button" class="ml-auto btn btn-outline-success" (click)="addOnClick()">
-            Agregar
-        </button>
-    </div>
 </div>
