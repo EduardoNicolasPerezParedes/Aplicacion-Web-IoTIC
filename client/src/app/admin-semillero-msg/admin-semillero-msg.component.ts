@@ -3,6 +3,7 @@ import { MessageService } from 'src/_services/message.service';
 import { Message } from 'src/_models/message.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { DateHelper } from 'src/_helpers/date.helper';
 
 @Component({
   selector: 'app-admin-semillero-msg',
@@ -30,32 +31,32 @@ export class AdminSemilleroMsgComponent implements OnInit {
    */
   public weHaveMessages: boolean;
 
-  constructor(private messageService: MessageService) { 
+  constructor(private messageService: MessageService, private dateHelper: DateHelper) { 
     this.setMessages();
   }
 
   ngOnInit() {
   }
 
+  /**
+   * Obtiene y seta los mensajes recibidos
+   */
   public async setMessages() {
     let res = await this.messageService.list().toPromise();
     let messages_list = res as Array<any>;
     this.messages = new Array<Message>();
 
     messages_list.forEach(msg => {
-      this.messages.push(new Message(
-        msg._id,
-        msg.sender,
-        msg.email,
-        msg.phone_number,
-        msg.message,
-        new Date(msg.send_at)
-      ));
+      this.messages.push(Message.fromJSON(msg));
     });
 
     this.weHaveMessages = this.messages.length > 0;
   }
 
+  /**
+   * Identificador del mensaje
+   * @param id Identificador del mensaje
+   */
   public async deleteOnClick(id: string) {
     let msg = new MsgHelper();
 

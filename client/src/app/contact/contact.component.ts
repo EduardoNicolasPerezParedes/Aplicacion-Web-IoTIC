@@ -55,19 +55,11 @@ export class ContactComponent implements OnInit {
     this.submitted = true;
     if (this.contactForm.invalid) { return; }
 
-    let sender = this.contactForm.value.sender;
-    let email = this.contactForm.value.email;
-    let phone_number = this.contactForm.value.phone_number;
-    let message = this.contactForm.value.message;
-
-    message = new Message(
-      null,
-      sender,
-      email,
-      phone_number,
-      message,
-      null
-    );
+    let message = new Message();
+    message.sender = this.contactForm.value.sender;
+    message.email = this.contactForm.value.email;
+    message.phoneNumber = this.contactForm.value.phone_number;
+    message.message = this.contactForm.value.message;
 
     let msg = new MsgHelper();
     try {

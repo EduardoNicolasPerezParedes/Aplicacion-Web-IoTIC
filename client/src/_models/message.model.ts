@@ -1,23 +1,41 @@
 export class Message {
-    constructor(
-        public id: string,
-        public sender: string,
-        public email: string,
-        public phone_number: string,
-        public message: string,
-        public send_at: Date,
-        public visible = false
-    ) { }
+    /**
+     * Identificador del Mensaje
+     */
+    public id: string;
 
-    public getSendAt(): string {
-        var send_at_str = '';
+    /**
+     * Nombre del Remitente
+     */
+    public sender: string;
 
-        let year = this.send_at.getFullYear().toString();
-        let month = this.send_at.getMonth().toString();
-        let day = this.send_at.getDate().toString();
-        send_at_str = `${day}/${month}/${year}`;
+    /**
+     * Correo del Remitente
+     */
+    public email: string;
 
-        return send_at_str;
+    /**
+     * Número telefónico del Remitente
+     */
+    public phoneNumber: string;
+
+    /**
+     * Contenido del Mensaje
+     */
+    public message: string;
+
+    /**
+     * Fecha en que fue enviado
+     */
+    public sentAt: Date;
+
+    /**
+     * ¿El mensaje se encuentra visible?
+     */
+    public isVisible: boolean;
+
+    constructor() { 
+        this.isVisible = false;
     }
 
     public parseToJSON(): JSON {
@@ -26,13 +44,15 @@ export class Message {
 
     public static fromJSON(json): Message{
         if (json === null) { return null; }
-        return new Message(
-            json._id,
-            json.sender,
-            json.email,
-            json.phone_number,
-            json.message,
-            new Date(json.send_at)
-        )
+        let msg = new Message();
+
+        msg.id = json._id;
+        msg.sender = json.sender;
+        msg.email = json.email;
+        msg.phoneNumber = json.phone_number;
+        msg.message = json.message;
+        msg.sentAt = new Date(json.sent_at);
+
+        return msg;
     }
 }

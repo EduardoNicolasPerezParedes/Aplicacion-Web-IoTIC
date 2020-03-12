@@ -21,7 +21,7 @@ const messageSchema = new Schema({
         type: String,
         required: true
     },
-    send_at: {
+    sent_at: {
         type: Date,
         default: Date.now
     }

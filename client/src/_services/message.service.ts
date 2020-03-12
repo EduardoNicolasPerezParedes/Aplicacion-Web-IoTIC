@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { HttpService } from './http.service';
-import { Course } from '../_models/course.model';
+import { Message } from 'src/_models/message.model';
  
 @Injectable()
 export class MessageService extends HttpService {
@@ -17,7 +17,7 @@ export class MessageService extends HttpService {
      * 
      * @param message mensaje a ser registrado.
      */
-    create(message: Course) {
+    create(message: Message) {
         return this.http.post(
             this.apiUrl, 
             message.parseToJSON(),

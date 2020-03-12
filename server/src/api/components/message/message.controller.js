@@ -11,8 +11,10 @@ const message_controller = {
     async create(req, res) {
         let sender = req.body.sender;
         let email = req.body.email;
-        let phone_number = req.body.phone_number;
+        let phone_number = req.body.phoneNumber;
         let message = req.body.message;
+
+        console.log(req.body);
 
         if (!sender) {
             // retorna error si el remitente no se encuentra
