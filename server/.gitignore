@@ -1,5 +1,8 @@
 # Dependency directory
 /node_modules
 
+# Uploads
+/uploads
+
 # MacOS only
 .DS_Store
