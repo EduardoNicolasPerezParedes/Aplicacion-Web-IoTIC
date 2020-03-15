@@ -24,4 +24,15 @@ export class UserService extends HttpService {
             { headers: this.headers }
         );
     }
+
+    /**
+     * Obtiene los usuarios cuyas solicitudes aún no han sido aprobadas.
+     * 
+     */
+    listPending() {
+        return this.http.get(
+            this.apiUrl,
+            { headers: this.headers }
+        )
+    }
 }
