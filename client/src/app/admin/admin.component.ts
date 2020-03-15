@@ -16,7 +16,8 @@ export class AdminComponent implements OnInit {
     NEWS: 2,
     MSG: 3,
     RESOURCES: 4,
-    CATEGORIES: 5
+    CATEGORIES: 5,
+    PENDING: 6
   };
 
   /**
@@ -47,6 +48,9 @@ export class AdminComponent implements OnInit {
         break;
       case '/admin/news':
          this.selectedOption = this.OPTIONS.NEWS;
+        break;
+      case '/admin/members/pending':
+        this.selectedOption = this.OPTIONS.PENDING;
         break;
     }
   }

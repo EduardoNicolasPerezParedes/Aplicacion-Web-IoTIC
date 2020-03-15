@@ -49,6 +49,7 @@ import { AdminSemilleroNewsComponent } from './admin-semillero-news/admin-semill
 import { NewsFormComponent } from './admin-semillero-news/news-form/news-form.component';
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.component';
+import { AdminMembersPendingComponent } from './admin-members-pending/admin-members-pending.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.co
     NewsComponent,
     AdminSemilleroNewsComponent,
     NewsFormComponent,
-    NewsInfoComponent
+    NewsInfoComponent,
+    AdminMembersPendingComponent
   ],
   imports: [
     BrowserModule,
