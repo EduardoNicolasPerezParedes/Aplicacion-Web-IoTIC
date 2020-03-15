@@ -58,6 +58,10 @@ export class AdminNavbarComponent implements OnInit {
     this.router.navigateByUrl("admin/categories");
   }
 
+  public membersPendingOnClick() {
+    this.router.navigateByUrl("/admin/members/pending");
+  }
+
   public logoutOnClick(): void {
     this.authService.logout();
     this.router.navigateByUrl("home");

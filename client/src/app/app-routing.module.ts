@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'contact', component: MainComponent },
   { path: 'resources', component: MainComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/members/pending', component: AdminComponent },
   { path: 'admin/messages', component: AdminComponent },
   { path: 'admin/courses', component: AdminComponent },
   { path: 'admin/events', component: AdminComponent },

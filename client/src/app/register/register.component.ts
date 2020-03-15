@@ -8,6 +8,8 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../_services/user.service';
 import { User } from 'src/_models/user.model';
 
+import { MsgHelper } from 'src/_helpers/msg.helper';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -83,7 +85,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.name,
       this.registerForm.value.email,
       this.registerForm.value.career,
-      this.registerForm.value.birth_date = new Date().toISOString().slice(0,10),
+      this.registerForm.value.birth_date = new Date().toISOString().slice(0,10), //TODO La fecha no la guarda bien
       this.registerForm.value.student,
       this.registerForm.value.semester,
       false
@@ -94,7 +96,8 @@ export class RegisterComponent implements OnInit {
     );
 
     let res = await this.userService.create(newUser).toPromise();
-    alert("Tu solicitud ha sido registrada correctamente");
+    let msg = new MsgHelper();
+    msg.showSuccess('Tu solicitud ha sido registrada correctamente, te enviaremos un mensaje a tu correo cuando aceptemos tu solicitud');
     this.router.navigateByUrl("home");
   }
 }

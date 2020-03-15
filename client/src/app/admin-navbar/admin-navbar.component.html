@@ -42,8 +42,8 @@
             <div ngbDropdown class="mx-auto">
               <button class="btn" id="dropdownBasic3" ngbDropdownToggle>Integrantes</button>
               <div class="border-0 shadow-sm py-0" style="border-radius: 0px;" ngbDropdownMenu aria-labelledby="dropdownBasic3">
-                <button class="py-2 btn-light" ngbDropdownItem>Aprovados</button>
-                <button class="py-2 btn-light" ngbDropdownItem>Pendientes</button>
+                <button class="py-2 btn-light" ngbDropdownItem>Aprobados</button>
+                <button class="py-2 btn-light" ngbDropdownItem (click)="membersPendingOnClick()">Pendientes</button>
               </div>
             </div>
           </form>
