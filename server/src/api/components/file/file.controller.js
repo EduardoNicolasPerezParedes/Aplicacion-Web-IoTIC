@@ -1,7 +1,9 @@
 const IncomingForm = require('formidable').IncomingForm;
 const crypto = require('crypto');
 const fs = require('fs');
+
 const ERRORS = require('./file.errors');
+const Resource = require('../resource/resource.model');
 
 const file_controller = {
     /**
@@ -12,8 +14,8 @@ const file_controller = {
     async upload(req, res) {
         let form = new IncomingForm();
         /**
-         * Representa al modelo en donde será guardado el archivo
-         * - Valores permitidos
+         * Representa al modelo en donde será guardado el archivo.
+         * Valores permitidos:
          *      0: Información del semillero
          *      1: Eventos
          *      2: Curso
@@ -22,11 +24,11 @@ const file_controller = {
          *      5: Prestamos
          *      6: Integrantes
          */
-        let model = req.body.model;
+        let model = req.query.m;
         /**
          * Identificador del modelo
          */
-        let id = req.body.id;
+        let id = req.query.id;
         
         form.on('fileBegin', (name, file) => {
             // Se obtiene la extensión del archivo
@@ -37,12 +39,19 @@ const file_controller = {
             file.path = `uploads/${token}.${ext}`;
         });
         
-        form.on('file', (field, file) => {
+        form.on('file', async (field, file) => {
             // ¡El archivo ya fue guardado!
-            // TODO: Referenciar el archivo con el modelo correspondiente
+            let file_name = file.path.split('/')[1];
+            switch (model) {
+                case "4":
+                    let resource = await Resource.findById({_id: id});
+                    resource.image_link = "http://localhost:3000/api/file/" + file_name;
+                    await resource.save();
+                    break;
+            }
         })
         form.on('end', () => {
-            res.sendStatus(200);
+            res.status(200).send('OK!');
         })
         form.parse(req);
     },

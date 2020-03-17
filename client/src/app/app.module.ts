@@ -50,6 +50,9 @@ import { NewsFormComponent } from './admin-semillero-news/news-form/news-form.co
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.component';
 import { AdminMembersPendingComponent } from './admin-members-pending/admin-members-pending.component';
+import { FileHelper } from 'src/_helpers/file.helper';
+import { FileService } from 'src/_services/file.service';
+import { ResourceService } from 'src/_services/resource.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,10 @@ import { AdminMembersPendingComponent } from './admin-members-pending/admin-memb
     EventSharedService,
     DateHelper,
     NewsService,
-    NewsSharedService
+    NewsSharedService,
+    FileHelper,
+    FileService,
+    ResourceService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

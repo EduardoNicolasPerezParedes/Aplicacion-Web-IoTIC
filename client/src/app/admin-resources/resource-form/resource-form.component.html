@@ -3,6 +3,13 @@
         <h4>Formulario de Recurso</h4>
     </div>
     <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+        <!-- Imagen -->
+        <div class="custom-file mt-3 was-validated">
+            <input (change)="fileHelper.fileChange($event)" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen de recurso...</label>
+            <div class="invalid-feedback">Selecciona la imagen del recurso</div>
+        </div>
+
         <!-- Nombre -->
         <input formControlName="name" class="form-control shadow-sm bg-white border-0 my-3" placeholder="Nombre" id="name" type="text" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
         
@@ -21,7 +28,7 @@
         <!-- Categoría -->
         <label>Categoría</label>
         <select formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-            <option class="text-muted" value="">Seleccione la categoría</option>
+            <option class="text-muted" value="null" [ngValue]="null">Seleccione la categoría</option>
         </select>
 
         <div class="row px-3 mt-4">

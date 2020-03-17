@@ -38,5 +38,25 @@ export class Resource {
 
     constructor() {}
 
-    
+    public parseToJSON(): JSON {
+        return JSON.parse(JSON.stringify(this));
+    }
+
+    public static fromJSON(json: any): Resource {
+        let r = new Resource();
+
+        r.id = json._id;
+        r.name  = json.name;
+        r.description = json.description;
+        r.imageLink = json.image_link;
+        r.available = json.available;
+        r.quantity = json.quantity;
+        r.category = null;
+
+        return r;
+    }
+
+    public getDescPreview() {
+        return this.description.slice(0, 30);
+    }
 }

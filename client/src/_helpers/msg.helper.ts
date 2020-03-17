@@ -9,7 +9,7 @@ export class MsgHelper {
     constructor() {
         this.toast = Swal.mixin({
             toast: true,
-            position: "top",
+            position: "bottom",
             showConfirmButton: false,
             timer: 3000
         }); 

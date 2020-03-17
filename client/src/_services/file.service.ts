@@ -18,8 +18,15 @@ export class FileService extends HttpService {
      * @param model Modelo al que pertenece el archivo
      * @param id Identificador del registro
      */
-    upload(file, model, id) {
-        // TODO: Llamar al método POST pasando los parámetros
+    upload(file: any, model: number, id: string) {
+        return this.http.post(
+            `${this.apiUrl}?m=${model}&id=${id}`,
+            file,
+            { 
+                headers: this.headers,
+                responseType: "arraybuffer"
+            }
+        )
     }
 
 }

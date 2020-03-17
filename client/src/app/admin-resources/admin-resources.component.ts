@@ -3,6 +3,8 @@ import { faPlus, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Resource } from 'src/_models/resource.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceFormComponent } from './resource-form/resource-form.component';
+import { ResourceService } from 'src/_services/resource.service';
+import { MsgHelper } from 'src/_helpers/msg.helper';
 
 @Component({
   selector: 'app-admin-resources',
@@ -25,16 +27,30 @@ export class AdminResourcesComponent implements OnInit {
    */
   public resources: Array<Resource>;
 
-  constructor(private modalService: NgbModal) { 
-    this.resources = new Array<Resource>();
-    this.resources.push(new Resource());
-    this.resources.push(new Resource());
-    this.resources.push(new Resource());
-    this.resources.push(new Resource());
-    this.resources.push(new Resource());
+  constructor(
+    private modalService: NgbModal,
+    private resourceService: ResourceService
+    ) { 
+    this.setResources();
   }
 
   ngOnInit() {
+  }
+
+  /**
+   * Obtiene y setea los recursos
+   */
+  private async setResources() {
+    try {
+      this.resources = new Array<Resource>();
+      let res:any = await this.resourceService.list().toPromise();
+
+      res.forEach(r => {
+        this.resources.push(Resource.fromJSON(r));
+      });
+    } catch (err) {
+      new MsgHelper().showError(err.message);
+    }
   }
 
   /**
@@ -46,7 +62,7 @@ export class AdminResourcesComponent implements OnInit {
   }
 
   /**
-   * Invocada al dar click en Agregar Producto
+   * Invocada al dar click en Agregar Recurso
    */
   public addOnClick() {
     this.modalService.open(ResourceFormComponent);

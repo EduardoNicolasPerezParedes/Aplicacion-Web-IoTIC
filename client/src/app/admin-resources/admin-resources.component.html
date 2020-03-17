@@ -10,14 +10,14 @@
         <div class="container col-md-4 mt-3 mb-2 mx-0" *ngFor="let resource of resources">
             <div class="card border-0 shadow-sm pb-2">
                 <div class="card-img">
-                    <img class="card-img-top" src="https://a.pololu-files.com/picture/0J7808.1200.jpg?810c5e85aeb9493d9ec9fed8abe68464" alt="Imágen del curso">
+                    <img class="card-img-top" src="{{resource.imageLink}}" alt="Imagen del recurso">
                 </div>
                 <div class="card-body text-justify pb-0">
                     <div class="row px-3">
-                        <h5 class="card-title">Nombre Recurso</h5>
-                        <span style="font-size: 12px;" class="pt-1 ml-auto text-muted">Unidades: 2</span>
+                        <h5 class="card-title">{{resource.name}}</h5>
+                        <span style="font-size: 12px;" class="pt-1 ml-auto text-muted">Unidades: {{resource.quantity}}</span>
                     </div>
-                    <p class="text-muted">Descripción del recurso...</p>
+                    <p class="text-muted">{{resource.getDescPreview()}}...</p>
                 </div>
                 <div class="container text-center">
                     <button class="btn btn-light mr-3 rounded-circle shadow-sm" (click)="showOnClick(resource.id)">
