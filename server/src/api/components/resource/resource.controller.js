@@ -59,6 +59,23 @@ const resource_controller = {
             console.log(err.message);
             res.status(500).send(err.message);
         }
+    },
+    /**
+     * Obtiene la información de un recurso. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async get(req, res) {
+        try {
+            let id = req.params.id;
+            let resource = await Resource.findOne({_id: id});
+
+            res.status(200).send(resource);
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).send(err.message);
+        }
     }
 }
 

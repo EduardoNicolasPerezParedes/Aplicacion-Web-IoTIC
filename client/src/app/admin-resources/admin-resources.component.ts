@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceFormComponent } from './resource-form/resource-form.component';
 import { ResourceService } from 'src/_services/resource.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
+import { ResourceInfoComponent } from './resource-info/resource-info.component';
 
 @Component({
   selector: 'app-admin-resources',
@@ -27,6 +28,11 @@ export class AdminResourcesComponent implements OnInit {
    */
   public resources: Array<Resource>;
 
+  /**
+   * ¿Está cargando la petición?
+   */
+  private isLoading: boolean;
+
   constructor(
     private modalService: NgbModal,
     private resourceService: ResourceService
@@ -42,12 +48,14 @@ export class AdminResourcesComponent implements OnInit {
    */
   private async setResources() {
     try {
+      this.isLoading = true;
       this.resources = new Array<Resource>();
       let res:any = await this.resourceService.list().toPromise();
 
       res.forEach(r => {
         this.resources.push(Resource.fromJSON(r));
       });
+      this.isLoading = false;
     } catch (err) {
       new MsgHelper().showError(err.message);
     }
@@ -58,7 +66,8 @@ export class AdminResourcesComponent implements OnInit {
    * @param id Identificador del Recurso
    */
   public showOnClick(id: string) {
-
+    ResourceInfoComponent.resourceId = id;
+    this.modalService.open(ResourceInfoComponent);
   }
 
   /**

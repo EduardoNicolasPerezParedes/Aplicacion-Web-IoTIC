@@ -34,4 +34,15 @@ export class ResourceService extends HttpService {
             { headers: this.headers }
         )
     }
+
+    /**
+     * Obtiene la información de un recurso
+     * @param id Identificador del Recurso
+     */
+    get(id: string) {
+        return this.http.get(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        )
+    }
 }
