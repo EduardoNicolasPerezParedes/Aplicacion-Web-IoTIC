@@ -53,6 +53,7 @@ import { AdminMembersPendingComponent } from './admin-members-pending/admin-memb
 import { FileHelper } from 'src/_helpers/file.helper';
 import { FileService } from 'src/_services/file.service';
 import { ResourceService } from 'src/_services/resource.service';
+import { CategoryService } from 'src/_services/category.service';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { ResourceService } from 'src/_services/resource.service';
     NewsSharedService,
     FileHelper,
     FileService,
-    ResourceService
+    ResourceService,
+    CategoryService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -11,8 +11,9 @@
         <div class="container col-md-4 mt-3 mb-2 mx-0" *ngFor="let cat of categories">
             <div class="card border-0 shadow-sm pb-2">
                 <div class="card-body text-justify pb-0">
-                    <h5 class="card-title">Nombre de la categoría</h5>
-                    <p class="text-muted">Estado</p>
+                    <h5 class="card-title">{{cat.name}}</h5>
+                    <p *ngIf="cat.available" class="text-muted">Disponible</p>
+                    <p *ngIf="!cat.available" class="text-muted">No disponible</p>
                 </div>
                 <div class="container text-center">
                     <button class="btn btn-light mr-3 rounded-circle shadow-sm" (click)="showOnClick(cat.id)">

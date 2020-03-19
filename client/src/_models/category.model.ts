@@ -10,9 +10,9 @@ export class Category {
     public name: string;
 
     /**
-     * Estado de la categoría
+     * ¿La categoría se encuentra disponible?
      */
-    public state: boolean;
+    public available: boolean;
 
     /**
      * Referencia
@@ -25,7 +25,15 @@ export class Category {
         return JSON.parse(JSON.stringify(this));
     }
 
-    public static fromJSON(): Category {
-        return null;
+    public static fromJSON(json: any): Category {
+        if (json === null) { return null; }
+        let c = new Category();
+
+        c.id = json._id;
+        c.name = json.name;
+        c.available = json.available;
+        c.parent = Category.fromJSON(json.parent);
+
+        return c;
     }
 }

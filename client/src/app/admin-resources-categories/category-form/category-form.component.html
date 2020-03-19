@@ -8,7 +8,7 @@
 
         <!-- Disponible -->
         <div class="custom-control custom-switch mr-4 pt-2 mb-3">
-            <input formControlName="state" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="state">
+            <input formControlName="available" type="checkbox" class="rounded-pill custom-control-input" id="customSwitch2" name="state">
             <label class="custom-control-label" for="customSwitch2">¿Se encuentra disponible?</label>
         </div>
 
@@ -20,14 +20,15 @@
         
         <!-- Categoría Padre -->
         <select *ngIf="f.question.value" formControlName="parent" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.parent.errors }">
-            <option class="text-muted" value="">Seleccione la categoría</option>
+            <option class="text-muted" [value]="null">Seleccione la categoría</option>
+            <option *ngFor="let cat of categories" [ngValue]>{{cat.name}}</option>
         </select>
 
         <div class="row px-3 mt-4">
-            <button class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+            <button class="btn btn-light mr-4 shadow-sm" (click)="close()">
                 Cancelar
             </button>
-            <button type="submit" class="ml-auto btn btn-outline-success">
+            <button type="submit" class="ml-auto btn btn-success">
                 Agregar
             </button>
         </div>

@@ -4,6 +4,8 @@ import { Category } from 'src/_models/category.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { CategoryInfoComponent } from './category-info/category-info.component';
+import { CategoryService } from 'src/_services/category.service';
+import { MsgHelper } from 'src/_helpers/msg.helper';
 
 @Component({
   selector: 'app-admin-resources-categories',
@@ -21,6 +23,9 @@ export class AdminResourcesCategoriesComponent implements OnInit {
    */
   public faEye = faEye;
 
+  /**
+   * Icono de Eliminar
+   */
   public faTrashAlt = faTrashAlt;
 
   /**
@@ -28,16 +33,27 @@ export class AdminResourcesCategoriesComponent implements OnInit {
    */
   public categories: Array<Category>;
 
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private categoryService: CategoryService
+    ) {
     this.categories = new Array<Category>();
-    this.categories.push(new Category())
-    this.categories.push(new Category())
-    this.categories.push(new Category())
-    this.categories.push(new Category())
-    this.categories.push(new Category())
+    this.setCategories();
   }
 
   ngOnInit() {
+  }
+
+  /**
+   * Obtiene y setea las categorías
+   */
+  private async setCategories() {
+    try {
+      let res: any = await this.categoryService.list().toPromise();
+      res.forEach(cat => { this.categories.push(Category.fromJSON(cat)); });
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 
   /**
