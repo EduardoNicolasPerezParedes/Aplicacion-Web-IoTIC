@@ -26,7 +26,7 @@ export class Category {
     }
 
     public static fromJSON(json: any): Category {
-        if (json === null) { return null; }
+        if (json == null) { return null; }
         let c = new Category();
 
         c.id = json._id;
