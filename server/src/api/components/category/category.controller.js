@@ -40,7 +40,68 @@ const auth_controller = {
        } catch (err) {
            res.status(500).send(err.message);
        }
-   }
+   },
+   /**
+   * Elimina una categoría. 
+   * 
+   * @param {object} req - petición del cliente
+   * @param {oobject} res - respuesta del servidor
+   */
+    async delete(req, res) {
+        try {
+            let id = req.params.id;
+
+            let category = await Category.deleteOne({_id: id});
+            
+            res.status(200).send(category);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    },
+    /**
+    * Obtiene una categoría. 
+    * 
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+    async get(req, res) {
+        try {
+            let id = req.params.id;
+
+            let category = await Category.findOne({_id: id}).populate('parent').select('name available parent');
+            
+            res.status(200).send(category);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    },
+    /**
+    * Actualiza una categoría. 
+    * 
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+    async update(req, res) {
+        try {
+            let id = req.params.id;
+            let name = req.body.name;
+            let available = req.body.available;
+            let parent = req.body.parent;
+
+            if (parent !== null) { parent = parent.id; }
+
+            let category = await Category.findOne({_id: id});
+
+            category.name = name;
+            category.available = available;
+            category.parent = parent;
+            let cat_updated = await category.save();
+            
+            res.status(200).send(cat_updated);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    }
 }
 
 module.exports = auth_controller;

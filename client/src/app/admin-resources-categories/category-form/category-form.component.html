@@ -20,8 +20,8 @@
         
         <!-- Categoría Padre -->
         <select *ngIf="f.question.value" formControlName="parent" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.parent.errors }">
-            <option class="text-muted" [value]="null">Seleccione la categoría</option>
-            <option *ngFor="let cat of categories" [ngValue]>{{cat.name}}</option>
+            <option >Selecciona una categoría...</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
         </select>
 
         <div class="row px-3 mt-4">

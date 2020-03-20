@@ -34,4 +34,39 @@ export class CategoryService extends HttpService {
             { headers: this.headers }
         );
     }
+
+    /**
+     * Lista las categorías registradas.
+     * @param id Identificador de la categoría
+     */
+    delete(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        );
+    }
+
+    /**
+     * Obtiene una categoría.
+     * @param id Identificador de la categoría
+     */
+    get(id: string) {
+        return this.http.get(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        );
+    }
+
+    /**
+     * Actualiza una categoría.
+     * @param id Identificador de la categoría
+     * @param category Categoría actualizada
+     */
+    update(id: string, category: Category) {
+        return this.http.put(
+            `${this.apiUrl}/${id}`,
+            category.parseToJSON(),
+            { headers: this.headers }
+        );
+    }
 }

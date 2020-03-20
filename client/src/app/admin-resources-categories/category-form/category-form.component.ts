@@ -41,6 +41,7 @@ export class CategoryFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setCategories();
   }
 
   get f() { return this.categoryForm.controls; }
@@ -48,10 +49,11 @@ export class CategoryFormComponent implements OnInit {
   /**
    * Obtiene y setea la categorías
    */
-  private async getCategories() {
+  private async setCategories() {
     try {
-      let res = await this.categoryService.list().toPromise();
       this.categories = new Array<Category>();
+      let res: any = await this.categoryService.list().toPromise();
+      res.forEach(cat => { this.categories.push(Category.fromJSON(cat)); });
     } catch (err) {
       new MsgHelper().showError(err.message);
     }
@@ -74,14 +76,16 @@ export class CategoryFormComponent implements OnInit {
     try {
       let category = new Category();
       category.name = this.categoryForm.controls.name.value;
-      category.available = this.categoryForm.controls.available.value
-      category.parent = null;
+      category.available = this.categoryForm.controls.available.value;
+      if (this.categoryForm.controls.question.value) {
+        category.parent = this.categoryForm.controls.parent.value;
+      } else { category.parent = null; }
 
       let res = await this.categoryService.create(category).toPromise();
       new MsgHelper().showSuccess('Categoría agregada exitosamente');
       this.close();
     } catch (err) {
-      new MsgHelper().showError(err.error);
+      new MsgHelper().showError(err.message);
     }
   }
 }
