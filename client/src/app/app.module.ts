@@ -54,6 +54,7 @@ import { FileHelper } from 'src/_helpers/file.helper';
 import { FileService } from 'src/_services/file.service';
 import { ResourceService } from 'src/_services/resource.service';
 import { CategoryService } from 'src/_services/category.service';
+import { UsComponent } from './us/us.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { CategoryService } from 'src/_services/category.service';
     AdminSemilleroNewsComponent,
     NewsFormComponent,
     NewsInfoComponent,
-    AdminMembersPendingComponent
+    AdminMembersPendingComponent,
+    UsComponent
   ],
   imports: [
     BrowserModule,
