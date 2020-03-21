@@ -15,6 +15,9 @@ const resource_controller = {
             let quantity = req.body.quantity;
             let available = req.body.available;
 
+            let category = req.body.category;
+            if (category != null) { category = category.id; }
+
             if (!name) {
                 // retorna error si el nombre del recurso no se encuentra
                 res.status(422).send(ERRORS.INVALID_NAME);
@@ -36,6 +39,7 @@ const resource_controller = {
                 description: description,
                 quantity: quantity,
                 available: available,
+                category: category
             });
 
             res.status(200).send(created);
@@ -69,7 +73,7 @@ const resource_controller = {
     async get(req, res) {
         try {
             let id = req.params.id;
-            let resource = await Resource.findOne({_id: id});
+            let resource = await Resource.findOne({_id: id}).populate('category');
 
             res.status(200).send(resource);
         } catch (err) {

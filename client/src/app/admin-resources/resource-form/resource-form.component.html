@@ -29,13 +29,14 @@
         <label>Categoría</label>
         <select formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
             <option class="text-muted" value="null" [ngValue]="null">Seleccione la categoría</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
         </select>
 
         <div class="row px-3 mt-4">
             <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
                 Cancelar
             </button>
-            <button type="submit" class="ml-auto btn btn-outline-success">
+            <button type="submit" class="ml-auto btn btn-success">
                 Agregar
             </button>
         </div>

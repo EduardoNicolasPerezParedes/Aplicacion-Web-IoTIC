@@ -17,7 +17,7 @@ const categorySchema = new Schema({
     parent: {
         type: mongoose.Types.ObjectId,
         ref: 'Category',
-        required: false
+        required: true
     }
 });
 
