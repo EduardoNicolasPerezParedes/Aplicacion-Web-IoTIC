@@ -54,6 +54,13 @@ import { FileHelper } from 'src/_helpers/file.helper';
 import { FileService } from 'src/_services/file.service';
 import { ResourceService } from 'src/_services/resource.service';
 import { CategoryService } from 'src/_services/category.service';
+import { LoanService } from 'src/_services/loan.service';
+import { AdminLoansFinishedComponent } from './admin-loans-finished/admin-loans-finished.component';
+import { AdminLoansRequestedComponent } from './admin-loans-requested/admin-loans-requested.component';
+import { AdminLoansInProgressComponent } from './admin-loans-in-progress/admin-loans-in-progress.component';
+import { LoanInfoComponent } from './admin-loans-finished/loan-info/loan-info.component';
+import { LoansFormComponent } from './admin-loans-requested/loans-form/loans-form.component';
+
 
 @NgModule({
   declarations: [
@@ -88,7 +95,12 @@ import { CategoryService } from 'src/_services/category.service';
     AdminSemilleroNewsComponent,
     NewsFormComponent,
     NewsInfoComponent,
-    AdminMembersPendingComponent
+    AdminMembersPendingComponent,
+    AdminLoansRequestedComponent,
+    AdminLoansInProgressComponent,
+    AdminLoansFinishedComponent,
+    LoanInfoComponent,
+    LoansFormComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +125,8 @@ import { CategoryService } from 'src/_services/category.service';
     FileHelper,
     FileService,
     ResourceService,
-    CategoryService
+    CategoryService,
+    LoanService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -128,7 +141,9 @@ import { CategoryService } from 'src/_services/category.service';
     CategoryInfoComponent,
     ResourceFormComponent,
     ResourceInfoComponent,
-    CourseComponent
+    CourseComponent,
+    LoanInfoComponent,
+    LoansFormComponent
   ]
 })
 export class AppModule { }

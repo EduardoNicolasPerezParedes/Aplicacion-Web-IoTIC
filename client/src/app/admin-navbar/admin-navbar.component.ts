@@ -70,4 +70,17 @@ export class AdminNavbarComponent implements OnInit {
   public backOnClick(): void {
     this.router.navigateByUrl("home");
   }
+
+  public loans_requestedOnClick(): void {
+    this.router.navigateByUrl("admin/loans/requested");
+  }
+
+  public loans_in_progressOnClick(): void {
+    this.router.navigateByUrl("admin/loans/in_progress");
+  }
+
+  public loans_finishedOnClick(): void {
+    this.router.navigateByUrl("admin/loans/finished");
+  }
+
 }

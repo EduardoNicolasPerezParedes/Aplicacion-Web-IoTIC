@@ -23,8 +23,8 @@ export class MsgHelper {
             width: 300,
             buttonsStyling: false
         });
-    }
 
+    }
     /**
      * Muestra un mensaje de exito al usuario.
      * 
@@ -56,6 +56,19 @@ export class MsgHelper {
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        });
+    }
+
+    public async showConfirmMessage(title: string, question: string) {
+        return Swal.fire({
+            title: title,
+            text: question,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Enviar',
             cancelButtonText: 'Cancelar',
             reverseButtons: true
         });

@@ -22,6 +22,9 @@ const routes: Routes = [
   { path: 'admin/resources', component: AdminComponent },
   { path: 'admin/categories', component: AdminComponent },
   { path: 'admin/news', component: AdminComponent },
+  { path: 'admin/loans/requested', component: AdminComponent },
+  { path: 'admin/loans/in_progress', component: AdminComponent },
+  { path: 'admin/loans/finished', component: AdminComponent },
   { path: '**', component: MainComponent }
 ];
 

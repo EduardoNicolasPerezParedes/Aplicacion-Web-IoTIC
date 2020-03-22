@@ -15,5 +15,9 @@
 
     <!-- Integrantes -->
     <app-admin-members-pending *ngIf="selectedOption == OPTIONS.PENDING"></app-admin-members-pending>
+    <!-- Prestamos -->
+    <app-admin-loans-requested *ngIf="selectedOption == OPTIONS.REQUESTED"></app-admin-loans-requested>
+    <app-admin-loans-in-progress *ngIf="selectedOption == OPTIONS.IN_PROGRESS"></app-admin-loans-in-progress>
+    <app-admin-loans-finished *ngIf="selectedOption == OPTIONS.FINISHED"></app-admin-loans-finished>
   </div>
 </div>

@@ -17,7 +17,10 @@ export class AdminComponent implements OnInit {
     MSG: 3,
     RESOURCES: 4,
     CATEGORIES: 5,
-    PENDING: 6
+    PENDING : 6,
+    REQUESTED: 7,
+    IN_PROGRESS: 8,
+    FINISHED: 9
   };
 
   /**
@@ -51,6 +54,17 @@ export class AdminComponent implements OnInit {
         break;
       case '/admin/members/pending':
         this.selectedOption = this.OPTIONS.PENDING;
+      case '/admin/news':
+          this.selectedOption = this.OPTIONS.NEWS;
+        break;
+      case '/admin/loans/requested':
+         this.selectedOption = this.OPTIONS.REQUESTED;
+        break;
+      case '/admin/loans/in_progress':
+          this.selectedOption = this.OPTIONS.IN_PROGRESS;
+       break;
+      case '/admin/loans/finished':
+          this.selectedOption = this.OPTIONS.FINISHED;
         break;
     }
   }

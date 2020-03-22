@@ -7,7 +7,6 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { NewsInfoComponent } from 'src/app/admin-semillero-news/news-info/news-info.component';
 import { NewsFormComponent } from 'src/app/admin-semillero-news/news-form/news-form.component';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-semillero-news',
