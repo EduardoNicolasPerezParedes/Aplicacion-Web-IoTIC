@@ -18,4 +18,9 @@ resource_router.get('/', resource_controller.list);
  */
 resource_router.get('/:id', resource_controller.get);
 
+/**
+ * ruta que permite el registro una noticia.
+ */
+resource_router.get('/category/:category_id', resource_controller.get_by_category);
+
 module.exports = resource_router;

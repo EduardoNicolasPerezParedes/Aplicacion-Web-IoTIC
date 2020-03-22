@@ -74,6 +74,7 @@ export class NavBarComponent implements OnInit {
     this.loggedIn = this.user ? true : false;
 
     let url = this.router.url;
+    url = url.split('?')[0];
     switch(url) {
       case '/contact':
         this.contactActiveRoute = true;

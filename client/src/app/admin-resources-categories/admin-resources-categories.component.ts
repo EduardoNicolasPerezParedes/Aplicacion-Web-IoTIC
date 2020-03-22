@@ -31,13 +31,12 @@ export class AdminResourcesCategoriesComponent implements OnInit {
   /**
    * Categorías registradas
    */
-  public categories: Array<Category>;
+  private categories: Array<Category>;
 
   constructor(
     private modalService: NgbModal,
     private categoryService: CategoryService
     ) {
-    this.categories = new Array<Category>();
     this.setCategories();
   }
 
@@ -49,10 +48,11 @@ export class AdminResourcesCategoriesComponent implements OnInit {
    */
   private async setCategories() {
     try {
+      this.categories = new Array<Category>();
       let res: any = await this.categoryService.list().toPromise();
       res.forEach(cat => { this.categories.push(Category.fromJSON(cat)); });
     } catch (err) {
-      new MsgHelper().showError(err.error);
+      new MsgHelper().showError(err.message);
     }
   }
 
@@ -76,7 +76,15 @@ export class AdminResourcesCategoriesComponent implements OnInit {
    * Elimina una categoría
    * @param id Identificador de la Categoría
     */
-  public deleteOnClick(id: string) {
-    alert('Not implemented!');
+  private async deleteOnClick(id: string) {
+    try {
+      let res = await new MsgHelper().showConfirmDialog('¿Está seguro?', 'La categoría será eliminada de forma permanente');
+      if (res.value) { 
+        await this.categoryService.delete(id).toPromise();
+        new MsgHelper().showSuccess('La categoría ha sido eliminada exitosamente');
+       }
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 }

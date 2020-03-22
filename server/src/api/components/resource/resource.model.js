@@ -25,9 +25,12 @@ const resourceSchema = new Schema({
     image_link: {
         type: String,
         default: ""
+    },
+    category: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Category',
+        required: false
     }
 });
-
-// TODO: Agregar la referencia a la categoría
 
 module.exports = mongoose.model('Resource', resourceSchema);

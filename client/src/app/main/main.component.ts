@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
 
   constructor(private router: Router) { 
     let url = this.router.url;
+    url = url.split('?')[0];
     switch(url) {
       case '/contact':
         this.contactActiveRoute = true;

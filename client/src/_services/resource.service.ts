@@ -45,4 +45,15 @@ export class ResourceService extends HttpService {
             { headers: this.headers }
         )
     }
+
+    /**
+     * Obtiene los recursos pertenecientes a una categoría.
+     * @param categoryId Identificador de la categoría
+     */
+    getByCategory(categoryId: string) {
+        return this.http.get(
+            `${this.apiUrl}/category/${categoryId}`,
+            { headers: this.headers }
+        );
+    }
 }

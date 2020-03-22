@@ -5,6 +5,8 @@ import { ResourceService } from 'src/_services/resource.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { Resource } from 'src/_models/resource.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Category } from 'src/_models/category.model';
+import { CategoryService } from 'src/_services/category.service';
 
 @Component({
   selector: 'app-resource-info',
@@ -52,10 +54,16 @@ export class ResourceInfoComponent implements OnInit {
    */
   private isAvailable: boolean;
 
+  /**
+   * Contiene las categorías registradas 
+   */
+  private categories: Array<Category>;
+
   constructor(
     private modal: NgbActiveModal,
     private resourceService: ResourceService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.resourceForm = this.formBuilder.group({
@@ -65,6 +73,7 @@ export class ResourceInfoComponent implements OnInit {
       category: [null, Validators.required]
     });
     this.setResource();
+    this.setCategories();
   }
 
   /**
@@ -101,6 +110,19 @@ export class ResourceInfoComponent implements OnInit {
       this.isAvailable = this.resource.available;
     } catch (err) {
       new MsgHelper().showError(err.message);
+    }
+  }
+
+  /**
+   * Obtiene y setea las categorías registradas
+   */
+  private async setCategories() {
+    try {
+      this.categories = new Array<Category>();
+      let res: any = await this.categoryService.list().toPromise();
+      res.forEach(cat => { this.categories.push(cat); });
+    } catch (err) {
+      new MsgHelper().showError(err.error);
     }
   }
 }

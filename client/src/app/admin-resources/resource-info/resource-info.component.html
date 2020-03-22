@@ -40,11 +40,14 @@
         <input *ngIf="isEditable" formControlName="quantity" class="form-control shadow-sm bg-white border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
         <input *ngIf="!isEditable" formControlName="quantity" class="form-control border-0 my-3" min="1" placeholder="Unidades" id="name" type="number" readonly>
 
-        <!-- Categoría
+        <!-- Categoría -->
         <label>Categoría</label>
-        <select formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+        <select *ngIf="isEditable" formControlName="category" class="custom-select form-control border-0 shadow-sm" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
             <option class="text-muted" value="null" [ngValue]="null">Seleccione la categoría</option>
-        </select> -->
+            <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+        </select>
+        <p *ngIf="!isEditable && resource.category" class="text-muted">{{resource.category.name}}</p>
+        <p *ngIf="!isEditable && !resource.category" class="text-muted">No pertenece a ninguna categoría</p>
     </form>
 
     <!-- Disponible -->

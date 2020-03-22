@@ -5,6 +5,8 @@ import { FileHelper } from 'src/_helpers/file.helper';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { ResourceService } from 'src/_services/resource.service';
 import { Resource } from 'src/_models/resource.model';
+import { CategoryService } from 'src/_services/category.service';
+import { Category } from 'src/_models/category.model';
 
 @Component({
   selector: 'app-resource-form',
@@ -22,11 +24,17 @@ export class ResourceFormComponent implements OnInit {
    */
   private submitted: boolean;
 
+  /**
+   * Contiene las categorías registradas
+   */
+  private categories: Array<Category>;
+
   constructor(
     private formBuilder: FormBuilder, 
     private modal: NgbActiveModal,
     private fileHelper: FileHelper,
-    private resourceService: ResourceService) { 
+    private resourceService: ResourceService,
+    private categoryService: CategoryService) { 
     this.submitted = false;
     this.resourceForm = formBuilder.group({
       name: ['', Validators.required],
@@ -35,6 +43,7 @@ export class ResourceFormComponent implements OnInit {
       available: [false, Validators.required],
       category: [null, Validators.required]
     });
+    this.setCategories();
   }
 
   ngOnInit() {
@@ -43,11 +52,24 @@ export class ResourceFormComponent implements OnInit {
   get f() { return this.resourceForm.controls; }
 
   /**
+   * Obtiene y setea las categorías registradas
+   */
+  private async setCategories() {
+    try {
+      this.categories = new Array<Category>();
+      let res: any = await this.categoryService.list().toPromise();
+      res.forEach(cat => { this.categories.push(cat); });
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
+  }
+
+  /**
    * Invocada al dar click en Agregar
    */
   private async onSubmit() {
     this.submitted = true;
-    //if (this.resourceForm.invalid || this.fileHelper.file === null) { return; }
+    if (this.resourceForm.invalid || this.fileHelper.file === null) { return; }
 
     try {
       let resource = new Resource();
@@ -55,6 +77,7 @@ export class ResourceFormComponent implements OnInit {
       resource.description = this.resourceForm.controls.description.value;
       resource.quantity = this.resourceForm.controls.quantity.value;
       resource.available = this.resourceForm.controls.available.value;
+      resource.category = Category.fromJSON(this.resourceForm.controls.category.value);
 
       let res: any = await this.resourceService.create(resource).toPromise();
       // Se sube la imagen del recurso

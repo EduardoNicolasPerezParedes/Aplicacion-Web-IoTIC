@@ -60,7 +60,7 @@ import { AdminLoansRequestedComponent } from './admin-loans-requested/admin-loan
 import { AdminLoansInProgressComponent } from './admin-loans-in-progress/admin-loans-in-progress.component';
 import { LoanInfoComponent } from './admin-loans-finished/loan-info/loan-info.component';
 import { LoansFormComponent } from './admin-loans-requested/loans-form/loans-form.component';
-
+import { UsComponent } from './us/us.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +100,8 @@ import { LoansFormComponent } from './admin-loans-requested/loans-form/loans-for
     AdminLoansInProgressComponent,
     AdminLoansFinishedComponent,
     LoanInfoComponent,
-    LoansFormComponent
+    LoansFormComponent,
+    UsComponent
   ],
   imports: [
     BrowserModule,

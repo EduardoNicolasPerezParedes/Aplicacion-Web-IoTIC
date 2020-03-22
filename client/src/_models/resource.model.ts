@@ -51,7 +51,7 @@ export class Resource {
         r.imageLink = json.image_link;
         r.available = json.available;
         r.quantity = json.quantity;
-        r.category = null;
+        r.category = json.category == null ? null : Category.fromJSON(json.category);
 
         return r;
     }

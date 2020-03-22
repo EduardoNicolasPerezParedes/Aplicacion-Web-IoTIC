@@ -3,6 +3,8 @@ import { Category } from 'src/_models/category.model';
 import { faTimes, faCheck, faPen } from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CategoryService } from 'src/_services/category.service';
+import { MsgHelper } from 'src/_helpers/msg.helper';
 
 @Component({
   selector: 'app-category-info',
@@ -45,15 +47,33 @@ export class CategoryInfoComponent implements OnInit {
    */
   private categoryForm: FormGroup;
 
+  /**
+   * ¿La categoría se encuentra disponible?
+   */
+  private isAvailable: boolean;
+
+  /**
+   * ¿Pertenece a otra categoría?
+   */
+  private question: boolean;
+
+  /**
+   * Categoría a la que pertenece
+   */
+  private parent: Category;
+
+  /**
+   * Contiene las categorías registradas
+   */
+  private categories: Array<Category>;
+
   constructor(
     private fromBuilder: FormBuilder,
-    private modal: NgbActiveModal
+    private modal: NgbActiveModal,
+    private categoryService: CategoryService
   ) { 
     this.categoryForm = this.fromBuilder.group({
-      name: ['', Validators.required],
-      question: [false, Validators.required],
-      parent: [null, Validators.required],
-      state: [false, Validators.required]
+      name: ['', Validators.required]
     });
     this.setCategory();
   }
@@ -64,12 +84,24 @@ export class CategoryInfoComponent implements OnInit {
   get f() { return this.categoryForm.controls; }
 
   /**
-   * Obtiene y setea la categoría
+   * Obtiene y setea la categoría actual junto con las demás registradas
    */
-  private setCategory() {
-    // TODO: Obtener la información del servidor
-    this.category = new Category();
-    this.category.name = "Nombre Categoría";
+  private async setCategory() {
+    try {
+      let res: any = await this.categoryService.get(CategoryInfoComponent.categoryId).toPromise();
+      this.category = Category.fromJSON(res);
+      this.f.name.setValue(this.category.name);
+      this.isAvailable = this.category.available;
+      this.parent = this.category.parent;
+      if (this.category.parent != null) { this.question = true; }
+
+      res = await this.categoryService.list().toPromise();
+      this.categories = new Array<Category>();
+      res.forEach(cat => { this.categories.push(Category.fromJSON(cat)); });
+      this.categories = this.categories.filter(cat => cat.id != this.category.id);
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 
   /**
@@ -87,8 +119,19 @@ export class CategoryInfoComponent implements OnInit {
     this.isEditable = !this.isEditable;
   }
 
-  public updateOnClick() {
-    // TODO: Actualizar la categoría
-    alert('Not implemented!');
+  /**
+   * Invocada al dar clik en Actualizar
+   */
+  public async updateOnClick() {
+    try {
+      this.category.name = this.f.name.value;
+      this.category.parent = this.question ? this.parent : null;
+      this.category.available = this.isAvailable;
+      let res = await this.categoryService.update(CategoryInfoComponent.categoryId, this.category).toPromise();
+      this.close();
+      new MsgHelper().showSuccess('La categoría ha sido acutalizada exitosamente');
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 }

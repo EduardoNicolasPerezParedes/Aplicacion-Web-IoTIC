@@ -15,6 +15,9 @@ const resource_controller = {
             let quantity = req.body.quantity;
             let available = req.body.available;
 
+            let category = req.body.category;
+            if (category != null) { category = category.id; }
+
             if (!name) {
                 // retorna error si el nombre del recurso no se encuentra
                 res.status(422).send(ERRORS.INVALID_NAME);
@@ -36,6 +39,7 @@ const resource_controller = {
                 description: description,
                 quantity: quantity,
                 available: available,
+                category: category
             });
 
             res.status(200).send(created);
@@ -56,7 +60,6 @@ const resource_controller = {
 
             res.status(200).send(resources);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send(err.message);
         }
     },
@@ -69,11 +72,26 @@ const resource_controller = {
     async get(req, res) {
         try {
             let id = req.params.id;
-            let resource = await Resource.findOne({_id: id});
+            let resource = await Resource.findOne({_id: id}).populate('category');
 
             res.status(200).send(resource);
         } catch (err) {
-            console.log(err.message);
+            res.status(500).send(err.message);
+        }
+    },
+    /**
+     * Obtiene los recursos pertenecientes a una categoría. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async get_by_category(req, res) {
+        try {
+            let category_id = req.params.category_id;
+            let resources = await Resource.find({category: category_id});
+
+            res.status(200).send(resources);
+        } catch (err) {
             res.status(500).send(err.message);
         }
     }
