@@ -28,4 +28,9 @@ category_router.get('/:id', category_controller.get);
  */
 category_router.put('/:id', category_controller.update);
 
+/**
+ * ruta que permite actualizar una categoría.
+ */
+category_router.get('/parent/:parent_id', category_controller.get_by_parent);
+
 module.exports = category_router;

@@ -60,7 +60,6 @@ const resource_controller = {
 
             res.status(200).send(resources);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send(err.message);
         }
     },
@@ -77,7 +76,22 @@ const resource_controller = {
 
             res.status(200).send(resource);
         } catch (err) {
-            console.log(err.message);
+            res.status(500).send(err.message);
+        }
+    },
+    /**
+     * Obtiene los recursos pertenecientes a una categoría. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async get_by_category(req, res) {
+        try {
+            let category_id = req.params.category_id;
+            let resources = await Resource.find({category: category_id});
+
+            res.status(200).send(resources);
+        } catch (err) {
             res.status(500).send(err.message);
         }
     }

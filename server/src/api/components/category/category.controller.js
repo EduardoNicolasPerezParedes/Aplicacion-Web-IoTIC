@@ -34,8 +34,8 @@ const auth_controller = {
     */
    async list(req, res) {
        try {
-           let categories = await Category.find({});
-           
+           let categories = await Category.find({}).populate('parent');
+
            res.status(200).send(categories);
        } catch (err) {
            res.status(500).send(err.message);
@@ -98,6 +98,23 @@ const auth_controller = {
             let cat_updated = await category.save();
             
             res.status(200).send(cat_updated);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    },
+    /**
+    * Obtiene las categorías pertenecientes a una categoría. 
+    * 
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+    async get_by_parent(req, res) {
+        try {
+            let parent_id = req.params.parent_id;
+            
+            let categories = await Category.find({ parent: parent_id });
+
+            res.status(200).send(categories);
         } catch (err) {
             res.status(500).send(err.message);
         }

@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'us', component: UsComponent},
   { path: 'course/:id', component: CourseComponent }, // TODO: Cambiar ruta: el curso se muestra con un modal
   { path: 'contact', component: MainComponent },
-  { path: 'resources', component: MainComponent },
+  { path: 'resources:c', component: MainComponent,  },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/members/pending', component: AdminComponent },
   { path: 'admin/messages', component: AdminComponent },

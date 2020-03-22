@@ -69,4 +69,15 @@ export class CategoryService extends HttpService {
             { headers: this.headers }
         );
     }
+
+    /**
+     * Obtiene las categorías pertenecientes a una categoría.
+     * @param categoryId Identificador de la categoría padre
+     */
+    getByParent(parentId: string) {
+        return this.http.get(
+            `${this.apiUrl}/parent/${parentId}`,
+            { headers: this.headers }
+        );
+    }
 }
