@@ -5,13 +5,7 @@ import { News } from 'src/_models/news.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { FileHelper } from 'src/_helpers/file.helper';
-
-interface HtmlInputEvent extends Event{
-  target: HTMLInputElement & EventTarget;
-}
-
 
 @Component({
   selector: 'app-news-form',

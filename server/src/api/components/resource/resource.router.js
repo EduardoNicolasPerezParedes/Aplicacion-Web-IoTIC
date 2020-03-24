@@ -14,13 +14,18 @@ resource_router.post('/', resource_controller.create);
 resource_router.get('/', resource_controller.list);
 
 /**
- * ruta que permite el registro una noticia.
+ * ruta que permite obtener un recurso.
  */
 resource_router.get('/:id', resource_controller.get);
 
 /**
- * ruta que permite el registro una noticia.
+ * ruta que permite obtener los recursos pertenecientes a una categoría.
  */
 resource_router.get('/category/:category_id', resource_controller.get_by_category);
+
+/**
+ * ruta que permite el actualizar un recurso.
+ */
+resource_router.put('/:id', resource_controller.update);
 
 module.exports = resource_router;
