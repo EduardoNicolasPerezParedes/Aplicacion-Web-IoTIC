@@ -3,16 +3,13 @@
     width: 100vw;
 }
 
-.card {
-    border-radius: 20px;
-}
-
 .card, input, button {
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 img {
     max-height: 10rem;
+    width: 90%;
 }
 
 .logo:hover {
