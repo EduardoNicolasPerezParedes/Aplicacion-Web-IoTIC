@@ -54,6 +54,7 @@ export class AdminComponent implements OnInit {
         break;
       case '/admin/members/pending':
         this.selectedOption = this.OPTIONS.PENDING;
+        break;
       case '/admin/news':
           this.selectedOption = this.OPTIONS.NEWS;
         break;
