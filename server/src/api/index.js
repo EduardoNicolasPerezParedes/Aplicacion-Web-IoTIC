@@ -17,8 +17,8 @@ rest_router.use('/news',news_router);
 rest_router.use('/course', course_router);
 rest_router.use('/message', message_router);
 rest_router.use('/event', event_router);
-rest_router.use('/file', file_router);
 rest_router.use('/resource', resource_router);
+rest_router.use('/file', file_router);
 rest_router.use('/category', category_router);
 rest_router.use('/loan', loan_router);
 

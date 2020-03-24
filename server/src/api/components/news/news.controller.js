@@ -1,4 +1,4 @@
-const News = require('./News.model');
+const News = require('./news.model');
 const ERRORS = require('./news.errors');
 const mongoose = require('mongoose');
 
@@ -10,7 +10,6 @@ const news_controller = {
      * @param {oobject} res - respuesta del servidor
      */
     async create(req, res){
-        console.log(req.body)
         let title = req.body.title;
         let description = req.body.description;
 

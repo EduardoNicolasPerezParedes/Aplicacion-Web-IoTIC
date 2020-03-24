@@ -4,6 +4,9 @@ const fs = require('fs');
 
 const ERRORS = require('./file.errors');
 const Resource = require('../resource/resource.model');
+const Event = require('../event/event.model');
+const Course = require('../course/course.model');
+const News = require('../news/news.model');
 
 const file_controller = {
     /**
@@ -21,8 +24,8 @@ const file_controller = {
          *      2: Curso
          *      3: Noticias
          *      4: Recursos
-         *      5: Prestamos
-         *      6: Integrantes
+         *      5: Prestamos - Recursos
+         *      6: Prestamos - Recibido
          */
         let model = req.query.m;
         /**
@@ -43,6 +46,21 @@ const file_controller = {
             // ¡El archivo ya fue guardado!
             let file_name = file.path.split('/')[1];
             switch (model) {
+                case "1":
+                    let event = await Event.findById({_id: id});
+                    event.image_link = "http://localhost:3000/api/file/" + file_name;
+                    await event.save();
+                    break;
+                case "2":
+                    let course = await Course.findById({_id: id});
+                    course.image_link = "http://localhost:3000/api/file/" + file_name;
+                    await course.save();
+                    break;
+                case "3":
+                    let news = await News.findById({_id: id});
+                    news.image_link = "http://localhost:3000/api/file/" + file_name;
+                    await news.save();
+                    break;
                 case "4":
                     let resource = await Resource.findById({_id: id});
                     resource.image_link = "http://localhost:3000/api/file/" + file_name;

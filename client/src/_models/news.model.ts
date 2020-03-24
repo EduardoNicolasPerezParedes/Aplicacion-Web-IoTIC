@@ -24,6 +24,11 @@ export class News {
      */
     public date: Date;
 
+    /**
+     * Imagen de la noticia
+     */
+    public imageLink: string;
+
     constructor() { }
 
     public parseToJSON(): JSON {
@@ -39,6 +44,7 @@ export class News {
         news.description = json.description;
         news.development = json.development;
         news.date = new Date(json.starts_at);
+        news.imageLink = json.image_link;
 
         return news;
     }

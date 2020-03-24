@@ -6,6 +6,7 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { FileHelper } from 'src/_helpers/file.helper';
 
 interface HtmlInputEvent extends Event{
   target: HTMLInputElement & EventTarget;
@@ -32,7 +33,8 @@ export class NewsFormComponent implements OnInit {
     public modalContent: NgbActiveModal,
     private newsService: NewsService,
     private newsSharedService: NewsSharedService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private fileHelper: FileHelper) {
     this.submitted = false;
     this.newsForm = formBuilder.group({
       title: ['', Validators.required],
@@ -64,7 +66,7 @@ export class NewsFormComponent implements OnInit {
    */
   public async onSubmit() {
     this.submitted = true;
-    if (this.newsForm.invalid) { return; }
+    if (this.newsForm.invalid || this.fileHelper.file === null) { return; }
 
     let news = new News();
     news.title = this.newsForm.controls.title.value;
@@ -72,10 +74,11 @@ export class NewsFormComponent implements OnInit {
 
     let msg = new MsgHelper();
     try {
-      let res = await this.newsService.create(news).toPromise();
+      let created:any = await this.newsService.create(news).toPromise();
+      await this.fileHelper.upload(3, created._id);
       msg.showSuccess('Noticia agregada exitosamente');
       this.close();
-      this.newsSharedService.add(News.fromJSON(res));
+      this.newsSharedService.add(News.fromJSON(created));
     } catch(err) {
       if (err.status == 422) { msg.showError(err.error.error); }
     }

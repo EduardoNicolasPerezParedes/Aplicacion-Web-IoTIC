@@ -5,6 +5,7 @@ import { CourseService } from 'src/_services/course.service';
 import { Course } from 'src/_models/course.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { CourseSharedService } from 'src/_services/course.shared.service';
+import { FileHelper } from 'src/_helpers/file.helper';
 
 @Component({
   selector: 'app-course-form',
@@ -25,7 +26,8 @@ export class CourseFormComponent implements OnInit {
   constructor(
     public modalContent: NgbActiveModal, 
     private courseService: CourseService,
-    private courseSharedService: CourseSharedService) { 
+    private courseSharedService: CourseSharedService,
+    private fileHelper: FileHelper) { 
     this.course = new Course();
   }
 
@@ -52,7 +54,8 @@ export class CourseFormComponent implements OnInit {
   public async addOnClick() {
     let msg = new MsgHelper();
     try {
-      let res = await this.courseService.create(this.course).toPromise();
+      let res:any = await this.courseService.create(this.course).toPromise();
+      await this.fileHelper.upload(2, res._id);
       msg.showSuccess('Curso agregado exitosamente');
       this.close();
       this.courseSharedService.add(Course.fromJSON(res));

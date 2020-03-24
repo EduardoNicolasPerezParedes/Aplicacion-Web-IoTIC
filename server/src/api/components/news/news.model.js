@@ -18,6 +18,10 @@ const newsSchema = new Schema({
     created_at: {
         type: Date,
         default: Date.now()
+    },
+    image_link: {
+        type: String,
+        default: ""
     }
 });
 

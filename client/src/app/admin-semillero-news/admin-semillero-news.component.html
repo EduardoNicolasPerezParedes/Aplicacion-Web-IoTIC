@@ -6,7 +6,7 @@
         <div class="container col-md-4 mt-3 mb-2 mx-0" *ngFor="let n of news">
             <div class="card border-0 shadow-sm pb-2">
                 <div class="card-img">
-                    <img class="card-img-top" src="https://previews.123rf.com/images/stevanovicigor/stevanovicigor1512/stevanovicigor151200259/50260323-old-book-wooden-library-desk-retro-toned-image-selective-focus.jpg" alt="Imágen del curso">
+                    <img class="card-img-top" src="{{n.imageLink}}" alt="Imágen del curso">
                 </div>
                 <div class="card-body text-justify pb-0">
                     <h5 class="card-title">{{n.title}}</h5>
