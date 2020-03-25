@@ -61,6 +61,7 @@ import { AdminLoansInProgressComponent } from './admin-loans-in-progress/admin-l
 import { LoanInfoComponent } from './admin-loans-finished/loan-info/loan-info.component';
 import { LoansFormComponent } from './admin-loans-requested/loans-form/loans-form.component';
 import { UsComponent } from './us/us.component';
+import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 
 @NgModule({
   declarations: [
@@ -127,7 +128,8 @@ import { UsComponent } from './us/us.component';
     FileService,
     ResourceService,
     CategoryService,
-    LoanService
+    LoanService,
+    ResourceLoanedService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -51,72 +51,18 @@
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-bordered table-striped mb-0">
                 <thead>
-                    <tr>
+                <tr>
                     <th scope="col">#</th>
                     <th scope="col">Recurso</th>
                     <th scope="col">Cantidad</th>
-                    </tr>
+                </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>recurso 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>recurso 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>recurso 1</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>recurso 2</td>
-                    <td>10</td>
+                <tbody> 
+                
+                <tr *ngFor="let recurso of resources">
+                    <th scope="row">Contador</th>
+                    <td>{{recurso.name}}</td>
+                    <td>{{recurso.quantity}}</td>
                 </tr>
                 </tbody>
             </table>

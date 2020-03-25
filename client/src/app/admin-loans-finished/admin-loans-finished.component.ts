@@ -64,11 +64,13 @@ export class AdminLoansFinishedComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Mostrar información del prestamo
    */
   public showOnClick(id: string) {
+    console.log('ID ANTES: '+id);
     LoanInfoComponent.idLoan = id;
+    console.log('ID DESP: '+LoanInfoComponent.idLoan);
     this.modalService.open(LoanInfoComponent);
   }
 

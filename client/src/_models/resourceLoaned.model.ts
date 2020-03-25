@@ -30,5 +30,16 @@ export class ResourceLoaned{
 
     constructor() {}
 
+    public static fromJSON(json: any): ResourceLoaned {
+        let r = new ResourceLoaned();
+
+        r.userId = json.userId;
+        r.loanId  = json.loanId;
+        r.resourceId = json.resourceId;
+        r.quantity = json.quantity;
+
+
+        return r;
+    }
     
 }

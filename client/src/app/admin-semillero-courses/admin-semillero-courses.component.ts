@@ -83,7 +83,7 @@ export class AdminSemilleroCoursesComponent implements OnInit {
   }
 
   /**
-   * Invaca al dar click en Agregar
+   * Invoca al dar click en Agregar
    */
   public async addOnClick() {
     this.modalService.open(CourseFormComponent);

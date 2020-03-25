@@ -10,6 +10,7 @@ const file_router = require('./components/file');
 const resource_router = require('./components/resource');
 const category_router = require('./components/category');
 const loan_router = require('./components/loan');
+const resourceLoaned_router = require('./components/resourceLoaned');
 
 rest_router.use('/user', user_router);
 rest_router.use('/auth', auth_router);
@@ -21,6 +22,7 @@ rest_router.use('/resource', resource_router);
 rest_router.use('/file', file_router);
 rest_router.use('/category', category_router);
 rest_router.use('/loan', loan_router);
+rest_router.use('/resourceLoaned', resourceLoaned_router);
 
 
 module.exports = rest_router;
