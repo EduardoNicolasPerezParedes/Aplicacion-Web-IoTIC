@@ -12,7 +12,8 @@
                 <div class="card-body text-justify pb-0">
                     <p>Nombre: {{pending.name}}</p>
                     <p>Email: {{pending.email}}</p>
-                    <p>Fecha de nacimiento: {{pending.birth_date}}</p>
+                    <p>Teléfono: {{pending.phone}}</p>
+                    <p>Fecha de nacimiento: {{pending.birth_date | date:'yyyy-MM-dd'}}</p>
                     <p>Programa: {{pending.career}}</p>
                     <p *ngIf="pending.student">Semestre: {{pending.semester}}</p>
                     <div clas="text-center">
