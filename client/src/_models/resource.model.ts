@@ -59,4 +59,5 @@ export class Resource {
     public getDescPreview() {
         return this.description.slice(0, 30);
     }
+
 }

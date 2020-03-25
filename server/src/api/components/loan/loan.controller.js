@@ -17,6 +17,24 @@ const loan_controller = {
             res.status(200).send(err.message);
         }
     },
+
+    /**
+    * Retorna la información de un prestamo.
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+    async get(req, res) {
+        
+        try {
+            let id = req.params.id;
+
+            let loan = await Loan.findById({_id: id});
+
+            res.status(200).send(loan);
+        } catch (err) {
+            res.status(200).send(err.message);
+        }
+    }
 }
 
 module.exports = loan_controller;

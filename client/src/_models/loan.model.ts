@@ -1,5 +1,4 @@
 import { User } from './user.model';
-import { Resource } from './resource.model';
 
 export class Loan {
     public user: User;
@@ -7,35 +6,47 @@ export class Loan {
      * Identificador del prestamo
      */
     public loanId: string; 
-
     /**
      * Fecha Inicio
      */
     public dateStart: Date;
-
     /**
      * Fecha fin
      */
     public dateEnd: Date;   
     /**
-     * Fecha fin
+     * Fecha de aprobación
      */
     public dateApproved: Date;
-
     /**
      * Fecha solicitud
      */
     public dateRequested: Date;
     /**
-     * Detalles
+     * Link imagen de los recursos
      */
-    public details: string;
-        /**
+    public image_resource_link: string;
+    /**
+     * Link imagen del formato
+     */
+    public image_format_link: string;
+    /**
      * Estado del prestamo 0:Solicitado 1:En curso 2:Finalizados
      */
     public state: number;
 
     constructor() {}
+
+    public getdateStart(): string {
+        var dateStart = '';
+
+        let year = this.dateStart.getFullYear().toString();
+        let month = this.dateStart.getMonth().toString();
+        let day = this.dateStart.getDate().toString();
+        dateStart = `${day}/${month}/${year}`;
+
+        return dateStart;
+    }
 
     public static fromJSON(json: any): Loan {
         if (json === null) { return null; }
@@ -43,8 +54,10 @@ export class Loan {
 
         loan.loanId = json._id;
         loan.dateStart = new Date(json.dateStart);
+        loan.dateApproved = new Date(json.dateApproved);
         loan.dateEnd = new Date(json.dateEnd);
-        loan.details = json.details;
+        loan.image_resource_link = json.image_resource_link;
+        loan.image_format_link = json.image_format_link;
         loan.state = json.state;
 
         return loan;  

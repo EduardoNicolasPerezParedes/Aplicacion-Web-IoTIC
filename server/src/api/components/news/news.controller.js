@@ -1,4 +1,4 @@
-const News = require('./News.model');
+const News = require('./news.model');
 const ERRORS = require('./news.errors');
 const mongoose = require('mongoose');
 

@@ -1,58 +1,64 @@
 <style type="text/css">
       .my-custom-scrollbar {
-        position: relative;
+        position: right;
         height: 200px;
         overflow: auto;
         }
         .table-wrapper-scroll-y {
         display: block;
         }
+
+        table .total:before {
+          content: counter(rows);
+        }
+
+        body{
+          counter-reset: rows;
+        }
+
+        table tbody tr {
+          counter-increment: rows;
+        }
+
 </style>
 
-<div class="modal-body bg-light" id="loan-info">
+<div class="modal-body bg-light">
     <div class="text-center container">
         <h4>Información del Prestamo</h4>
     </div>
-    <form [formGroup]="LoanInfo" (ngSubmit)="onSubmit()">
+    <form  (ngSubmit)="onSubmit()">
         <div>
             <!-- Titulo -->
             <h6>Prestamo #</h6>
             <!-- Titulo -->
             <h6>Nombre del solicitante:</h6>
             <!-- Fecha de inicio -->
-            <h6>Fecha de inicio: {{dateStart}}</h6>
+            <h6>Fecha de inicio: {{loan.dateStart}}</h6>
             <!-- Fecha de aprobación -->
-            <h6>Fecha de aprobación: {{dateStart}}</h6>
+            <h6>Fecha de aprobación: {{loan.dateApproved}}</h6>
             <!-- Fecha fin -->
-            <h6>Fecha fin del prestamo: {{dateStart}}</h6>
+            <h6>Fecha fin del prestamo: {{loan.dateEnd}}</h6>
             <!-- Link imagen del recurso-->
-            <h6>Imagen de los recursos: {{dateStart}}</h6>
+            <h6>Imagen de los recursos: {{loan.image_resource_link}}</h6>
             <!-- Link formato del recibido-->
-            <h6>Imagen del formato de recibido: {{dateStart}}</h6>
+            <h6>Imagen del formato de recibido: {{loan.image_format_link}}</h6>
             <!-- Recursos prestados-->
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-              <table class="table table-bordered table-striped mb-0">
+                <table class="table table-bordered table-striped mb-0">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Recurso</th>
                       <th scope="col">Cantidad</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>recurso 1</td>
-                      <td>10</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>recurso 2</td>
-                      <td>10</td>
+                  <tbody> 
+                    <tr *ngFor="let recurso of resourceLoaned">
+                      <th><span class="total"></span></th>
+                      <td>{{recurso.quantity}}</td>
                     </tr>
                   </tbody>
                 </table>
-            </div>
+            </div><br>
             <div class="text-center container">
                 <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
                     Cerrar
