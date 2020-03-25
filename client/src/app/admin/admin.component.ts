@@ -20,7 +20,8 @@ export class AdminComponent implements OnInit {
     PENDING : 6,
     REQUESTED: 7,
     IN_PROGRESS: 8,
-    FINISHED: 9
+    FINISHED: 9,
+    MEMBERS: 10
   };
 
   /**
@@ -67,6 +68,9 @@ export class AdminComponent implements OnInit {
       case '/admin/loans/finished':
           this.selectedOption = this.OPTIONS.FINISHED;
         break;
+      case '/admin/members':
+          this.selectedOption = this.OPTIONS.MEMBERS;
+       break;
     }
   }
 }

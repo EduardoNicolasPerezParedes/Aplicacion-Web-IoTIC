@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'contact', component: MainComponent },
   { path: 'resources:c', component: MainComponent,  },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/members', component: AdminComponent },
   { path: 'admin/members/pending', component: AdminComponent },
   { path: 'admin/messages', component: AdminComponent },
   { path: 'admin/courses', component: AdminComponent },

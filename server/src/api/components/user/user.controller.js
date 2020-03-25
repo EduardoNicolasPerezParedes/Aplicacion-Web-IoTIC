@@ -106,6 +106,21 @@ const user_controller = {
             res.status(200).send(err.message);
         }
     },
+
+    /**
+     * Obtiene todos los usuarios cuyas solicitudes aún no han sido aprobadas.
+     * 
+     * @param {object} req - petición del cliente
+     * @param {object} res - respuesta del servidor
+     */
+    async listMembers(req, res) {
+        try {
+            let users = await User.find({ admitted:"true" });
+            res.status(200).send(users);
+        } catch (err) {
+            res.status(200).send(err.message);
+        }
+    },
 }
 
 module.exports = user_controller;

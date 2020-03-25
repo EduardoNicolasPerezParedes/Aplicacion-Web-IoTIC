@@ -31,7 +31,18 @@ export class UserService extends HttpService {
      */
     listPending() {
         return this.http.get(
-            this.apiUrl,
+            `${this.apiUrl}/pending`,
+            { headers: this.headers }
+        )
+    }
+
+    /**
+     * Obtiene los integrantes del semillero.
+     * 
+     */
+    listAll() {
+        return this.http.get(
+            `${this.apiUrl}/members`,
             { headers: this.headers }
         )
     }

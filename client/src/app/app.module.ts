@@ -62,6 +62,7 @@ import { LoanInfoComponent } from './admin-loans-finished/loan-info/loan-info.co
 import { LoansFormComponent } from './admin-loans-requested/loans-form/loans-form.component';
 import { UsComponent } from './us/us.component';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
+import { MembersComponent } from './members/members.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
     AdminLoansFinishedComponent,
     LoanInfoComponent,
     LoansFormComponent,
-    UsComponent
+    UsComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,
