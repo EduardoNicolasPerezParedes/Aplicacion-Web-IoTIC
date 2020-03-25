@@ -17,6 +17,10 @@ const userSchema = new Schema({
         unique: true,
         required: true
     },
+    phone: {
+        type: Number,
+        required: true
+    },
     hashed_password: {
         type: String
     },

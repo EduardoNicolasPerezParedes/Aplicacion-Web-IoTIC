@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       career: ['', Validators.required],
       birth_date: ['', Validators.required],
       student: [false, Validators.required], 
@@ -84,6 +85,7 @@ export class RegisterComponent implements OnInit {
     let newUser = new User(
       this.registerForm.value.name,
       this.registerForm.value.email,
+      this.registerForm.value.phone = parseInt(this.registerForm.value.phone, 10),
       this.registerForm.value.career,
       this.registerForm.value.birth_date = new Date().toISOString().slice(0,10), //TODO La fecha no la guarda bien
       this.registerForm.value.student,
