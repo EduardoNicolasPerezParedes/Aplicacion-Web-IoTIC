@@ -59,6 +59,11 @@ export class ResourceInfoComponent implements OnInit {
    */
   private categories: Array<Category>;
 
+  /**
+   * ¿Se ha dado click en actualizar?
+   */
+  private submitted: boolean;
+
   constructor(
     private modal: NgbActiveModal,
     private resourceService: ResourceService,
@@ -70,7 +75,7 @@ export class ResourceInfoComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       quantity: [null, Validators.required],
-      category: [null, Validators.required]
+      category: [null]
     });
     this.setResource();
     this.setCategories();
@@ -92,9 +97,22 @@ export class ResourceInfoComponent implements OnInit {
   /**
    * Invocada al dar click en Actualizar
    */
-  private updateOnClick() {
-    // TODO: Actualizar el recurso
-    alert('Not implemented!');
+  private async updateOnClick() {
+    this.submitted = true;
+    try {
+      let resource = new Resource();
+      resource.name = this.resourceForm.controls.name.value;
+      resource.description = this.resourceForm.controls.description.value;
+      resource.quantity = this.resourceForm.controls.quantity.value;
+      resource.available = this.isAvailable;
+      resource.category = Category.fromJSON(this.resourceForm.controls.category.value);
+
+      let res = await this.resourceService.update(ResourceInfoComponent.resourceId, resource).toPromise();
+      new MsgHelper().showSuccess('El recurso ha sido actualizado exitosamente');
+      this.close();
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 
   /**

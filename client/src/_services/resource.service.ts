@@ -56,4 +56,17 @@ export class ResourceService extends HttpService {
             { headers: this.headers }
         );
     }
+
+    /**
+     * Actualiza la información de un recurso
+     * @param id Identificador del Recurso
+     * @param resource Contiene la información actualizada del recurso
+     */
+    update(id: string, resource: Resource) {
+        return this.http.put(
+            `${this.apiUrl}/${id}`,
+            resource.parseToJSON(),
+            { headers: this.headers }
+        )
+    }
 }

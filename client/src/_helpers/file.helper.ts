@@ -8,7 +8,7 @@ export class FileHelper {
      */
     private _file: File;
 
-    constructor(private fileService: FileService) { }
+    constructor(private fileService: FileService) { this._file = null; }
 
     get file() { return this._file; }
 

@@ -5,6 +5,7 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { EventService } from 'src/_services/event.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { EventSharedService } from 'src/_services/event.shared.service';
+import { FileHelper } from 'src/_helpers/file.helper';
 
 @Component({
   selector: 'app-event-form',
@@ -25,7 +26,8 @@ export class EventFormComponent implements OnInit {
   constructor(
     private modalContent: NgbActiveModal,
     private eventService: EventService,
-    private eventsSharedService: EventSharedService
+    private eventsSharedService: EventSharedService,
+    private fileHelper: FileHelper
     ) { 
     this.event = new Event();
   }
@@ -38,8 +40,10 @@ export class EventFormComponent implements OnInit {
    */
   public async addOnClick() {
     try {
-      let created = await this.eventService.create(this.event).toPromise();
+      let created:any = await this.eventService.create(this.event).toPromise();
       this.eventsSharedService.add(Event.fromJSON(created));
+      // Se sube la imagen del evento
+      await this.fileHelper.upload(1, created._id);
       this.close();
       new MsgHelper().showSuccess('Evento registrado exitosamente');
     } catch (err) {

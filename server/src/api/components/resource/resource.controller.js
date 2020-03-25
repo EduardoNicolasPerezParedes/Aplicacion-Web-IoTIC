@@ -94,6 +94,52 @@ const resource_controller = {
         } catch (err) {
             res.status(500).send(err.message);
         }
+    },
+    /**
+     * Actualiza un recurso. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async update(req, res) {
+        try {
+            let id = req.params.id;
+            let name = req.body.name;
+            let description = req.body.description;
+            let quantity = req.body.quantity;
+            let available = req.body.available;
+
+            let category = req.body.category;
+            if (category != null) { category = category.id; }
+
+            if (!name) {
+                // retorna error si el nombre del recurso no se encuentra
+                res.status(422).send(ERRORS.INVALID_NAME);
+                return;
+            }
+            if (!description) {
+                // retorna error si la descripción del recurso no se encuentra
+                res.status(422).send(ERRORS.INVALID_DESCRIPTION);
+                return;
+            }
+            if (!quantity) {
+                // retorna error si la cantidad no se encuentra
+                res.status(422).send(ERRORS.INVALID_QUANTITY);
+                return;
+            }
+
+            let resource = await Resource.findById(id);
+            resource.name = name;
+            resource.description = description;
+            resource.quantity = quantity;
+            resource.available = available;
+            resource.category = category;
+            let updated = await resource.save();
+
+            res.status(200).send(updated);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
     }
 }
 

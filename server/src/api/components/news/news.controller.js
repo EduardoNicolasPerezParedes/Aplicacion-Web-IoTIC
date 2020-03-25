@@ -10,7 +10,6 @@ const news_controller = {
      * @param {oobject} res - respuesta del servidor
      */
     async create(req, res){
-        console.log(req.body)
         let title = req.body.title;
         let description = req.body.description;
 

@@ -14,7 +14,7 @@ const loan_controller = {
             let loans = await Loan.find({});
             res.status(200).send(loans);
         } catch (err) {
-            res.status(200).send(err.message);
+            res.status(500).send(err.message);
         }
     },
 

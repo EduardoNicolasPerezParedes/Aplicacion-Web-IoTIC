@@ -29,6 +29,11 @@ export class Course {
      */
     public ends_at: Date;
 
+    /**
+     * Link de la imagen del curso
+     */
+    public imageLink: string;
+
     constructor() { }
 
     public getStartsAt(): string {
@@ -67,6 +72,7 @@ export class Course {
         course.teacher = json.teacher;
         course.starts_at = new Date(json.starts_at);
         course.ends_at = new Date(json.ends_at);
+        course.imageLink = json.image_link;
 
         return course;
     }

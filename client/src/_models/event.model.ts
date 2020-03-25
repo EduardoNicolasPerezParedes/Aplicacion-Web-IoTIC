@@ -24,7 +24,10 @@ export class Event {
      */
     public date: Date;
 
-    //TODO: Agregar atributo `image_link`
+    /**
+     * Link de la imagen
+     */
+    public imageLink: string;
 
     constructor() {}
 
@@ -37,6 +40,7 @@ export class Event {
         event.description = json.description;
         event.score = json.score;
         event.date = new Date(json.date);
+        event.imageLink = json.image_link;
 
         return event;
     }

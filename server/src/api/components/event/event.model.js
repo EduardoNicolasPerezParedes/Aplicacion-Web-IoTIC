@@ -25,8 +25,11 @@ const eventSchema = new Schema({
     created_at: {
         type: Date,
         default: Date.now
+    },
+    image_link: {
+        type: String,
+        default: ""
     }
-    // TODO: Agregar el atributo 'image_link'
 });
 
 module.exports = mongoose.model('Event', eventSchema);

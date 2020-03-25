@@ -79,7 +79,7 @@ export class NavBarComponent implements OnInit {
       case '/contact':
         this.contactActiveRoute = true;
         break;
-      case '/about':
+      case '/us':
         this.aboutActiveRoute = true;
         break;
       case '/resources':
