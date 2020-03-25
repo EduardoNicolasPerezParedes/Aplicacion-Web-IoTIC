@@ -46,4 +46,18 @@ export class UserService extends HttpService {
             { headers: this.headers }
         )
     }
+
+    /**
+     * Eliminar una solicitud de registro
+     * 
+     * @param id identificador del ususario que realizó la solicitud.
+     */
+    deletePending(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/delete/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
 }

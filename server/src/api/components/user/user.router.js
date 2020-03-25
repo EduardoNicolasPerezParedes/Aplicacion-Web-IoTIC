@@ -22,8 +22,9 @@ user_router.get('/members', user_controller.listMembers);
  * ruta que permite aceptar una solicitud de registro.
  */
 
- /**
+/**
  * ruta que permite eliminar una solicitud de registro.
  */
+user_router.delete('/delete/:id', user_controller.deletePending);
 
 module.exports = user_router;

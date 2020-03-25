@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/_models/user.model';
 import { UserService } from 'src/_services/user.service';
 
+import { MsgHelper } from 'src/_helpers/msg.helper';
+
 @Component({
   selector: 'app-admin-members-pending',
   templateUrl: './admin-members-pending.component.html',
@@ -36,5 +38,27 @@ export class AdminMembersPendingComponent implements OnInit {
     res.forEach(pending => {
       this.pendings.push(User.fromJSON(pending));
     });
+  }
+
+  public async deletePendingOnClick(id: string) { 
+    try {
+      let msg = new MsgHelper();
+      let res = await msg.showConfirmDialog('¿Está seguro?', 'La solicitud será eliminada de forma permanente');
+
+      if (res.value) {
+        try { 
+          await this.userService.deletePending(id).toPromise();
+        } catch(err) {
+          if(err.status == 200) {
+            msg.showSuccess('La solicitud fue eliminada exitosamente');
+            this.setPendings();
+            return;
+          }
+          msg.showError('La solicitud no pudo ser eliminada');
+        }
+      }
+    } catch(err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 }

@@ -121,6 +121,24 @@ const user_controller = {
             res.status(200).send(err.message);
         }
     },
+
+    /**
+     * Elimina una solicitud de registro
+     * 
+     * @param {object} req - petición del cliente
+     * @param {object} res - respuesta del servidor 
+     */
+    async deletePending(req, res) {
+        try {
+            let id = req.params.id;
+
+            await Event.findByIdAndRemove({_id: id});
+
+            res.sendStatus(200);
+        } catch(err) {
+            res.status(200).send(err.message);
+        }
+    },
 }
 
 module.exports = user_controller;
