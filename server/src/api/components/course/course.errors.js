@@ -7,6 +7,7 @@ const ERRORS = {
     NAME_ALREADY_TAKEN: 'Ya existe un curso con ese nombre',
     INVALID_COURSE: 'El curso no existe',
     INVALID_DATE: 'La fecha de inicio no puede ser mayor a la fecha fin',
+    INVALID_LINK: 'Debe ingresar el link de moodle'
 }
 
 module.exports = ERRORS;

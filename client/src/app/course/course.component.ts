@@ -40,6 +40,7 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() {
     this.setCourse();
+    this.user = AuthHelper.getLoggedUser();
   }
 
   /**

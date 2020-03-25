@@ -34,6 +34,10 @@ const courseSchema = new Schema({
     image_link: {
         type: String,
         default: ""
+    },
+    moodle_link: {
+        type: String,
+        required: true
     }
 });
 
