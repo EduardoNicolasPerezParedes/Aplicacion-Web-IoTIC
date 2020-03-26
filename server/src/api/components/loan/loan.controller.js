@@ -2,6 +2,31 @@ const Loan = require('./loan.model');
 const ERRORS = require('./loan.errors');
 
 const loan_controller = {
+        /**
+     * Agrega un nuevo prestamo. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async create(req, res) {
+        try {
+            let dateStartAux = new Date();
+            let stateAux = 0;
+
+
+            let created = await Loan.create({
+                dateStart: dateStartAux,
+                dateApproved: "",
+                dateEnd: "",
+                image_resource_link : "",
+                image_format_link : "",
+                state : stateAux
+            });
+            res.status(200).send(created);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
+    },
     /**
      * Obtiene todos los prestamos registrados.
      * 
@@ -60,11 +85,18 @@ const loan_controller = {
                 return;
             }
             
+
             let updated_loan = await Loan.findOne({_id: id});
 
+            auxDate = new Date(dateEndAux.year, dateEndAux.month, dateEndAux.day);
+
+            if (updated_loan.dateStart > auxDate) {
+                res.status(422).send({error: ERRORS.INVALID_DATE_END});
+                return;
+            }
             // Se actualiza la información
             updated_loan.dateApproved = new Date();
-            updated_loan.dateEnd = new Date(dateEndAux.year, dateEndAux.month, dateEndAux.day);;
+            updated_loan.dateEnd = new Date(dateEndAux.year, dateEndAux.month, dateEndAux.day);
             updated_loan.image_resource_link = linkResourceAux;
             updated_loan.image_format_link = linkFormatAux;
             updated_loan.state = stateAux;

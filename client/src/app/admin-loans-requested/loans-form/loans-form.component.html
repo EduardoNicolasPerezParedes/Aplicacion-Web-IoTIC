@@ -34,6 +34,11 @@
             <label>Nombre del solicitante</label>
             <input name="name" class="form-control border-0 mb-3" placeholder="{{auxLoan.user.name}}" type="text" readonly>
         </div>
+        <!-- Fecha de solicitud-->
+        <div class="form-group mt-3">
+            <label>Fecha de solicitud</label>
+            <input name="name" class="form-control border-0 mb-3" placeholder="{{dateHelper.dateToStr(auxLoan.dateStart)}}" type="text" readonly>
+        </div>
 
         <!-- Fecha Fin -->
         <div class="input-group">
@@ -85,7 +90,7 @@
             <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
                 Cancelar
             </button>
-            <button type="button" class="ml-auto btn btn-outline-danger" (click)="deleteOnClick()">
+            <button type="button" class="ml-auto btn btn-outline-danger" (click)="deleteOnClick(auxLoan.loanId)">
                 Eliminar
             </button>
             <button type="submit" class="ml-auto btn btn-success">

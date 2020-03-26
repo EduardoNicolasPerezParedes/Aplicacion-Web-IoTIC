@@ -35,13 +35,19 @@ export class AdminLoansRequestedComponent implements OnInit {
    * Prestamos registrados con usuarios
    */
   public loansShow : Array<Loan>;
+  /**
+   * Prestamos registrados con usuarios
+   */
+  public resourceloaneds : Array<ResourceLoaned>;
 
   constructor(private loanService: LoanService,private modalService: NgbModal,
     private dateHelper : DateHelper,
+    private serviceLoan : LoanService,
     private serviceResourcesLoaned : ResourceLoanedService,
     private serviceUser : UserService
     ) { 
       this.loansShow = new Array<Loan>();
+      this.resourceloaneds = new Array<ResourceLoaned>();
     }
 
   ngOnInit() {
@@ -108,26 +114,4 @@ export class AdminLoansRequestedComponent implements OnInit {
     LoansFormComponent.loan = l;
     this.modalService.open(LoansFormComponent);
   }
-  /**
-   * Invocada al dar click en Eliminar
-   * @param id Identificador del curso
-   */
-  public async deleteOnClick(id: string) {
-    let msg = new MsgHelper();
-    let res = await msg.showConfirmDialog('¿Está seguro que desea eliminar la solicitud?', 'La solicitud será eliminada de forma permanente');
-    /** 
-    if (res.value) {
-      try {
-        await this.courseService.delete(id).toPromise();
-      } catch(err) {
-        if (err.status == 200) {
-          msg.showSuccess('El curso fue eliminado exitosamente');
-          this.setCourses();
-          return;
-        }
-        msg.showError('El curso no pudo ser eliminado');
-      }
-    }*/
-  }
-
 }

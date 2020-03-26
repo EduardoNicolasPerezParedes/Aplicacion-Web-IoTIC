@@ -28,4 +28,9 @@ loan_router.put('/finished/:id', loan_controller.updateState);
  */
 loan_router.delete('/:id', loan_controller.delete);
 
+/**
+ * ruta que permite el registro un nuevo prestamo.
+ */
+loan_router.post('/', loan_controller.create);
+
 module.exports = loan_router;

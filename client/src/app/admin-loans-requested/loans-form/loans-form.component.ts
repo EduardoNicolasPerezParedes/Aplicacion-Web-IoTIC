@@ -9,6 +9,7 @@ import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 import { ResourceService } from 'src/_services/resource.service';
 import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 import { Resource } from 'src/_models/resource.model';
+import { DateHelper } from 'src/_helpers/date.helper';
 
 interface infoTable  {
   resourceName : string ,
@@ -47,7 +48,8 @@ export class LoansFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private serviceLoan : LoanService,
     private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceResource : ResourceService,) {
+    private serviceResource : ResourceService,
+    private dateHelper : DateHelper) {
 
       this.infoResource = new Array<infoTable>();
       this.auxLoan = new Loan();
@@ -89,7 +91,6 @@ export class LoansFormComponent implements OnInit {
   public cancelOnClick() {
     this.close();
   }
-
   /**
   * Cierra el formulario
   */
@@ -107,13 +108,10 @@ export class LoansFormComponent implements OnInit {
     this.auxLoan.image_format_link = this.imgFormat.value;
     this.auxLoan.state = 1;
 
-    console.log("FECHA FIN: "+this.dateEnd.value);
-    console.log("link recurso: "+this.imgResource.value);
-    console.log("link format: "+this.auxLoan.image_format_link);
-
     try {
       let res = await this.serviceLoan.update(this.auxLoan.loanId, this.auxLoan).toPromise();
       new MsgHelper().showSuccess("Prestamo aprobado exitosamente");
+      this.close();
     } catch (err) {
       if (err.status == 422) {
         new MsgHelper().showError(err.error.error);
@@ -121,7 +119,30 @@ export class LoansFormComponent implements OnInit {
         new MsgHelper().showError(err.message);
       }
     }
-    this.close();
+  }
+  /**
+   * Invocada al dar click en Eliminar
+   * @param id Identificador del prestamo
+   */
+  public async deleteOnClick(id : string) {
+    let msg = new MsgHelper();
+    let res = await msg.showConfirmDialog('¿Está seguro que desea eliminar la solicitud?', 'La solicitud será eliminada de forma permanente');
+
+    if (res.value) {
+      try {
+        await this.serviceLoan.delete(id).toPromise();
+        await this.serviceResourcesLoaned.delete(id).toPromise();
+        
+      } catch(err) {
+        if (err.status == 200) {         
+          msg.showSuccess('El prestamo fue eliminado exitosamente');
+          this.close();
+          return;
+        }
+        msg.showError('El prestamo no pudo ser eliminado');
+      }
+    }
+    
   }
   
 }

@@ -55,12 +55,24 @@ export class LoanService extends HttpService {
      */
     updateState(id: string, loanAux: Loan) {
         return this.http.put(
-            `${this.apiUrl}/${id}`,
+            `${this.apiUrl}/finished/${id}`,
             loanAux.parseToJSON(),
             { headers: this.headers }
         )
     }
-
+    /**
+     * Elimina un prestamo.
+     * 
+     * @param id identificador del prestamo.
+     */
+    delete(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
     
 
 }

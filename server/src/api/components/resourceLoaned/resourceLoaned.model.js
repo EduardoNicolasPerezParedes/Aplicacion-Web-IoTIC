@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // Definición del esquema 'ResourceLoaned'
 //
 const resourceLoanedSchema = new Schema({
-    loandId: {
+    loanId: {
         type: String,
         required: true,
         unique: true

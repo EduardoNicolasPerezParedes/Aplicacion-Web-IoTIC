@@ -8,47 +8,25 @@ const resourceLoaned_controller = {
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor
      */
-    /*
-    async create(req, res) {
+   async create(req, res) {
         try {
-            let name = req.body.name;
-            let description = req.body.description;
-            let quantity = req.body.quantity;
-            let available = req.body.available;
+            let loadIdAux = req.body.loanId;
+            let userIdAux = req.body.userId;
+            let resourceIdAux = req.body.resourceId;
+            let quantityAux = req.body.quantity;
 
-            let category = req.body.category;
-            if (category != null) { category = category.id; }
-
-            if (!name) {
-                // retorna error si el nombre del recurso no se encuentra
-                res.status(422).send(ERRORS.INVALID_NAME);
-                return;
-            }
-            if (!description) {
-                // retorna error si la descripción del recurso no se encuentra
-                res.status(422).send(ERRORS.INVALID_DESCRIPTION);
-                return;
-            }
-            if (!quantity) {
-                // retorna error si la cantidad no se encuentra
-                res.status(422).send(ERRORS.INVALID_QUANTITY);
-                return;
-            }
 
             let created = await resourceLoaned.create({
-                name: name,
-                description: description,
-                quantity: quantity,
-                available: available,
-                category: category
+                loanId: loadIdAux,
+                userId: userIdAux,
+                resourceId: resourceIdAux,
+                quantity : quantityAux
             });
-
             res.status(200).send(created);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send(err.message);
         }
-    },*/
+    },
     /**
      * Lista todos los id asociados a un prestamo registrados. 
      * 
@@ -105,8 +83,8 @@ const resourceLoaned_controller = {
         try {
             let loan_id = req.params.loanId;
 
-            await resourceLoaned.findByIdAndDelete({loanId : loan_id});
-
+            await resourceLoaned.remove({loanId : loan_id});
+            
             res.sendStatus(200);
         } catch (err) {
             res.status(500).send({error: err.message});

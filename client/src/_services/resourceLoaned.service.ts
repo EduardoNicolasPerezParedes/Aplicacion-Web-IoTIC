@@ -44,7 +44,6 @@ export class ResourceLoanedService extends HttpService {
             { headers: this.headers }
         )
     }
-
     /**
      * Obtiene los recursos pertenecientes a una categoría.
      * @param loanId Identificador de la categoría
@@ -53,6 +52,19 @@ export class ResourceLoanedService extends HttpService {
         return this.http.get(
             `${this.apiUrl}/loan/${loanId}`,
             { headers: this.headers }
+        );
+    }
+    /**
+     * Elimina resourceLoaned.
+     * 
+     * @param id identificador del prestamo asociado al resourceLoaned.
+     */
+    delete(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/${id}`,
+            { 
+                headers: this.headers
+            },
         );
     }
 }
