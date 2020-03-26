@@ -15,6 +15,7 @@ const course_controller = {
         let teacher = req.body.teacher;
         let starts_at = req.body.starts_at;
         let ends_at = req.body.ends_at;
+        let moodle_link = req.body.moodleLink;
 
         if (!name) {
             // retorna error si el nombre del curso no se encuentra
@@ -41,6 +42,11 @@ const course_controller = {
             res.status(422).send({error: ERRORS.INVALID_END_DATE});
             return;
         }
+        if (!moodle_link) {
+            // retorna error si el link de moodle no se encuentra
+            res.status(422).send({error: ERRORS.INVALID_LINK});
+            return;
+        }
 
         let formated_name = name.toLowerCase();
         let course = await Course.findOne({name: formated_name}).exec();
@@ -63,7 +69,8 @@ const course_controller = {
             description: description,
             teacher: teacher,
             starts_at: starts_at_formated,
-            ends_at: ends_at_formated
+            ends_at: ends_at_formated,
+            moodle_link: moodle_link
         });
 
         res.status(200).send(new_course);

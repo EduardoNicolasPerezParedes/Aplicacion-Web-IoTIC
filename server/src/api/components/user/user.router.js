@@ -11,7 +11,21 @@ user_router.post('/', user_controller.create);
 /**
  * ruta que permite listar todos los usuarios cuyas solicitudes aún no han sido aprobadas.
  */
-user_router.get('/', user_controller.listPending);
+user_router.get('/pending', user_controller.listPending);
+
+/**
+ * ruta que permite listar todos los miembros del semillero
+ */
+user_router.get('/members', user_controller.listMembers);
+
+/**
+ * ruta que permite aceptar una solicitud de registro.
+ */
+
+/**
+ * ruta que permite eliminar una solicitud de registro.
+ */
+user_router.delete('/delete/:id', user_controller.deletePending);
 
 
 /**

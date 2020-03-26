@@ -31,7 +31,7 @@ export class UserService extends HttpService {
      */
     listPending() {
         return this.http.get(
-            this.apiUrl,
+            `${this.apiUrl}/pending`,
             { headers: this.headers }
         )
     }
@@ -40,5 +40,30 @@ export class UserService extends HttpService {
             `${this.apiUrl}/${id}`,
             { headers: this.headers }
         )
+    }
+
+    /**
+     * Obtiene los integrantes del semillero.
+     * 
+     */
+    listAll() {
+        return this.http.get(
+            `${this.apiUrl}/members`,
+            { headers: this.headers }
+        )
+    }
+
+    /**
+     * Eliminar una solicitud de registro
+     * 
+     * @param id identificador del ususario que realizó la solicitud.
+     */
+    deletePending(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/delete/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
     }
 }

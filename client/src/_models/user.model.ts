@@ -2,6 +2,7 @@ export class User {
     constructor(
         public name: string,
         public email: string,
+        public phone: number,
         public career: string,
         public birth_date: string,
         public student: boolean,
@@ -22,6 +23,7 @@ export class User {
         return new User(
             json.name,
             json.email,
+            json.phone,
             json.career,
             json.birth_date,
             json.student,

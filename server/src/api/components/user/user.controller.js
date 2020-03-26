@@ -12,6 +12,7 @@ const user_controller = {
         // busca atributos que no se encuentren dentro de la petición
         let name = req.body.name;
         let email = req.body.email;
+        let phone = req.body.phone;
         let birth_date = req.body.birth_date;
         let career = req.body.career;
         let student = req.body.student;
@@ -27,6 +28,11 @@ const user_controller = {
         if (!email) {
             // retorna error si el e-mail no se encuentra
             res.status(422).send({error: ERRORS.INVALID_EMAIL});
+            return;
+        }
+        if (!phone) {
+            // retorna error si el telefono no se encuentra
+            res.status(422).send({error: ERRORS.INVALID_PHONE});
             return;
         }
         if (!birth_date) {
@@ -70,6 +76,7 @@ const user_controller = {
             let new_user = new User({
                 name: name,
                 email: email,
+                phone: phone,
                 birth_date: birth_date,
                 career: career,
                 semester: semester,
@@ -116,8 +123,41 @@ const user_controller = {
             res.status(200).send(err.message);
         }
 
-    }
+    },
 
+
+    /**
+     * Obtiene todos los usuarios cuyas solicitudes aún no han sido aprobadas.
+     * 
+     * @param {object} req - petición del cliente
+     * @param {object} res - respuesta del servidor
+     */
+    async listMembers(req, res) {
+        try {
+            let users = await User.find({ admitted:"true" });
+            res.status(200).send(users);
+        } catch (err) {
+            res.status(200).send(err.message);
+        }
+    },
+
+    /**
+     * Elimina una solicitud de registro
+     * 
+     * @param {object} req - petición del cliente
+     * @param {object} res - respuesta del servidor 
+     */
+    async deletePending(req, res) {
+        try {
+            let id = req.params.id;
+
+            await Event.findByIdAndRemove({_id: id});
+
+            res.sendStatus(200);
+        } catch(err) {
+            res.status(200).send(err.message);
+        }
+    },
 }
 
 module.exports = user_controller;

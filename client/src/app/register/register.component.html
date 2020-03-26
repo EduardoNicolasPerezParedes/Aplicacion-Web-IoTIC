@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <div class="container col-12 bg-light">
     <div class="row align-items-center h-100">
         <div class="mx-auto py-5 col-md-5">
@@ -16,6 +17,10 @@
                         <!-- Correo -->
                         <div class="input-group mb-3">
                             <input formControlName="email" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Correo Institucional" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        </div>
+                        <!-- Número Telefónico -->
+                        <div class="input-group mb-3">
+                            <input formControlName="phone" type="text" class="form-control bg-light border-0 shadow-sm" placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
                         </div>
                         <!-- Programa -->
                         <div class="input-group mb-3">
