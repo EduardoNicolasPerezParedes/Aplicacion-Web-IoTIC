@@ -69,4 +69,15 @@ export class ResourceService extends HttpService {
             { headers: this.headers }
         )
     }
+
+    /**
+     * Elimina un recurso
+     * @param id Identificador del Recurso
+     */
+    delete(id: string) {
+        return this.http.delete(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        )
+    }
 }

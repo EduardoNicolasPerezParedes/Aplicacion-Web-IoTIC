@@ -24,8 +24,13 @@ resource_router.get('/:id', resource_controller.get);
 resource_router.get('/category/:category_id', resource_controller.get_by_category);
 
 /**
- * ruta que permite el actualizar un recurso.
+ * ruta que permite actualizar un recurso.
  */
 resource_router.put('/:id', resource_controller.update);
+
+/**
+ * ruta que permite eliminar un recurso.
+ */
+resource_router.delete('/:id', resource_controller.delete);
 
 module.exports = resource_router;

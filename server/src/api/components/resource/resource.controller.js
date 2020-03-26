@@ -140,6 +140,22 @@ const resource_controller = {
         } catch (err) {
             res.status(500).send(err.message);
         }
+    },
+    /**
+     * Elimina un recurso. 
+     * 
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async delete(req, res) {
+        try {
+            let id = req.params.id;
+            let resource = await Resource.deleteOne({_id: id});
+
+            res.status(200).send(resource);
+        } catch (err) {
+            res.status(500).send(err.message);
+        }
     }
 }
 

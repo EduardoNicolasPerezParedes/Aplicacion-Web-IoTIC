@@ -30,8 +30,8 @@
                 <div *ngIf="categoryId && resources" class="row mx-auto">
                     <p *ngIf="resources.length == 0" style="font-size: 16px;" class="text-muted mx-auto mt-3">No existen recursos dentro de esta categoría...</p>
                 </div>
-                <div class="container col-md-4 mt-3 mb-2" *ngFor="let resource of resources">
-                    <div *ngIf="resource.available" class="card btn-light btn p-0 border-0 shadow-sm pb-2" (click)="resourceOnClick()">
+                <div class="col-12" *ngFor="let resource of resources">
+                    <div *ngIf="resource.available" class="col-md-4 card btn-light btn p-0 border-0 shadow-sm pb-2" (click)="resourceOnClick()">
                         <img style="width: 100%; height: 8rem;" src="{{resource.imageLink}}" alt="">
                         <div class="card-body text-justify pb-0">
                             <div class="row px-3">

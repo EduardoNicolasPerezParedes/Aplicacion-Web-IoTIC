@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Resource } from 'src/_models/resource.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceFormComponent } from './resource-form/resource-form.component';
@@ -22,6 +22,8 @@ export class AdminResourcesComponent implements OnInit {
    * Icono de Mostrar Recurso
    */
   public faEye = faEye;
+
+  public faTrashAlt = faTrashAlt;
 
   /**
    * Recursos registrados
@@ -75,5 +77,22 @@ export class AdminResourcesComponent implements OnInit {
    */
   public addOnClick() {
     this.modalService.open(ResourceFormComponent);
+  }
+
+  /**
+   * Invocada al dar click en Eliminar 
+   * @param id Identificador del Recurso
+   */
+  public async deleteOnClick(id: string) {
+    try {
+      let res = await new MsgHelper().showConfirmDialog('¿Está seguro?', 'El recurso será eliminado de forma permanente');
+      if (res.value) {
+        res = await this.resourceService.delete(id).toPromise();
+        new MsgHelper().showSuccess('El recurso ha sido eliminado exitosamente');
+        this.setResources();
+      }
+    } catch (err) {
+      new MsgHelper().showError(err.error);
+    }
   }
 }
