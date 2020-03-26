@@ -6,6 +6,8 @@ import { ResourceService } from 'src/_services/resource.service';
 import { CategoryService } from 'src/_services/category.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ResourceComponent } from '../resource/resource.component';
 
 @Component({
   selector: 'app-resources',
@@ -47,7 +49,8 @@ export class ResourcesComponent implements OnInit {
     private resourceService: ResourceService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router) { 
+    private router: Router,
+    private modalService: NgbModal) { 
     this.route.queryParams.subscribe(params => { 
       this.categoryId = params['c']; 
       this.setCategories();
@@ -110,10 +113,11 @@ export class ResourcesComponent implements OnInit {
 
   /**
    * Invocada al dar click en un recurso
+   * @param id Identificador del Recurso
    */
-  private resourceOnClick() {
-    // TODO: Mostrar información del recurso
-    alert('Not implemented!');
+  private resourceOnClick(id: string) {
+    ResourceComponent.resourceId = id;
+    this.modalService.open(ResourceComponent);
   }
 
   /**
