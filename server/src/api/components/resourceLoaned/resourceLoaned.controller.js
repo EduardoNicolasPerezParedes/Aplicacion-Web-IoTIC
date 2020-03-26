@@ -3,7 +3,7 @@ const ERRORS = require('./resourceLoaned.erros');
 
 const resourceLoaned_controller = {
     /**
-     * Agrega un nuevo recurso. 
+     * Agrega nuevos id asociados a un prestamo. 
      * 
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor
@@ -50,7 +50,7 @@ const resourceLoaned_controller = {
         }
     },*/
     /**
-     * Lista todos los recursos registrados. 
+     * Lista todos los id asociados a un prestamo registrados. 
      * 
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor
@@ -65,7 +65,7 @@ const resourceLoaned_controller = {
         }
     },
     /**
-     * Obtiene la información de un recurso. 
+     * Obtiene los id de los recursos asociados al prestamo
      * 
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor

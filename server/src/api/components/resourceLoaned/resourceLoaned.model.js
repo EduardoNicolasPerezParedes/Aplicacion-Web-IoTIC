@@ -15,7 +15,7 @@ const resourceLoanedSchema = new Schema({
         required: true
     },
     resourceId: {
-        type: Boolean,
+        type: String,
         required: true
     },
     quantity: {

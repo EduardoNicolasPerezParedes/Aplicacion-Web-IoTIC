@@ -3,9 +3,13 @@ import { faEye, faTrashAlt, faPaperPlane } from '@fortawesome/free-solid-svg-ico
 import { Loan } from 'src/_models/loan.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { LoanService } from 'src/_services/loan.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoanInfoComponent } from '../admin-loans-finished/loan-info/loan-info.component';
+import { DateHelper } from 'src/_helpers/date.helper';
+import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
+import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
+import { UserService } from 'src/_services/user.service';
+import { User } from 'src/_models/user.model';
 
 @Component({
   selector: 'app-admin-loans-in-progress',
@@ -18,7 +22,6 @@ export class AdminLoansInProgressComponent implements OnInit {
   * Icono de ver información
   */
   public faEye = faEye;
-
   /**
   * Icono de Finalizar prestamos
   */
@@ -37,82 +40,83 @@ export class AdminLoansInProgressComponent implements OnInit {
   /**
    * ¿Está cargando la petición?
    */
-  public isLoading: boolean;
+  public weHaveLoan: boolean;
+    /**
+   * Prestamos registrados con usuarios
+   */
+  public loansShow : Array<Loan>;
 
-  constructor(private loanService: LoanService,private modalService: NgbModal) { }
+  constructor(private loanService: LoanService,private modalService: NgbModal,
+    private dateHelper : DateHelper,
+    private serviceResourcesLoaned : ResourceLoanedService,
+    private serviceUser : UserService
+    ) {
+    
+      this.loans = new Array<Loan>();
+      this.loansShow = new Array<Loan>();
+     }
   ngOnInit() {
     this.getLoan();
   }
-
   /**
-  * Cargar los datos
-  */
+   * Cargar los prestamos
+   */
   private async getLoan() { 
     try {
-      this.isLoading = true;
+      
       let res: any = await this.loanService.list().toPromise();
-      this.loans = new Array<Loan>();
       res.forEach((e: Object) => {
         if(Loan.fromJSON(e).state == 1){
           this.loans.push(Loan.fromJSON(e));
-        }
+        } 
       }); 
-      this.isLoading = false;
+      
     } catch (err) {
       new MsgHelper().showError(err.error);
-      this.isLoading = false;
+    }
+    this.weHaveLoan = this.loans.length > 0;
+    this.getUsers();
+    
+  }
+  /**
+   * Obtener los usuarios
+   */
+  public async getUsers(){
+    this.loans.forEach(element => {
+      this.getResourceLoaned(element);
+    });
+  }
+  /**
+   * Obtener id del usuario
+   */
+  public async getResourceLoaned(varLoan:Loan){
+    let idUser : string;
+    let res: any = await this.serviceResourcesLoaned.get_by_loanId(varLoan.loanId).toPromise(); 
+    res.forEach((e: Object) => {
+      idUser = ResourceLoaned.fromJSON(e).userId;
+    });  
+    this.setUser(idUser,varLoan);
+  }
+  /**
+   * Agregar usuario al prestamo
+   */
+  private async setUser(id : string,varLoan:Loan){
+    try {
+      let res = await this.serviceUser.get(id).toPromise();
+      let user = User.fromJSON(res);
+      
+      varLoan.user = user;
+      this.loansShow.push(varLoan);
+
+    } catch (err) {
+      new MsgHelper().showError(err.error);
     }
   }
-
   /**
-   * Invocada al dar click en Eliminar
-   * @param id Identificador del curso
-   */
-  public async sendMessage(id: string) {
-    let msg = new MsgHelper();
-    let res = await msg.showConfirmMessage('¿Desea enviar correo de solicitud de recursos?','');
-    /** 
-    if (res.value) {
-      try {
-        await this.courseService.delete(id).toPromise();
-      } catch(err) {
-        if (err.status == 200) {
-          msg.showSuccess('El curso fue eliminado exitosamente');
-          this.setCourses();
-          return;
-        }
-        msg.showError('El curso no pudo ser eliminado');
-      }
-    }*/
-  }
-
-    /**
-   * Invocada al dar click en Finalizar prestamos
-   * @param id Identificador del curso
-   */
-  public async loanfinished(id: string) {
-    let msg = new MsgHelper();
-    let res = await msg.showConfirmDialog('¿Está seguro?', 'Finalizar prestamo');
-    /** 
-    if (res.value) {
-      try {
-        await this.courseService.delete(id).toPromise();
-      } catch(err) {
-        if (err.status == 200) {
-          msg.showSuccess('El curso fue eliminado exitosamente');
-          this.setCourses();
-          return;
-        }
-        msg.showError('El curso no pudo ser eliminado');
-      }
-    }*/
-  }
-
-    /**
    * Mostrar info
    */
-  public showOnClick(id: number) {
-    
+  public showOnClick(l : Loan) {
+    LoanInfoComponent.loan = l;
     this.modalService.open(LoanInfoComponent);
   }
 

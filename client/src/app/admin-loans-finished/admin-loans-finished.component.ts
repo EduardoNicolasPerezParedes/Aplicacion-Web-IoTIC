@@ -6,7 +6,11 @@ import { faPlus, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LoanInfoComponent } from './loan-info/loan-info.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/_models/user.model';
+import { UserService } from 'src/_services/user.service';
+import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
+import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
+import { DateHelper } from 'src/_helpers/date.helper';
 
 @Component({
   selector: 'app-admin-loans-finished',
@@ -19,60 +23,92 @@ export class AdminLoansFinishedComponent implements OnInit {
   * Icono de ver prestamo
   */
   public faEye = faEye;
-
   /**
-   * Prestamos registrados
+   * Prestamos registrados con usuarios
    */
-  public loans: Array<Loan>;
+  public loansShow : Array<Loan>;
+   /**
+   * Prestamos registrados sin  usuarios
+   */
+  private loans: Array<Loan>;
+  /* Hay prestamos?
+   */
+  public weHaveLoan: boolean;
 
-  /**
-   * ¿Está cargando la petición?
-   */
-  public isLoading: boolean;
-  /**
-   * Contador para el número de prestamos
-   */
-  public contador: number;
-
-  constructor(private loanService: LoanService,private modalService: NgbModal) {
-      
+  constructor(private loanService: LoanService,private modalService: NgbModal,
+    private serviceUser : UserService,
+    private serviceResourcesLoaned : ResourceLoanedService,
+    private dateHelper : DateHelper
+    ) {
+      this.loans = new Array<Loan>();
+      this.loansShow = new Array<Loan>();
    }
 
   ngOnInit() {
     this.getLoan();
+    
   }
-
-
-    /**
+  /**
+   * Mostrar información del prestamo
+   */
+  public showOnClick(l: Loan ){
+    LoanInfoComponent.loan = l;
+    this.modalService.open(LoanInfoComponent);
+  }
+  /**
    * Cargar los prestamos
    */
   private async getLoan() { 
     try {
-      this.isLoading = true;
+      
       let res: any = await this.loanService.list().toPromise();
-      this.loans = new Array<Loan>();
       res.forEach((e: Object) => {
         if(Loan.fromJSON(e).state == 2){
           this.loans.push(Loan.fromJSON(e));
         }
         
       }); 
-      this.isLoading = false;
+      
     } catch (err) {
       new MsgHelper().showError(err.error);
-      this.isLoading = false;
+    }
+    this.weHaveLoan = this.loans.length > 0;
+    this.getUsers();
+    
+  }
+  /**
+   * Obtener los usuarios
+   */
+  public async getUsers(){
+    this.loans.forEach(element => {
+      this.getResourceLoaned(element);//Aqui mandar el element
+    });
+  }
+  /**
+   * Obtener id del usuario
+   */
+  public async getResourceLoaned(varLoan:Loan){
+    let idUser : string;
+    let res: any = await this.serviceResourcesLoaned.get_by_loanId(varLoan.loanId).toPromise(); 
+    res.forEach((e: Object) => {
+      idUser = ResourceLoaned.fromJSON(e).userId;
+    });  
+    this.setUser(idUser,varLoan);
+  }
+  /**
+   * Agregar usuario al prestamo
+   */
+  private async setUser(id : string,varLoan:Loan){
+    try {
+      let res = await this.serviceUser.get(id).toPromise();
+      let user = User.fromJSON(res);
+      
+      varLoan.user = user;
+      this.loansShow.push(varLoan);
+
+    } catch (err) {
+      new MsgHelper().showError(err.error);
     }
   }
-
-  /**
-   * Mostrar información del prestamo
-   */
-  public showOnClick(id: string) {
-    console.log('ID ANTES: '+id);
-    LoanInfoComponent.idLoan = id;
-    console.log('ID DESP: '+LoanInfoComponent.idLoan);
-    this.modalService.open(LoanInfoComponent);
-  }
-
 
 }

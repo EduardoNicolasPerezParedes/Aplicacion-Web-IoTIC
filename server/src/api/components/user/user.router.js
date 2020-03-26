@@ -13,4 +13,9 @@ user_router.post('/', user_controller.create);
  */
 user_router.get('/', user_controller.listPending);
 
+
+/**
+ * ruta que permite obtener un usuario
+ */
+user_router.get('/:id', user_controller.get);
 module.exports = user_router;

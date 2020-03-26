@@ -35,4 +35,10 @@ export class UserService extends HttpService {
             { headers: this.headers }
         )
     }
+    get(id: string){
+        return this.http.get(
+            `${this.apiUrl}/${id}`,
+            { headers: this.headers }
+        )
+    }
 }

@@ -1,7 +1,8 @@
 import { User } from './user.model';
+import { ResourceLoaned } from './resourceLoaned.model';
+import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 
 export class Loan {
-    public user: User;
     /**
      * Identificador del prestamo
      */
@@ -34,7 +35,12 @@ export class Loan {
      * Estado del prestamo 0:Solicitado 1:En curso 2:Finalizados
      */
     public state: number;
+    /**
+     * Información del usuario
+     */
+    public user : User;
 
+    private serviceResourceLoand : ResourceLoanedService
     constructor() {}
 
     public getdateStart(): string {
@@ -62,6 +68,8 @@ export class Loan {
 
         return loan;  
     }
+
+
 
     public parseToJSON(): JSON {
         return JSON.parse(JSON.stringify(this));

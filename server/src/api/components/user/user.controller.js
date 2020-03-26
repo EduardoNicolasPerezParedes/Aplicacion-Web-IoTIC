@@ -99,6 +99,25 @@ const user_controller = {
             res.status(200).send(err.message);
         }
     },
+        /**
+    * Retorna la información de un usuario.
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+   async get(req, res) {
+        
+        try {
+            let id = req.params.id;
+
+            let user = await User.findById({_id: id});
+
+            res.status(200).send(user);
+        } catch (err) {
+            res.status(200).send(err.message);
+        }
+
+    }
+
 }
 
 module.exports = user_controller;

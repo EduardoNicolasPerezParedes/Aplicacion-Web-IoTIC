@@ -1,30 +1,43 @@
 <style type="text/css">
     .my-custom-scrollbar {
-      position: relative;
+      position: right;
       height: 200px;
       overflow: auto;
       }
       .table-wrapper-scroll-y {
       display: block;
       }
+
+      table .total:before {
+        content: counter(rows);
+      }
+
+      body{
+        counter-reset: rows;
+      }
+
+      table tbody tr {
+        counter-increment: rows;
+      }
+
 </style>
 
 <div class="modal-body bg-light" id="LoansForm">
     <div class="text-center container">
         <h4>Formulario de Prestamo Solicitado</h4>
     </div>
-    <form [formGroup]="LoansForm" (ngSubmit)="onSubmit()">
+    <form  (ngSubmit)="onSubmit()">
     
 
         <!-- Nombre del solicitante -->
         <div class="form-group mt-3">
             <label>Nombre del solicitante</label>
-            <input name="name" class="form-control border-0 mb-3" placeholder="Juan David hpta" type="text" readonly>
+            <input name="name" class="form-control border-0 mb-3" placeholder="{{auxLoan.user.name}}" type="text" readonly>
         </div>
 
         <!-- Fecha Fin -->
         <div class="input-group">
-            <input class="form-control shadow-sm bg-white border-0 inner-shadow" placeholder="Fecha Fin del Prestamo" ngbDatepicker #d1="ngbDatepicker" readonly>
+            <input name="date" class="form-control shadow-sm bg-white border-0 inner-shadow" placeholder="Fecha Fin del Prestamo" ngbDatepicker #d1="ngbDatepicker" readonly>
             <div class="input-group-append">
                 <button class="btn btn-light shadow-sm rounded-circle ml-2" (click)="d1.toggle()" type="button">
                     <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -59,9 +72,9 @@
                 </thead>
                 <tbody> 
                 
-                <tr *ngFor="let recurso of resources">
-                    <th scope="row">Contador</th>
-                    <td>{{recurso.name}}</td>
+                <tr *ngFor="let recurso of infoResource">
+                    <th><span class="total"></span></th>
+                    <td>{{recurso.resourceName}}</td>
                     <td>{{recurso.quantity}}</td>
                 </tr>
                 </tbody>
@@ -75,7 +88,7 @@
             <button type="button" class="ml-auto btn btn-outline-danger" (click)="deleteOnClick()">
                 Eliminar
             </button>
-            <button type="submit" class="ml-auto btn btn-outline-success" (click)="addOnClick()">
+            <button type="submit" class="ml-auto btn btn-success">
                 Aprobar
             </button>
         </div>
