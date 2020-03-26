@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './http.service';
+import { Loan } from 'src/_models/loan.model';
  
 @Injectable()
 export class LoanService extends HttpService {
@@ -32,5 +33,34 @@ export class LoanService extends HttpService {
                 headers: this.headers
             },
         );
-      }
+    }
+    /**
+     * Actualiza un Prestamo.
+     * 
+     * @param id identificador del prestamo.
+     * @param loan Contiene la información actualizada del prestamo
+     */
+    update(id: string, loanAux: Loan) {
+        return this.http.put(
+            `${this.apiUrl}/${id}`,
+            loanAux.parseToJSON(),
+            { headers: this.headers }
+        )
+    }
+    /**
+     * Actualiza un Prestamo.
+     * 
+     * @param id identificador del prestamo.
+     * @param loan Contiene la información actualizada del prestamo
+     */
+    updateState(id: string, loanAux: Loan) {
+        return this.http.put(
+            `${this.apiUrl}/${id}`,
+            loanAux.parseToJSON(),
+            { headers: this.headers }
+        )
+    }
+
+    
+
 }

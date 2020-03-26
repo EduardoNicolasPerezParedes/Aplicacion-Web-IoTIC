@@ -18,12 +18,13 @@ import { User } from 'src/_models/user.model';
   styleUrls: ['./admin-loans-requested.component.css']
 })
 export class AdminLoansRequestedComponent implements OnInit {
-  public faEye = faEye;
-
-
   /**
-   * Prestamos registrados
-   */
+  * Icono de vista
+  */
+  public faEye = faEye;
+  /**
+  * Prestamos registrados
+  */
   private loans: Array<Loan>;
 
   /**
@@ -113,7 +114,7 @@ export class AdminLoansRequestedComponent implements OnInit {
    */
   public async deleteOnClick(id: string) {
     let msg = new MsgHelper();
-    let res = await msg.showConfirmDialog('¿Está seguro?', 'La solicitud será eliminada de forma permanente');
+    let res = await msg.showConfirmDialog('¿Está seguro que desea eliminar la solicitud?', 'La solicitud será eliminada de forma permanente');
     /** 
     if (res.value) {
       try {

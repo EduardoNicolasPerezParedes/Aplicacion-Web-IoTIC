@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { faCalendarAlt, } from '@fortawesome/free-solid-svg-icons';
 import { MsgHelper } from 'src/_helpers/msg.helper';
@@ -23,19 +23,25 @@ interface infoTable  {
 export class LoansFormComponent implements OnInit {
 
   /**
+  * Icono de Calendario
+  */
+  public faCalendarAlt = faCalendarAlt;
+  /**
   * Información del prestamo
   */
   public static loan : Loan;
-  public auxLoan : Loan;
+  public auxLoan : Loan; 
   /**
    * Información de los recursos a mostrar
    */
   public infoResource : Array<infoTable>;
   private LoansForm: FormGroup;
   /**
-   * Icono de Calendario
+   * Información para aprobar el prestamo
    */
-  public faCalendarAlt = faCalendarAlt;
+  dateEnd = new FormControl('', [Validators.required]);
+  imgResource = new FormControl('',[Validators.required]);
+  imgFormat = new FormControl();
 
   constructor(public modalContent: NgbActiveModal,
     private formBuilder: FormBuilder,
@@ -45,8 +51,6 @@ export class LoansFormComponent implements OnInit {
 
       this.infoResource = new Array<infoTable>();
       this.auxLoan = new Loan();
-
-
    }
 
   ngOnInit() {
@@ -92,31 +96,33 @@ export class LoansFormComponent implements OnInit {
   private close() {
     this.modalContent.close();
   }
-  
   /**
    * Invocada al dar click en Aprobar
    * @param id Identificador del curso
    */
-  public async onSubmit() {
-    /*this
+  public async onSubmit() { 
 
-    this.submitted = true;
-    if (this.LoansForm.invalid) { return; }
+    this.auxLoan.dateEnd = this.dateEnd.value;
+    this.auxLoan.image_resource_link = this.imgResource.value;
+    this.auxLoan.image_format_link = this.imgFormat.value;
+    this.auxLoan.state = 1;
 
-    let loan = new Loan();
-    news.title = this.newsForm.controls.title.value;
-    news.description = this.newsForm.controls.description.value;
+    console.log("FECHA FIN: "+this.dateEnd.value);
+    console.log("link recurso: "+this.imgResource.value);
+    console.log("link format: "+this.auxLoan.image_format_link);
 
-    let msg = new MsgHelper();
     try {
-      let created:any = await this.newsService.create(news).toPromise();
-      await this.fileHelper.upload(3, created._id);
-      msg.showSuccess('Noticia agregada exitosamente');
-      this.close();
-      this.newsSharedService.add(News.fromJSON(created));
-    } catch(err) {
-      if (err.status == 422) { msg.showError(err.error.error); }
-    }*/
+      let res = await this.serviceLoan.update(this.auxLoan.loanId, this.auxLoan).toPromise();
+      new MsgHelper().showSuccess("Prestamo aprobado exitosamente");
+    } catch (err) {
+      if (err.status == 422) {
+        new MsgHelper().showError(err.error.error);
+      } else {
+        new MsgHelper().showError(err.message);
+      }
+    }
+    this.close();
   }
+  
 }
 

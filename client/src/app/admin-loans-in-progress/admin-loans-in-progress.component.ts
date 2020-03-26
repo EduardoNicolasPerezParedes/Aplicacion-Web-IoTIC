@@ -49,7 +49,8 @@ export class AdminLoansInProgressComponent implements OnInit {
   constructor(private loanService: LoanService,private modalService: NgbModal,
     private dateHelper : DateHelper,
     private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceUser : UserService
+    private serviceUser : UserService,
+    private serviceLoan : LoanService
     ) {
     
       this.loans = new Array<Loan>();
@@ -118,6 +119,40 @@ export class AdminLoansInProgressComponent implements OnInit {
   public showOnClick(l : Loan) {
     LoanInfoComponent.loan = l;
     this.modalService.open(LoanInfoComponent);
+  }
+/**
+  * Invocada al dar click en Finalizar
+  * @param id Identificador del prestamo
+  */
+ public async finishedLoan(auxLoan : Loan) {
+  auxLoan.state = 2;
+  let msg = new MsgHelper();
+  let res = await msg.showConfirmDialog('¿Desea finalizar el prestamo?','');
+  if(res.value){
+    try {
+    
+      await this.serviceLoan.update(auxLoan.loanId,auxLoan).toPromise();
+
+      new MsgHelper().showSuccess("Prestamo finalizado exitosamente");
+    } catch (err) {
+      if (err.status == 422) {
+        new MsgHelper().showError(err.error.error);
+      } else {
+        new MsgHelper().showError(err.message);
+      }
+
+      }
+    }
+
+  }
+
+  public async sendMessage(){
+    let msg = new MsgHelper();
+    let res = await msg.showConfirmMessage('¿Desea enviar correo de solicitud de recursos?','');
+
+    if(res.value){
+
+    }
   }
 
 }

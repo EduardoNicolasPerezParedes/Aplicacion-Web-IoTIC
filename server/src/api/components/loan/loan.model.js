@@ -9,13 +9,20 @@ const loanSchema = new Schema({
         type: Date,
         required: true
     },
-    dateEnd: {
-        type: Date,
-        required: true
+    dateApproved: {
+        type: Date
     },
-    details: {
-        type: String,
-        unique: true
+    dateEnd: {
+        type: Date
+    },
+    image_resource_link: {
+        type: String
+    },
+    image_format_link: {
+        type: String
+    },
+    state: {
+        type: Number
     }
 });
 

@@ -20,10 +20,6 @@ export class Loan {
      */
     public dateApproved: Date;
     /**
-     * Fecha solicitud
-     */
-    public dateRequested: Date;
-    /**
      * Link imagen de los recursos
      */
     public image_resource_link: string;

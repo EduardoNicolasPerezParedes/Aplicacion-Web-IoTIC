@@ -23,4 +23,9 @@ resourceLoaned_router.get('/:id', resourceLoaned_controller.get);
  */
 resourceLoaned_router.get('/loan/:loan_id', resourceLoaned_controller.get_by_loanId);
 
+/**
+ * ruta que permite eliminar un resourceLoaned.
+ */
+resourceLoaned_router.delete('/loan/:loan_id', resourceLoaned_controller.delete);
+
 module.exports = resourceLoaned_router;

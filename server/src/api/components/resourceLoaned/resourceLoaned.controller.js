@@ -95,6 +95,22 @@ const resourceLoaned_controller = {
         } catch (err) {
             res.status(500).send(err.message);
         }
+    },
+    /**
+    * Elimina un resourceLoaned.
+    * @param {object} req - petición del cliente
+    * @param {oobject} res - respuesta del servidor
+    */
+    async delete(req, res) {
+        try {
+            let loan_id = req.params.loanId;
+
+            await resourceLoaned.findByIdAndDelete({loanId : loan_id});
+
+            res.sendStatus(200);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
     }
 }
 
