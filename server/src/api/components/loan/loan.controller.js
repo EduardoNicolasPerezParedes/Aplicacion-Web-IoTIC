@@ -8,10 +8,12 @@ const loan_controller = {
      * @param {object} req - petición del cliente
      * @param {oobject} res - respuesta del servidor
      */
-    async create(req, res) {
+    async create(req, res){
         try {
             let dateStartAux = new Date();
             let stateAux = 0;
+            let r = req.body.resources;
+            let userIdAux = req.body.userId;
 
 
             let created = await Loan.create({
@@ -22,6 +24,17 @@ const loan_controller = {
                 image_format_link : "",
                 state : stateAux
             });
+
+            r.forEach(async e => {
+                    await  ResourceLoaned.create({
+                        loanId: created._id,
+                        userId: userIdAux,
+                        resourceId: e.resourceId,
+                        quantity : e.quantity
+                    });
+               
+            });
+            
             res.status(200).send(created);
         } catch (err) {
             res.status(500).send(err.message);

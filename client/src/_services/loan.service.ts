@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { Loan } from 'src/_models/loan.model';
+
  
 @Injectable()
 export class LoanService extends HttpService {
