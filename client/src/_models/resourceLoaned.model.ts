@@ -6,37 +6,27 @@ export class ResourceLoaned{
     /**
      * Id del prestamo
      */
-    public loanId: string;
+    public loan: Loan;
 
     /**
      * Id del usuario
      */
-    public userId: string;
+    public resource: Resource;
 
-    /**
-     * Id del recurso
-     */
-    public resourceId: string;
 
-    /**
-     * Cantidad de unidades
-     */
-    public quantity: number;
 
-    /**
-     * Fecha aprobado
-     */
-    public dateApproved: Date;
-
-    constructor() {}
+    constructor() {
+        this.loan = new Loan();
+        this.resource = new Resource();
+    }
 
     public static fromJSON(json: any): ResourceLoaned {
         let r = new ResourceLoaned();
 
-        r.userId = json.userId;
-        r.loanId  = json.loanId;
-        r.resourceId = json.resourceId;
-        r.quantity = json.quantity;
+        r.loan.user.id = json.userId;
+        r.loan.loanId  = json.loanId;
+        r.resource.id = json.resourceId;
+        r.resource.quantity = json.quantity;
 
 
         return r;

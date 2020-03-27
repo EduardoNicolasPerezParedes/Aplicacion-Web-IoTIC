@@ -36,7 +36,7 @@ export class LoanInfoComponent implements OnInit {
   * Información de los recursos a mostrar
   */
   public infoResource : Array<infoTable>;
- 
+  public resources : Array<Resource>;
 
   constructor(public modalContent: NgbActiveModal, 
     private serviceResourcesLoaned : ResourceLoanedService,
@@ -70,7 +70,7 @@ export class LoanInfoComponent implements OnInit {
     this.auxLoan = LoanInfoComponent.loan;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(this.auxLoan.loanId).toPromise();
     res.forEach((e: Object) => {
-      this.getInfo(ResourceLoaned.fromJSON(e).resourceId,ResourceLoaned.fromJSON(e).quantity);
+      this.getInfo(ResourceLoaned.fromJSON(e).resource.id,ResourceLoaned.fromJSON(e).resource.quantity);
     });  
 
   }

@@ -68,7 +68,7 @@ export class LoansFormComponent implements OnInit {
     this.auxLoan = LoansFormComponent.loan;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(this.auxLoan.loanId).toPromise();
     res.forEach((e: Object) => {
-      this.getInfo(ResourceLoaned.fromJSON(e).resourceId,ResourceLoaned.fromJSON(e).quantity);
+      this.getInfo(ResourceLoaned.fromJSON(e).resource.id,ResourceLoaned.fromJSON(e).resource.quantity);
     });  
 
   }

@@ -88,7 +88,7 @@ export class AdminLoansRequestedComponent implements OnInit {
     let idUser : string;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(varLoan.loanId).toPromise(); 
     res.forEach((e: Object) => {
-      idUser = ResourceLoaned.fromJSON(e).userId;
+      idUser = ResourceLoaned.fromJSON(e).loan.user.id;
     });  
     this.setUser(idUser,varLoan);
   }

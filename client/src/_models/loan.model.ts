@@ -1,6 +1,4 @@
 import { User } from './user.model';
-import { ResourceLoaned } from './resourceLoaned.model';
-import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 
 export class Loan {
     /**
@@ -36,8 +34,9 @@ export class Loan {
      */
     public user : User;
 
-    private serviceResourceLoand : ResourceLoanedService
-    constructor() {}
+    constructor() {
+        this.user = new User('','','',0,'','',false,0,false);
+    }
 
     public getdateStart(): string {
         var dateStart = '';
