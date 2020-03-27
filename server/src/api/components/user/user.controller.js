@@ -1,5 +1,6 @@
 const ERRORS = require('./user.errors');
 const User = require('./user.model');
+const mongoose = require('mongoose');
 
 const user_controller = {
     /**
@@ -151,11 +152,11 @@ const user_controller = {
         try {
             let id = req.params.id;
 
-            await Event.findByIdAndRemove({_id: id});
+            await User.findByIdAndRemove({_id: id});
 
             res.sendStatus(200);
-        } catch(err) {
-            res.status(200).send(err.message);
+        } catch (err) {
+            res.status(500).send({error: err.message});
         }
     },
 }

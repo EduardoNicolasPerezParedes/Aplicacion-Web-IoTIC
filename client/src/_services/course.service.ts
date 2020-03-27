@@ -64,7 +64,7 @@ export class CourseService extends HttpService {
     }
 
     /**
-     * Elimina un curso.
+     * Actualiza un curso.
      * 
      * @param id identificador del curso.
      * @param course Contiene la información actualizada del curso

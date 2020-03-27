@@ -1,5 +1,7 @@
-export class User {
+export class User {    
+
     constructor(
+        public id: string,
         public name: string,
         public email: string,
         public phone: number,
@@ -7,7 +9,7 @@ export class User {
         public birth_date: string,
         public student: boolean,
         public semester: number,
-        public admin: boolean
+        public admin: boolean,
     ) { 
         if (this.student === false) {
             this.semester = null;
@@ -21,6 +23,7 @@ export class User {
     public static fromJSON(json): User {
         if (json === null) { return null; }
         return new User(
+            json._id,
             json.name,
             json.email,
             json.phone,

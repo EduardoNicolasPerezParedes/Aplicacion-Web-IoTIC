@@ -83,6 +83,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) { return; }
 
     let newUser = new User(
+      '',
       this.registerForm.value.name,
       this.registerForm.value.email,
       this.registerForm.value.phone = parseInt(this.registerForm.value.phone, 10),
