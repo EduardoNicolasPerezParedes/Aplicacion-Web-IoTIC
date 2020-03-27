@@ -66,4 +66,18 @@ export class UserService extends HttpService {
             },
         );
     }
+
+    /**
+     * Aceptar una solicitud de registro
+     * 
+     * @param id identificador del ususario que realizó la solicitud.
+     */
+    acceptPending(id: string) {
+        return this.http.put(
+            `${this.apiUrl}/accept/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
 }

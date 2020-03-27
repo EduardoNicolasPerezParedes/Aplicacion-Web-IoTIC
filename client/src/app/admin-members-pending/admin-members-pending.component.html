@@ -17,7 +17,7 @@
                     <p>Programa: {{pending.career}}</p>
                     <p *ngIf="pending.student">Semestre: {{pending.semester}}</p>
                     <div clas="text-center">
-                        <button style="background-color: rgb(12, 122, 12);" class="col-12 btn btn-primary shadow-sm">
+                        <button style="background-color: rgb(12, 122, 12);" class="col-12 btn btn-primary shadow-sm" (click)="acceptPendingOnClick(pending.id)"> 
                             Aceptar
                         </button>
                         <button style="background-color: rgb(172, 10, 10);" class="col-12 btn btn-primary shadow-sm" (click)="deletePendingOnClick(pending.id)"> 

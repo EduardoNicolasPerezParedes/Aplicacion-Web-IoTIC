@@ -21,6 +21,7 @@ user_router.get('/members', user_controller.listMembers);
 /**
  * ruta que permite aceptar una solicitud de registro.
  */
+user_router.put('/accept/:id', user_controller.acceptPending);
 
 /**
  * ruta que permite eliminar una solicitud de registro.

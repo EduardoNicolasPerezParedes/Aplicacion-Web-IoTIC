@@ -61,4 +61,26 @@ export class AdminMembersPendingComponent implements OnInit {
       new MsgHelper().showError(err.error);
     }
   }
+
+  public async acceptPendingOnClick(id: string) { 
+    try {
+      let msg = new MsgHelper();
+      let res = await msg.showConfirmDialog('¿Realmente desea aceptar esta solicitud?', '');
+
+      if (res.value) {
+        try { 
+          await this.userService.acceptPending(id).toPromise();
+        } catch(err) {
+          if(err.status == 200) {
+            msg.showSuccess('La solicitud fue aceptada exitosamente');
+            this.setPendings();
+            return;
+          }
+          msg.showError('La solicitud no pudo ser aceptada');
+        }
+      }
+    } catch(err) {
+      new MsgHelper().showError(err.error);
+    }
+  }
 }

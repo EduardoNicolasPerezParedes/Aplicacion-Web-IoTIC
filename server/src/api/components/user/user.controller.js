@@ -159,6 +159,29 @@ const user_controller = {
             res.status(500).send({error: err.message});
         }
     },
+
+    /**
+     * Acepta una solicitud de registro
+     * 
+     * @param {object} req - petición del cliente
+     * @param {object} res - respuesta del servidor 
+     */
+    async acceptPending(req, res) {
+        try {
+            let id = req.params.id;
+
+            let updated_user = await User.findOne({_id: id});
+
+            // Se actualiza la información
+            updated_user.admitted = true;
+
+            let updated = await updated_user.save();
+
+            res.sendStatus(200).send(updated);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
+    },
 }
 
 module.exports = user_controller;
