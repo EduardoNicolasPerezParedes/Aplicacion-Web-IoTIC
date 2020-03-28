@@ -11,6 +11,8 @@ const resource_router = require('./components/resource');
 const category_router = require('./components/category');
 const loan_router = require('./components/loan');
 const resourceLoaned_router = require('./components/resourceLoaned');
+const mission_router = require('./components/mission');
+const vision_router = require('./components/vision');
 
 rest_router.use('/user', user_router);
 rest_router.use('/auth', auth_router);
@@ -23,6 +25,8 @@ rest_router.use('/file', file_router);
 rest_router.use('/category', category_router);
 rest_router.use('/loan', loan_router);
 rest_router.use('/resourceLoaned', resourceLoaned_router);
+rest_router.use('/mission', mission_router);
+rest_router.use('/vision', vision_router);
 
 
 module.exports = rest_router;
