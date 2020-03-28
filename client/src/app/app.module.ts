@@ -66,6 +66,9 @@ import { MembersComponent } from './members/members.component';
 import { ResourceComponent } from './resource/resource.component';
 import { LoansComponent } from './loans/loans.component';
 import { LoanFormComponent } from './loans/loan-form/loan-form.component';
+import { AdminMissionComponent } from './admin-mission/admin-mission.component';
+import { AdminVisionComponent } from './admin-vision/admin-vision.component';
+import { AdminUsComponent } from './admin-us/admin-us.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +113,10 @@ import { LoanFormComponent } from './loans/loan-form/loan-form.component';
     MembersComponent,
     ResourceComponent,
     LoansComponent,
-    LoanFormComponent
+    LoanFormComponent,
+    AdminMissionComponent,
+    AdminVisionComponent,
+    AdminUsComponent
   ],
   imports: [
     BrowserModule,
