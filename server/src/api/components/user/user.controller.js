@@ -179,7 +179,7 @@ const user_controller = {
 
             res.sendStatus(200).send(updated);
         } catch (err) {
-            res.status(500).send({error: err.message});
+            res.status(500).send(err.message);
         }
     },
 }

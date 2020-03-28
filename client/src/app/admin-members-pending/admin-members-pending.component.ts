@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/_models/user.model';
 import { UserService } from 'src/_services/user.service';
-
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 
 @Component({
@@ -11,14 +11,24 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 })
 export class AdminMembersPendingComponent implements OnInit {
   /**
+   * Icono de Arpobar
+   */
+  private faCheck = faCheck;
+
+  /**
+   * Icono de Rechazar
+   */
+  private faTimes = faTimes;
+
+  /**
    * ¿Hay solicitudes pendientes?
    */
-  public weHavePendings: boolean;
+  private weHavePendings: boolean;
 
   /**
    * Solicitudes pendientes
    */
-  public pendings: Array<User>;
+  private pendings: Array<User>;
 
   constructor(private userService: UserService) { }
 
@@ -40,7 +50,7 @@ export class AdminMembersPendingComponent implements OnInit {
     });
   }
 
-  public async deletePendingOnClick(id: string) { 
+  public async deletePendingOnClick(id: string) {
     try {
       let msg = new MsgHelper();
       let res = await msg.showConfirmDialog('¿Está seguro?', 'La solicitud será eliminada de forma permanente');
@@ -62,7 +72,7 @@ export class AdminMembersPendingComponent implements OnInit {
     }
   }
 
-  public async acceptPendingOnClick(id: string) { 
+  public async acceptPendingOnClick(id: string) {
     try {
       let msg = new MsgHelper();
       let res = await msg.showConfirmDialog('¿Realmente desea aceptar esta solicitud?', '');
