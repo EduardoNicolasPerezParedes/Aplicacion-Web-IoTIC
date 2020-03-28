@@ -6,10 +6,8 @@ import { LoanService } from 'src/_services/loan.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoanInfoComponent } from '../admin-loans-finished/loan-info/loan-info.component';
 import { DateHelper } from 'src/_helpers/date.helper';
-import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 import { UserService } from 'src/_services/user.service';
-import { User } from 'src/_models/user.model';
 
 @Component({
   selector: 'app-admin-loans-in-progress',
@@ -26,26 +24,22 @@ export class AdminLoansInProgressComponent implements OnInit {
   * Icono de Finalizar prestamos
   */
   public faPaperPlane = faPaperPlane;
-
   /**
   * Icono de Usuario
   */
   public faTrashAlt = faTrashAlt;
-
   /**
-   * Prestamos registrados
-   */
+  * Prestamos registrados
+  */
   public loans: Array<Loan>;
-
   /**
-   * ¿Está cargando la petición?
-   */
+  * ¿Está cargando la petición?
+  */
   public weHaveLoan: boolean;
 
-  constructor(private loanService: LoanService,private modalService: NgbModal,
+  constructor(private loanService: LoanService,
+    private modalService: NgbModal,
     private dateHelper : DateHelper,
-    private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceUser : UserService,
     private serviceLoan : LoanService
     ) {
     
@@ -55,8 +49,8 @@ export class AdminLoansInProgressComponent implements OnInit {
     this.getLoan();
   }
   /**
-   * Cargar los prestamos
-   */
+  * Cargar los prestamos
+  */
   private async getLoan() { 
     try {
       
@@ -70,8 +64,7 @@ export class AdminLoansInProgressComponent implements OnInit {
     } catch (err) {
       new MsgHelper().showError(err.error);
     }
-    this.weHaveLoan = this.loans.length > 0;
-    
+    this.weHaveLoan = this.loans.length > 0;   
   }
   /**
    * Mostrar info

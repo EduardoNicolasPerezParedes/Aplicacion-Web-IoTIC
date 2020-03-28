@@ -9,8 +9,6 @@ import { LoansFormComponent } from './loans-form/loans-form.component';
 import { DateHelper } from 'src/_helpers/date.helper';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 import { UserService } from 'src/_services/user.service';
-import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
-import { User } from 'src/_models/user.model';
 
 @Component({
   selector: 'app-admin-loans-requested',
@@ -26,17 +24,14 @@ export class AdminLoansRequestedComponent implements OnInit {
   * Prestamos registrados
   */
   private loans: Array<Loan>;
-
   /**
    * Hay prestamos?
    */
   public weHaveLoan: boolean;
 
-  constructor(private loanService: LoanService,private modalService: NgbModal,
+  constructor(private loanService: LoanService,
+    private modalService: NgbModal,
     private dateHelper : DateHelper,
-    private serviceLoan : LoanService,
-    private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceUser : UserService
     ) { 
 
     }
@@ -63,7 +58,6 @@ export class AdminLoansRequestedComponent implements OnInit {
     }
     this.weHaveLoan = this.loans.length > 0;
   }
-
   /**
    * Mostrar info
    */

@@ -8,7 +8,6 @@ import { Loan } from 'src/_models/loan.model';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 import { ResourceService } from 'src/_services/resource.service';
 import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
-import { Resource } from 'src/_models/resource.model';
 import { DateHelper } from 'src/_helpers/date.helper';
 
 @Component({
@@ -30,7 +29,7 @@ export class LoansFormComponent implements OnInit {
   /**
   * Información del prestamo
   */
- public resources : Array<ResourceLoaned>;
+  public resources : Array<ResourceLoaned>;
 
   private LoansForm: FormGroup;
   /**
@@ -41,11 +40,10 @@ export class LoansFormComponent implements OnInit {
   imgFormat = new FormControl();
 
   constructor(public modalContent: NgbActiveModal,
-    private formBuilder: FormBuilder,
     private serviceLoan : LoanService,
     private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceResource : ResourceService,
-    private dateHelper : DateHelper) {
+    private dateHelper : DateHelper
+    ) {
 
       this.resources = new Array<ResourceLoaned>();
       this.auxLoan = new Loan();
@@ -57,9 +55,9 @@ export class LoansFormComponent implements OnInit {
 
   get f() { return this.LoansForm.controls; }
 
-    /**
-   * Obtiene los id de los recursos pertenecientes al prestamo
-   */
+  /**
+  * Obtiene los id de los recursos pertenecientes al prestamo
+  */
   private async setResourceLoaned(){
     this.auxLoan = LoansFormComponent.loan;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(this.auxLoan.loanId).toPromise();
@@ -68,7 +66,6 @@ export class LoansFormComponent implements OnInit {
     });  
 
   }
- 
   /**
   * Llamado al metodo cerrar formulario
   */

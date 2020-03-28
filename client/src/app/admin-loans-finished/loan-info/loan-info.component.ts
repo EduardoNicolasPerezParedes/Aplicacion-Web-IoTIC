@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Loan } from 'src/_models/loan.model';
-import { LoanService } from 'src/_services/loan.service';
-import { Resource } from 'src/_models/resource.model';
 import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
-import { MsgHelper } from 'src/_helpers/msg.helper';
-import { ResourceService } from 'src/_services/resource.service';
-import { UserService } from 'src/_services/user.service';
-import { User } from 'src/_models/user.model';
 import { DateHelper } from 'src/_helpers/date.helper';
 
 
@@ -32,13 +25,12 @@ export class LoanInfoComponent implements OnInit {
 
   constructor(public modalContent: NgbActiveModal, 
     private serviceResourcesLoaned : ResourceLoanedService,
-    private serviceResource : ResourceService,
-    private dateHelper : DateHelper) {
+    private dateHelper : DateHelper
+    ) {
     
     this.resources = new Array<ResourceLoaned>();
     this.auxLoan = new Loan();
-  
-   }
+    }
 
   ngOnInit() {
     this.setResourceLoaned();
