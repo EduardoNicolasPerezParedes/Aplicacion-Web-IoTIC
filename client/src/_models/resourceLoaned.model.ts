@@ -1,4 +1,3 @@
-import { User } from './user.model';
 import { Resource } from './resource.model';
 import { Loan } from './loan.model';
 

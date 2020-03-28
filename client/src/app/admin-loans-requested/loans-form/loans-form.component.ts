@@ -95,6 +95,7 @@ export class LoansFormComponent implements OnInit {
     try {
       let res = await this.serviceLoan.update(this.auxLoan.loanId, this.auxLoan).toPromise();
       new MsgHelper().showSuccess("Prestamo aprobado exitosamente");
+      location.reload();
       this.close();
     } catch (err) {
       if (err.status == 422) {
@@ -120,6 +121,7 @@ export class LoansFormComponent implements OnInit {
       } catch(err) {
         if (err.status == 200) {         
           msg.showSuccess('El prestamo fue eliminado exitosamente');
+          location.reload();
           this.close();
           return;
         }

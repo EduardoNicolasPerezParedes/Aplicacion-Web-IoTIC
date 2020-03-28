@@ -70,7 +70,6 @@
             <table class="table table-bordered table-striped mb-0">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Recurso</th>
                     <th scope="col">Cantidad</th>
                 </tr>
@@ -78,7 +77,6 @@
                 <tbody> 
                 
                 <tr *ngFor="let recurso of resources">
-                    <th><span class="total"></span></th>
                     <td>{{recurso.resource.name}}</td>
                     <td>{{recurso.quantity}}</td>
                 </tr>

@@ -94,6 +94,7 @@ export class AdminLoansInProgressComponent implements OnInit {
       await this.serviceLoan.updateState(auxLoan.loanId,auxLoan).toPromise();
 
       new MsgHelper().showSuccess("Prestamo finalizado exitosamente");
+      location.reload();
     } catch (err) {
       if (err.status == 422) {
         new MsgHelper().showError(err.error.error);
