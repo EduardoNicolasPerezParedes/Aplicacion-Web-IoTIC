@@ -10,6 +10,7 @@ const loan_controller = {
      * @param {object} res - respuesta del servidor
      */
     async create(req, res) {
+        console.log("ESTOY EN EL SERVIDOR JEJEEJ");
         // TODO: Arreglar error: No deja agregar más de un prestamo
         try {
             let dateStartAux = new Date();
@@ -27,14 +28,15 @@ const loan_controller = {
                 userId : userIdAux,
                 state : stateAux
             });
-
-            resources.forEach(async r => {
+            
+            for (let index = 0; index < resources.length; index++) {
                 await ResourceLoaned.create({
                     loanId: created._id,
-                    resourceId: r.resource.id,
-                    quantity : r.quantity
-                });
-            });
+                    resourceId: resources[index].resource.id,
+                    quantity : resources[index].quantity
+                });    
+            }
+
             
             res.status(200).send(created);
         } catch (err) {

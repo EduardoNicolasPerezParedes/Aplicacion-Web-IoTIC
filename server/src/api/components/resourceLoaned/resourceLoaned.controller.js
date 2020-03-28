@@ -10,15 +10,13 @@ const resourceLoaned_controller = {
      */
    async create(req, res) {
         try {
-            let loadIdAux = req.body.loanId;
-            let userIdAux = req.body.userId;
+            let loanIdAux = req.body.loanId;
             let resourceIdAux = req.body.resourceId;
             let quantityAux = req.body.quantity;
 
 
             let created = await resourceLoaned.create({
-                loanId: loadIdAux,
-                userId: userIdAux,
+                loanId: loanIdAux,
                 resourceId: resourceIdAux,
                 quantity : quantityAux
             });

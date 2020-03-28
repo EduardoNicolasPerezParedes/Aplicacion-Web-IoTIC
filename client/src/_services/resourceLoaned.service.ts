@@ -10,20 +10,6 @@ export class ResourceLoanedService extends HttpService {
         super(http);
         this.apiUrl += 'resourceLoaned';
     }
-
-    /**
-     * Registra un nuevo recurso
-     * 
-     * @param resource Recurso a ser registrado
-     
-    create(resource: Resource) {
-        return this.http.post(
-            this.apiUrl,
-            resource.parseToJSON(),
-            { headers: this.headers }
-        )
-    }
-*/
     /**
      * Lista los recursos registrados
      */

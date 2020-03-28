@@ -8,12 +8,12 @@ const resourceLoanedSchema = new Schema({
     loanId: {
         type: mongoose.Types.ObjectId,
         ref: 'Loan',
-        required: false
+        required: true
     },
     resourceId: {
         type: mongoose.Types.ObjectId,
         ref: 'Resource',
-        required: false
+        required: true
     },
     quantity: {
         type: Number,

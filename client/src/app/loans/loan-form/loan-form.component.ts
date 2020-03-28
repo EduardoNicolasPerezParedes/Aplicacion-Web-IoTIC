@@ -73,7 +73,7 @@ export class LoanFormComponent implements OnInit {
       let res:any = await this.resourceService.list().toPromise();
       res.forEach((r: any) => { 
         if (r.available) {
-          this.resources.push(Resource.fromJSON(r)); 
+          this.resources.push(Resource.fromJSON(r));
         }
       });
     } catch (err) {

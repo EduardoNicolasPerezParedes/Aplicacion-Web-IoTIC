@@ -20,7 +20,7 @@ export class LoanService extends HttpService {
      */
     create(userId: string, resources: Array<ResourceLoaned>) {
         return this.http.post(
-            this.apiUrl,
+            `${this.apiUrl}/create`,
             { userId: userId, resources: resources },
             { headers: this.headers }
         )
