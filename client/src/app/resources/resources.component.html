@@ -25,22 +25,29 @@
         <!-- Recursos -->
         <div class="col-md-10 px-4 pt-2 mb-2" style="height: 80vh;">
             <h3 *ngIf="category" class="">{{category.name}}</h3>
+
             <div class="row mb-4" style="overflow: auto; max-height: 80vh;">
                 <p *ngIf="!categoryId" style="font-size: 16px;" class="text-muted mx-auto mt-3">Debes seleccionar una categoría...</p>
                 <div *ngIf="categoryId && resources" class="row mx-auto">
                     <p *ngIf="resources.length == 0" style="font-size: 16px;" class="text-muted mx-auto mt-3">No existen recursos dentro de esta categoría...</p>
                 </div>
-                <div class="col-12" *ngFor="let resource of resources">
-                    <div *ngIf="resource.available" class="col-md-4 card btn-light btn p-0 border-0 shadow-sm pb-2" (click)="resourceOnClick(resource.id)">
-                        <img style="width: 100%; height: 8rem;" src="{{resource.imageLink}}" alt="">
-                        <div class="card-body text-justify pb-0">
-                            <div class="row px-3">
-                                <h5 class="card-title">{{resource.name}}</h5>
-                                <span style="font-size: 12px;" class="pt-1 ml-auto text-muted">Unidades: {{resource.quantity}}</span>
+
+                <div class="row">
+                    <div class="col-md-4 my-3 px-4" *ngFor="let resource of resources">
+                        <div *ngIf="resource.available">
+                            <div class=" card btn-light btn p-0 border-0 shadow-sm pb-2" (click)="resourceOnClick(resource.id)">
+                                <img style="width: 100%; height: 8rem;" src="{{resource.imageLink}}" alt="">
+                                <div class="card-body text-justify pb-0">
+                                    <div class="row px-3">
+                                        <h5 class="card-title">{{resource.name}}</h5>
+                                        <span style="font-size: 12px;" class="pt-1 ml-auto text-muted">Unidades: {{resource.quantity}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

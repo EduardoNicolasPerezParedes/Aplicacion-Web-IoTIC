@@ -40,6 +40,15 @@
           <a class="nav-link text-muted" href="resources">Recursos</a>
         </li>
       </div>
+      <!-- Prestamos -->
+      <div *ngIf="loggedIn" class="mx-auto">
+        <li *ngIf="loansActiveRoute" class="nav-item active">
+          <a class="nav-link text-dark" href="loans">Prestamos</a>
+        </li>
+        <li *ngIf="!loansActiveRoute" class="nav-item">
+          <a class="nav-link text-muted" href="loans">Prestamos</a>
+        </li>
+      </div>
     </ul>
     <!-- Cuando no hay una sesión iniciada -->
     <form class="form-inline mt-2 mt-md-0" *ngIf="!loggedIn">

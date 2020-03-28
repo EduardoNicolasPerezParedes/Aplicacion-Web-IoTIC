@@ -95,6 +95,13 @@ export class ResourceInfoComponent implements OnInit {
   }
 
   /**
+   * Invocada al modificar la disponibilidad del recurso
+   */
+  private availableChange() {
+    this.isAvailable = !this.isAvailable;
+  }
+
+  /**
    * Invocada al dar click en Actualizar
    */
   private async updateOnClick() {

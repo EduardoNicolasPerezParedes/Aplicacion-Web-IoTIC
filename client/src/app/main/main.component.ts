@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
   aboutActiveRoute: boolean;
   resourcesActiveRoute: boolean;
   homeActiveRoute: boolean;
+  loansActiveRoute: boolean;
 
   constructor(private router: Router) { 
     let url = this.router.url;
@@ -24,6 +25,9 @@ export class MainComponent implements OnInit {
         break;
       case '/resources':
         this.resourcesActiveRoute = true;
+        break;
+      case '/loans':
+        this.loansActiveRoute = true;
         break;
       default:
         this.homeActiveRoute = true;

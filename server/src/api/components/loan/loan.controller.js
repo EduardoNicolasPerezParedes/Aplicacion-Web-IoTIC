@@ -1,18 +1,20 @@
 const Loan = require('./loan.model');
 const ERRORS = require('./loan.errors');
+const ResourceLoaned = require('../resourceLoaned/resourceLoaned.model');
 
 const loan_controller = {
-        /**
+    /**
      * Agrega un nuevo prestamo. 
      * 
      * @param {object} req - petición del cliente
-     * @param {oobject} res - respuesta del servidor
+     * @param {object} res - respuesta del servidor
      */
-    async create(req, res){
+    async create(req, res) {
+        // TODO: Arreglar error: No deja agregar más de un prestamo
         try {
             let dateStartAux = new Date();
             let stateAux = 0;
-            let r = req.body.resources;
+            let resources = req.body.resources;
             let userIdAux = req.body.userId;
 
 
@@ -26,13 +28,12 @@ const loan_controller = {
                 state : stateAux
             });
 
-            r.forEach(async e => {
-                    await  ResourceLoaned.create({
-                        loanId: created._id,
-                        resourceId: e.resourceId,
-                        quantity : e.quantity
-                    });
-               
+            resources.forEach(async r => {
+                await ResourceLoaned.create({
+                    loanId: created._id,
+                    resourceId: r.resource.id,
+                    quantity : r.quantity
+                });
             });
             
             res.status(200).send(created);

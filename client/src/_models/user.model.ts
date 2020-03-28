@@ -23,7 +23,7 @@ export class User {
     public static fromJSON(json): User {
         if (json === null) { return null; }
         return new User(
-            json._id,
+            json.id,
             json.name,
             json.email,
             json.phone,

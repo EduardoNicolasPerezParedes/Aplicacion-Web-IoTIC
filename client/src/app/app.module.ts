@@ -64,6 +64,8 @@ import { UsComponent } from './us/us.component';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
 import { MembersComponent } from './members/members.component';
 import { ResourceComponent } from './resource/resource.component';
+import { LoansComponent } from './loans/loans.component';
+import { LoanFormComponent } from './loans/loan-form/loan-form.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { ResourceComponent } from './resource/resource.component';
     LoansFormComponent,
     UsComponent,
     MembersComponent,
-    ResourceComponent
+    ResourceComponent,
+    LoansComponent,
+    LoanFormComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +155,8 @@ import { ResourceComponent } from './resource/resource.component';
     CourseComponent,
     LoanInfoComponent,
     LoansFormComponent,
-    ResourceComponent
+    ResourceComponent,
+    LoanFormComponent
   ]
 })
 export class AppModule { }

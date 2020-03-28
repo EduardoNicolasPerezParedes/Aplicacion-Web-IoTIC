@@ -58,14 +58,19 @@ export class NavBarComponent implements OnInit {
   public contactActiveRoute = false;
 
   /** 
-   * ¿Es /contact la ruta activa?
+   * ¿Es /us la ruta activa?
   */
   public aboutActiveRoute = false;
 
   /** 
-   * ¿Es /contact la ruta activa?
+   * ¿Es /resource la ruta activa?
   */
   public resourceActiveRoute = false;
+
+  /** 
+   * ¿Es /loans la ruta activa?
+  */
+ public loansActiveRoute = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -84,6 +89,9 @@ export class NavBarComponent implements OnInit {
         break;
       case '/resources':
         this.resourceActiveRoute = true;
+        break;
+      case '/loans':
+        this.loansActiveRoute = true;
         break;
       default:
         this.homeActiveRoute = true;

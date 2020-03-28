@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { Loan } from 'src/_models/loan.model';
+import { Resource } from 'src/_models/resource.model';
+import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 
  
 @Injectable()
@@ -10,6 +12,18 @@ export class LoanService extends HttpService {
     constructor(protected http: HttpClient) {
         super(http);
         this.apiUrl += 'loan';
+    }
+
+    /**
+     * Obtiene los prestamos registrados.
+     * @param userId Identificador del usuario
+     */
+    create(userId: string, resources: Array<ResourceLoaned>) {
+        return this.http.post(
+            this.apiUrl,
+            { userId: userId, resources: resources },
+            { headers: this.headers }
+        )
     }
 
     /**
