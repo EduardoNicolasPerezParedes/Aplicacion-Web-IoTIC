@@ -22,8 +22,11 @@ export class User {
 
     public static fromJSON(json): User {
         if (json === null) { return null; }
+        let id = '';
+        if (json._id) { id = json._id }
+        if (json.id) { id = json.id }
         return new User(
-            json.id,
+            id,
             json.name,
             json.email,
             json.phone,
