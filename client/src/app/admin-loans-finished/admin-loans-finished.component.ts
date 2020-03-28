@@ -23,10 +23,6 @@ export class AdminLoansFinishedComponent implements OnInit {
   * Icono de ver prestamo
   */
   public faEye = faEye;
-  /**
-   * Prestamos registrados con usuarios
-   */
-  public loansShow : Array<Loan>;
    /**
    * Prestamos registrados sin  usuarios
    */
@@ -36,12 +32,9 @@ export class AdminLoansFinishedComponent implements OnInit {
   public weHaveLoan: boolean;
 
   constructor(private loanService: LoanService,private modalService: NgbModal,
-    private serviceUser : UserService,
-    private serviceResourcesLoaned : ResourceLoanedService,
     private dateHelper : DateHelper
     ) {
       this.loans = new Array<Loan>();
-      this.loansShow = new Array<Loan>();
    }
 
   ngOnInit() {
@@ -73,42 +66,8 @@ export class AdminLoansFinishedComponent implements OnInit {
       new MsgHelper().showError(err.error);
     }
     this.weHaveLoan = this.loans.length > 0;
-    this.getUsers();
     
   }
-  /**
-   * Obtener los usuarios
-   */
-  public async getUsers(){
-    this.loans.forEach(element => {
-      this.getResourceLoaned(element);
-    });
-  }
-  /**
-   * Obtener id del usuario
-   */
-  public async getResourceLoaned(varLoan:Loan){
-    let idUser : string;
-    let res: any = await this.serviceResourcesLoaned.get_by_loanId(varLoan.loanId).toPromise(); 
-    res.forEach((e: Object) => {
-      idUser = ResourceLoaned.fromJSON(e).loan.user.id;
-    });  
-    this.setUser(idUser,varLoan);
-  }
-  /**
-   * Agregar usuario al prestamo
-   */
-  private async setUser(id : string,varLoan:Loan){
-    try {
-      let res = await this.serviceUser.get(id).toPromise();
-      let user = User.fromJSON(res);
-      
-      varLoan.user = user;
-      this.loansShow.push(varLoan);
-
-    } catch (err) {
-      new MsgHelper().showError(err.error);
-    }
-  }
+  
 
 }

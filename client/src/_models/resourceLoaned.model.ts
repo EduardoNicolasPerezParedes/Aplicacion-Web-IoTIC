@@ -7,13 +7,14 @@ export class ResourceLoaned{
      * Id del prestamo
      */
     public loan: Loan;
-
     /**
      * Id del usuario
      */
     public resource: Resource;
-
-
+    /**
+     * Cantidad de Recursos
+     */
+    public quantity: Number;
 
     constructor() {
         this.loan = new Loan();
@@ -23,10 +24,9 @@ export class ResourceLoaned{
     public static fromJSON(json: any): ResourceLoaned {
         let r = new ResourceLoaned();
 
-        r.loan.user.id = json.userId;
-        r.loan.loanId  = json.loanId;
-        r.resource.id = json.resourceId;
-        r.resource.quantity = json.quantity;
+        r.loan  = json.loanId;
+        r.resource = json.resourceId;
+        r.quantity = json.quantity;
 
 
         return r;

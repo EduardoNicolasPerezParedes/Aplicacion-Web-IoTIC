@@ -6,17 +6,14 @@ const Schema = mongoose.Schema;
 //
 const resourceLoanedSchema = new Schema({
     loanId: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    userId: {
-        type: String,
-        required: true
+        type: mongoose.Types.ObjectId,
+        ref: 'Loan',
+        required: false
     },
     resourceId: {
-        type: String,
-        required: true
+        type: mongoose.Types.ObjectId,
+        ref: 'Resource',
+        required: false
     },
     quantity: {
         type: Number,

@@ -11,11 +11,6 @@ import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 import { Resource } from 'src/_models/resource.model';
 import { DateHelper } from 'src/_helpers/date.helper';
 
-interface infoTable  {
-  resourceName : string ,
-  quantity : number
-};
-
 @Component({
   selector: 'app-loans-form',
   templateUrl: './loans-form.component.html',
@@ -33,9 +28,10 @@ export class LoansFormComponent implements OnInit {
   public static loan : Loan;
   public auxLoan : Loan; 
   /**
-   * Información de los recursos a mostrar
-   */
-  public infoResource : Array<infoTable>;
+  * Información del prestamo
+  */
+ public resources : Array<ResourceLoaned>;
+
   private LoansForm: FormGroup;
   /**
    * Información para aprobar el prestamo
@@ -51,7 +47,7 @@ export class LoansFormComponent implements OnInit {
     private serviceResource : ResourceService,
     private dateHelper : DateHelper) {
 
-      this.infoResource = new Array<infoTable>();
+      this.resources = new Array<ResourceLoaned>();
       this.auxLoan = new Loan();
    }
 
@@ -68,23 +64,11 @@ export class LoansFormComponent implements OnInit {
     this.auxLoan = LoansFormComponent.loan;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(this.auxLoan.loanId).toPromise();
     res.forEach((e: Object) => {
-      this.getInfo(ResourceLoaned.fromJSON(e).resource.id,ResourceLoaned.fromJSON(e).resource.quantity);
+      this.resources.push(ResourceLoaned.fromJSON(e));
     });  
 
   }
-  /**
-   * Obtiene los nombres de los recursos
-   */
-  private async getInfo( id :string,quantity:number){
-    console.log("METODO GET INFO");
-    let rec: any =await  this.serviceResource.get(id).toPromise();
-    console.log("NOMBRE RECURSO: "+Resource.fromJSON(rec).name);
-    let info : infoTable= {
-      resourceName : Resource.fromJSON(rec).name,
-      quantity : quantity
-    };
-    this.infoResource.push(info);
-  }s
+ 
   /**
   * Llamado al metodo cerrar formulario
   */

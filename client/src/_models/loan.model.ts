@@ -59,6 +59,7 @@ export class Loan {
         loan.dateEnd = new Date(json.dateEnd);
         loan.image_resource_link = json.image_resource_link;
         loan.image_format_link = json.image_format_link;
+        loan.user = json.userId;
         loan.state = json.state;
 
         return loan;  

@@ -21,6 +21,11 @@ const loanSchema = new Schema({
     image_format_link: {
         type: String
     },
+    userId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: false
+    },
     state: {
         type: Number
     }

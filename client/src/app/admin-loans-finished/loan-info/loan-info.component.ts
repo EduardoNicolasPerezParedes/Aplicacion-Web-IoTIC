@@ -12,13 +12,6 @@ import { UserService } from 'src/_services/user.service';
 import { User } from 'src/_models/user.model';
 import { DateHelper } from 'src/_helpers/date.helper';
 
-/**
-* Estructura de la información de los recursos a mostrar
-*/
-interface infoTable  {
-  resourceName : string ,
-  quantity : number
-};
 
 @Component({
   selector: 'app-loan-info',
@@ -35,15 +28,14 @@ export class LoanInfoComponent implements OnInit {
   /**
   * Información de los recursos a mostrar
   */
-  public infoResource : Array<infoTable>;
-  public resources : Array<Resource>;
+  public resources : Array<ResourceLoaned>;
 
   constructor(public modalContent: NgbActiveModal, 
     private serviceResourcesLoaned : ResourceLoanedService,
     private serviceResource : ResourceService,
     private dateHelper : DateHelper) {
     
-    this.infoResource = new Array<infoTable>();
+    this.resources = new Array<ResourceLoaned>();
     this.auxLoan = new Loan();
   
    }
@@ -64,27 +56,17 @@ export class LoanInfoComponent implements OnInit {
     this.modalContent.close();
   }
   /**
-   * Obtiene los id de los recursos pertenecientes al prestamo
+   * Obtiene los recursos prestados
+   * 
    */
   private async setResourceLoaned(){
     this.auxLoan = LoanInfoComponent.loan;
     let res: any = await this.serviceResourcesLoaned.get_by_loanId(this.auxLoan.loanId).toPromise();
     res.forEach((e: Object) => {
-      this.getInfo(ResourceLoaned.fromJSON(e).resource.id,ResourceLoaned.fromJSON(e).resource.quantity);
+      this.resources.push(ResourceLoaned.fromJSON(e));
     });  
 
   }
-  /**
-   * Obtiene los nombres de los recursos
-   */
-  private async getInfo( id :string,quantity:number){
-    let rec: any =await  this.serviceResource.get(id).toPromise();
-    let info : infoTable
-   = {
-      resourceName : Resource.fromJSON(rec).name,
-      quantity : quantity
-    };
-    this.infoResource.push(info);
-  }
+
 
 }

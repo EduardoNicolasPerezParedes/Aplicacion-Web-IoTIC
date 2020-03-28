@@ -53,9 +53,9 @@
                     </tr>
                   </thead>
                   <tbody> 
-                    <tr *ngFor="let recurso of infoResource">
+                    <tr *ngFor="let recurso of resources">
                       <th><span class="total"></span></th>
-                      <td>{{recurso.resourceName}}</td>
+                      <td>{{recurso.resource.name}}</td>
                       <td>{{recurso.quantity}}</td>
                     </tr>
                   </tbody>

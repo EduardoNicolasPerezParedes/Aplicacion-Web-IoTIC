@@ -67,8 +67,7 @@ const resourceLoaned_controller = {
     async get_by_loanId(req, res) {
         try {
             let loan_id = req.params.loan_id;
-            let rl = await resourceLoaned.find({loanId: loan_id});
-
+            let rl = await resourceLoaned.find({loanId: loan_id}).populate('loanId resourceId');
             res.status(200).send(rl);
         } catch (err) {
             res.status(500).send(err.message);

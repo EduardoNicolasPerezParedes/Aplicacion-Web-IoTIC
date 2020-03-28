@@ -22,13 +22,13 @@ const loan_controller = {
                 dateEnd: "",
                 image_resource_link : "",
                 image_format_link : "",
+                userId : userIdAux,
                 state : stateAux
             });
 
             r.forEach(async e => {
                     await  ResourceLoaned.create({
                         loanId: created._id,
-                        userId: userIdAux,
                         resourceId: e.resourceId,
                         quantity : e.quantity
                     });
@@ -50,7 +50,7 @@ const loan_controller = {
         /*let loans = await Loan.find({});
         return res.status(200).json(loans);*/
         try {
-            let loans = await Loan.find({});
+            let loans = await Loan.find({}).populate('userId');
             res.status(200).send(loans);
         } catch (err) {
             res.status(500).send(err.message);
@@ -67,7 +67,7 @@ const loan_controller = {
         try {
             let id = req.params.id;
 
-            let loan = await Loan.findById({_id: id});
+            let loan = await (await Loan.findById({_id: id})).populate('userId');
 
             res.status(200).send(loan);
         } catch (err) {
@@ -130,7 +130,6 @@ const loan_controller = {
     async updateState(req, res) {
         try {
             let id = req.params.id;
-            let dateEndAux = req.body.dateEnd;
             let stateAux = req.body.state;
             
             let updated_loan = await Loan.findOne({_id: id});
