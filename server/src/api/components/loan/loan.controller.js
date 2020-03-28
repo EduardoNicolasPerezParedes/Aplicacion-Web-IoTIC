@@ -10,14 +10,20 @@ const loan_controller = {
      * @param {object} res - respuesta del servidor
      */
     async create(req, res) {
-        console.log("ESTOY EN EL SERVIDOR JEJEEJ");
-        // TODO: Arreglar error: No deja agregar más de un prestamo
+        
         try {
             let dateStartAux = new Date();
             let stateAux = 0;
             let resources = req.body.resources;
             let userIdAux = req.body.userId;
 
+            for (let index = 0; index < resources.length; index++) {
+                if(resources[index].quantity > resources[index].resource.quantity){
+                    // retorna error si las unidades solicitadas son mayores que las existentes
+                    res.status(422).send(ERRORS.INVALID_UNIT);
+                    return;
+                }
+            }
 
             let created = await Loan.create({
                 dateStart: dateStartAux,

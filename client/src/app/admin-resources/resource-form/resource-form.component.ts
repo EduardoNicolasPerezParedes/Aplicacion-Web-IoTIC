@@ -83,6 +83,7 @@ export class ResourceFormComponent implements OnInit {
       // Se sube la imagen del recurso
       await this.fileHelper.upload(4, res._id);
       new MsgHelper().showSuccess('El recurso fue agregado exitosamente');
+      location.reload();
     } catch (err) {
       new MsgHelper().showError(err.message);
     }
