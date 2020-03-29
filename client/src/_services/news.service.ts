@@ -61,4 +61,17 @@ export class NewsService extends HttpService {
           },
       );
   }
+  /**
+     * Actualiza una noticia.
+     * 
+     * @param id identificador de la noticia.
+     * @param news Contiene la información actualizada de la noticia
+     */
+    update(id: string, news: News) {
+      return this.http.put(
+          `${this.apiUrl}/${id}`,
+          news.parseToJSON(),
+          { headers: this.headers },
+      );
+  }
 }

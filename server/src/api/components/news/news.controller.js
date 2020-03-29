@@ -95,7 +95,49 @@ const news_controller = {
         }
     },
 
+    /**
+     * Actualiza un noticia.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async update(req, res) {
+        try {
+            let id = req.params.id;
+            let title = req.body.title;
+            let description = req.body.description;
+
+            if (!title) {
+                // retorna error si el nombre de la noticia no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_TITLE});
+                return;
+            }
+            if (!description) {
+                // retorna error si la descripción de la noticia no se encuentra
+                res.status(422).send({error: ERRORS.INVALID_DESCRIPTION});
+                return;
+            }
     
+            let formated_title = title.toLowerCase();
+            let news = await News.findOne({title: formated_title}).exec();
+            if (news && news._id != id) {
+                // ya existe una noticia con ese nombre
+                res.status(422).send({error: ERRORS.NAME_ALREADY_TAKEN});
+                return;
+            }
+            
+            let updated_news = await News.findOne({_id: id});
+            
+            // Se actualiza la información
+            updated_news.title = title;
+            updated_news.description = description;
+
+            let updated = await updated_news.save();
+
+            res.status(200).send(updated);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
+    }
 }
 
 

@@ -22,6 +22,10 @@ news_router.get('/:id', news_controller.get);
  * ruta que permite eliminar una noticia.
  */
 news_router.delete('/:id', news_controller.delete);
+/**
+ * ruta que permite actualizar un curso.
+ */
+news_router.put('/:id', news_controller.update);
 
 
 

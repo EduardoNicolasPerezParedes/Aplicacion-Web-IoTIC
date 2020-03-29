@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NewsService } from 'src/_services/news.service';
 import { News } from 'src/_models/news.model';
 import { NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NewsInfoSemComponent } from 'src/app/news/news-info-sem/news-info-sem.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-news',
@@ -24,7 +26,12 @@ export class NewsComponent implements OnInit {
    */
   public weHaveNews;
 
-  constructor(private newsService:NewsService, private router:Router, private car_config:NgbCarouselConfig) {
+  constructor(
+    private newsService:NewsService,
+    private router:Router,
+    private car_config:NgbCarouselConfig,
+    private modalService: NgbModal) {
+      
     this.setNews().then(() => {
         this.weHaveNews = this.news.length > 0;
         this.loadSome_News();
@@ -36,7 +43,7 @@ export class NewsComponent implements OnInit {
   }
 
   /**
-   * Obtiene y setea los cursos
+   * Obtiene y setea las noticias
    */
   public async setNews() {
     let res:any = await this.newsService.list().toPromise();
@@ -58,7 +65,12 @@ export class NewsComponent implements OnInit {
   }
 
   public ShowNews(id: string){
-    console.log("clicado");
+    NewsInfoSemComponent.newsId = id;
+    this.modalService.open(NewsInfoSemComponent);
+  }
+
+  moreNewsOnClick(): void {
+    this.router.navigateByUrl("more-news");
   }
 
 }

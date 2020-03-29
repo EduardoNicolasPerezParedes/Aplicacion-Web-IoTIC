@@ -49,6 +49,8 @@ import { AdminSemilleroNewsComponent } from './admin-semillero-news/admin-semill
 import { NewsFormComponent } from './admin-semillero-news/news-form/news-form.component';
 import { NewsSharedService } from 'src/_services/news.shared.service';
 import { NewsInfoComponent } from './admin-semillero-news/news-info/news-info.component';
+import { MoreNewsComponent } from './news/more-news/more-news.component';
+import { NewsInfoSemComponent } from './news/news-info-sem/news-info-sem.component';
 import { AdminMembersPendingComponent } from './admin-members-pending/admin-members-pending.component';
 import { FileHelper } from 'src/_helpers/file.helper';
 import { FileService } from 'src/_services/file.service';
@@ -69,6 +71,7 @@ import { LoanFormComponent } from './loans/loan-form/loan-form.component';
 import { AdminMissionComponent } from './admin-mission/admin-mission.component';
 import { AdminVisionComponent } from './admin-vision/admin-vision.component';
 import { AdminUsComponent } from './admin-us/admin-us.component';
+
 
 @NgModule({
   declarations: [
@@ -116,7 +119,9 @@ import { AdminUsComponent } from './admin-us/admin-us.component';
     LoanFormComponent,
     AdminMissionComponent,
     AdminVisionComponent,
-    AdminUsComponent
+    AdminUsComponent,
+    MoreNewsComponent,
+    NewsInfoSemComponent
   ],
   imports: [
     BrowserModule,
@@ -147,6 +152,7 @@ import { AdminUsComponent } from './admin-us/admin-us.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    NewsInfoSemComponent,
     NewsInfoComponent,
     NewsFormComponent,
     CourseFormComponent,

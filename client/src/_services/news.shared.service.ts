@@ -25,6 +25,19 @@ export class NewsSharedService {
     public add(news: News) {
         this._news.push(news);
     }
+    /**
+     * Actualiza un curso
+     * @param news Contiene la información actualizada
+     */
+    public update(news: News) {
+        for (var i = 0; i < this._news.length; i++) {
+            if (this._news[i].id == news.id) {
+                this._news[i] = news;
+                break;
+            }
+        }
+        this.newsEmitter.emit(this._news);
+    }
 
     /**
      * Retorna la referencia a las noticias
