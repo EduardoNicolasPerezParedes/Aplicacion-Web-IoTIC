@@ -70,7 +70,8 @@ export class MsgHelper {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Enviar',
             cancelButtonText: 'Cancelar',
-            reverseButtons: true
+            reverseButtons: true,
+            buttonsStyling: false
         });
     }
 }

@@ -89,5 +89,17 @@ export class LoanService extends HttpService {
         );
     }
     
-
+    /**
+     * Obtiene los prestamos de un usuario.
+     * 
+     * @param id identificador del usuario.
+     */
+    getByUser(id: string) {
+        return this.http.get(
+            `${this.apiUrl}/user/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
 }

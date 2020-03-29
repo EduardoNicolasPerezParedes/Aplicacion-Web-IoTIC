@@ -7,6 +7,7 @@ const Resource = require('../resource/resource.model');
 const Event = require('../event/event.model');
 const Course = require('../course/course.model');
 const News = require('../news/news.model');
+const Loan = require('../loan/loan.model');
 
 const file_controller = {
     /**
@@ -19,7 +20,6 @@ const file_controller = {
         /**
          * Representa al modelo en donde será guardado el archivo.
          * Valores permitidos:
-         *      0: Información del semillero
          *      1: Eventos
          *      2: Curso
          *      3: Noticias
@@ -65,6 +65,16 @@ const file_controller = {
                     let resource = await Resource.findById({_id: id});
                     resource.image_link = "http://localhost:3000/api/file/" + file_name;
                     await resource.save();
+                    break;
+                case "5":
+                    let l = await Loan.findById({_id: id});
+                    l.image_resource_link = "http://localhost:3000/api/file/" + file_name;
+                    await l.save();
+                    break;
+                case "6":
+                    let loan = await Loan.findById({_id: id});
+                    loan.image_format_link = "http://localhost:3000/api/file/" + file_name;
+                    await loan.save();
                     break;
             }
         })

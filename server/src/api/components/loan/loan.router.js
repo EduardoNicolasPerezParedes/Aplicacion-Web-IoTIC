@@ -33,4 +33,9 @@ loan_router.delete('/:id', loan_controller.delete);
  */
 loan_router.post('/create/', loan_controller.create);
 
+/**
+ * ruta que permite obtener prestamos de un usuario
+ */
+loan_router.get('/user/:userId', loan_controller.getByUser);
+
 module.exports = loan_router;

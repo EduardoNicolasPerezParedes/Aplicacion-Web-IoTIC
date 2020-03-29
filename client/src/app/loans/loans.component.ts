@@ -4,6 +4,8 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoanFormComponent } from './loan-form/loan-form.component';
+import { Loan } from 'src/_models/loan.model';
+import { AuthHelper } from 'src/_helpers/auth.helper';
 
 @Component({
   selector: 'app-loans',
@@ -16,12 +18,28 @@ export class LoansComponent implements OnInit {
    */
   private faPlus = faPlus;
 
+  /**
+   * Prestamos en Espera
+   */
+  private requestedLoans: Array<Loan>;
+
+  /**
+   * Prestamos en Curso
+   */
+  private loansInProgress: Array<Loan>;
+
+  /**
+   * Prestamos Finalizados
+   */
+  private loansFinished: Array<Loan>;
+
   constructor(
     private loanService: LoanService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit() {
+    this.setLoans();
   }
 
   /**
@@ -29,7 +47,22 @@ export class LoansComponent implements OnInit {
    */
   private async setLoans() {
     try {
-
+      let userId = AuthHelper.getLoggedUser().id;
+      let loans:any = await this.loanService.getByUser(userId).toPromise();
+      this.requestedLoans = new Array<Loan>();
+      this.loansInProgress = new Array<Loan>();
+      this.loansFinished = new Array<Loan>();
+      loans.forEach(l => {
+        if (l.state == 0) {
+          this.requestedLoans.push(Loan.fromJSON(l));
+        }
+        if (l.state == 1) {
+          this.loansInProgress.push(Loan.fromJSON(l));
+        }
+        if (l.state == 2) {
+          this.loansFinished.push(Loan.fromJSON(l));
+        }
+      });
     } catch (err) {
       new MsgHelper().showError(err.error);
     }

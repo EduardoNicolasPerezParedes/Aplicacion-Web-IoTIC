@@ -114,6 +114,8 @@ export class LoanFormComponent implements OnInit {
       let userId = AuthHelper.getLoggedUser().id;
       let res = await this.loanService.create(userId, this.selectedResources).toPromise();
       new MsgHelper().showSuccess('Solicitud enviada correctamente');
+      this.close();
+      location.reload();
     } catch (err) {
         new MsgHelper().showError(err.error);
     }

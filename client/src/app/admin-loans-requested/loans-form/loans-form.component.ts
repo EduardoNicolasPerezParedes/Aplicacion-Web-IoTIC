@@ -6,9 +6,9 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 import { LoanService } from 'src/_services/loan.service';
 import { Loan } from 'src/_models/loan.model';
 import { ResourceLoanedService } from 'src/_services/resourceLoaned.service';
-import { ResourceService } from 'src/_services/resource.service';
 import { ResourceLoaned } from 'src/_models/resourceLoaned.model';
 import { DateHelper } from 'src/_helpers/date.helper';
+import { FileHelper } from 'src/_helpers/file.helper';
 
 @Component({
   selector: 'app-loans-form',
@@ -42,9 +42,9 @@ export class LoansFormComponent implements OnInit {
   constructor(public modalContent: NgbActiveModal,
     private serviceLoan : LoanService,
     private serviceResourcesLoaned : ResourceLoanedService,
-    private dateHelper : DateHelper
+    private dateHelper : DateHelper,
+    private fileHelper: FileHelper
     ) {
-
       this.resources = new Array<ResourceLoaned>();
       this.auxLoan = new Loan();
    }
@@ -82,7 +82,11 @@ export class LoansFormComponent implements OnInit {
    * Invocada al dar click en Aprobar
    * @param id Identificador del curso
    */
-  public async onSubmit() { 
+  public async onSubmit() {
+    if (this.fileHelper.file == null) { 
+      new MsgHelper().showError('No ha seleccionado la imagen de los recursos entregados');
+      return;
+    }
 
     this.auxLoan.dateEnd = this.dateEnd.value;
     this.auxLoan.image_resource_link = this.imgResource.value;
@@ -90,7 +94,11 @@ export class LoansFormComponent implements OnInit {
     this.auxLoan.state = 1;
 
     try {
-      let res = await this.serviceLoan.update(this.auxLoan.loanId, this.auxLoan).toPromise();
+      let res:any = await this.serviceLoan.update(this.auxLoan.loanId, this.auxLoan).toPromise();
+      await this.fileHelper.upload(5, res._id);
+      if (this.fileHelper.file2 != null) {
+        await this.fileHelper.upload2(6, res._id);
+      }
       new MsgHelper().showSuccess("Prestamo aprobado exitosamente");
       location.reload();
       this.close();

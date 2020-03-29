@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faEye, faTrashAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faHourglassEnd, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Loan } from 'src/_models/loan.model';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { LoanService } from 'src/_services/loan.service';
@@ -21,13 +21,13 @@ export class AdminLoansInProgressComponent implements OnInit {
   */
   public faEye = faEye;
   /**
-  * Icono de Finalizar prestamos
+  * Icono de Notificar
   */
-  public faPaperPlane = faPaperPlane;
+  public faExclamation = faExclamation;
   /**
-  * Icono de Usuario
+  * Icono de Finalizar
   */
-  public faTrashAlt = faTrashAlt;
+  public faTimes = faHourglassEnd;
   /**
   * Prestamos registrados
   */
@@ -80,7 +80,7 @@ export class AdminLoansInProgressComponent implements OnInit {
  public async finishedLoan(auxLoan : Loan) {
   auxLoan.state = 2;
   let msg = new MsgHelper();
-  let res = await msg.showConfirmDialog('¿Desea finalizar el prestamo?','');
+  let res = await msg.showConfirmDialog('¿Está seguro?','El prestamo pasará a Prestamos Finalizados');
   if(res.value){
     try {
     

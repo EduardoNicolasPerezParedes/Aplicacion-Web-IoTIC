@@ -1,7 +1,7 @@
 <style type="text/css">
     .my-custom-scrollbar {
       position: right;
-      height: 200px;
+      max-height: 200px;
       overflow: auto;
       }
       .table-wrapper-scroll-y {
@@ -22,13 +22,11 @@
 
 </style>
 
-<div class="modal-body bg-light" id="LoansForm">
-    <div class="text-center container">
-        <h4>Formulario de Prestamo Solicitado</h4>
+<div class="modal-body bg-light pt-0" id="LoansForm">
+    <div class="row bg-white pt-2 shadow-sm text-center">
+        <h4 class="mx-auto">Prestamo Solicitado</h4>
     </div>
-    <form  (ngSubmit)="onSubmit()">
-    
-
+    <form (ngSubmit)="onSubmit()">
         <!-- Nombre del solicitante -->
         <div class="form-group mt-3">
             <label>Nombre del solicitante</label>
@@ -40,35 +38,10 @@
             <input name="name" class="form-control border-0 mb-3" placeholder="{{dateHelper.dateToStr(auxLoan.dateStart)}}" type="text" readonly>
         </div>
 
-        <!-- Fecha Fin -->
-        <div class="input-group">
-            <input [formControl]="dateEnd" type="text" class="form-control shadow-sm bg-white border-0 inner-shadow" placeholder="Fecha Fin del Prestamo" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker" readonly required>
-            <div class="input-group-append">
-                <button class="btn btn-light shadow-sm rounded-circle ml-2" (click)="d1.toggle()" type="button">
-                    <fa-icon [icon]="faCalendarAlt"></fa-icon>
-                </button>
-            </div>
-        </div><br>
-        
-
-        <!-- Subir imagen del recurso-->
-        <div class="custom-file mt-3 was-validated">
-            <input [formControl]="imgResource" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
-            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen del recurso...</label>
-            <div class="invalid-feedback">Selecciona la imagen de los recursos</div>
-        </div>
-
-        <!-- Subir imagen del formato-->
-        <div class="custom-file mt-3 was-validated">
-            <input [formControl]="imgFormat" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile">
-            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Selecciona la imagen del formato...</label>
-            <div class="invalid-feedback">Selecciona la imagen del formato</div>
-        </div>
-
         <!-- Recursos prestados-->
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table table-bordered table-striped mb-0">
-                <thead>
+            <table class="table mb-0 shadow-sm rounded">
+                <thead class="thead-light">
                 <tr>
                     <th scope="col">Recurso</th>
                     <th scope="col">Cantidad</th>
@@ -82,18 +55,44 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <hr>
+
+        <!-- Fecha Fin -->
+        <div class="input-group">
+            <input [formControl]="dateEnd" type="text" class="form-control shadow-sm bg-white border-0 inner-shadow" placeholder="Fecha Fin del Prestamo" [(ngModel)]="model" ngbDatepicker #d1="ngbDatepicker" readonly required>
+            <div class="input-group-append">
+                <button class="btn btn-light shadow-sm rounded-circle ml-2" (click)="d1.toggle()" type="button">
+                    <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                </button>
+            </div>
         </div><br>
         
+        <!-- Subir imagen del recurso-->
+        <div class="custom-file was-validated">
+            <input (change)="fileHelper.fileChange($event)" [formControl]="imgResource" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile" required>
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Seleccione imagen de los recursos entregados...</label>
+            <div class="invalid-feedback">Selecciona la imagen de los recursos entregados</div>
+        </div>
+
+        <!-- Subir imagen del formato-->
+        <div class="custom-file my-3 was-validated">
+            <input (change)="fileHelper.file2Change($event)" [formControl]="imgFormat" type="file" style="border-radius: 0px;" class="custom-file-input" id="validatedCustomFile">
+            <label style="border-radius: 0px;" class="custom-file-label text-muted" for="validatedCustomFile">Selecciona la imagen del recibido...</label>
+        </div>
+  
         <div class="row px-3">
-            <button type="button" class="btn btn-light mr-4 shadow-sm" (click)="cancelOnClick()">
+            <button type="button" class="btn btn-light mr-4 shadow-sm rounded-pill" (click)="cancelOnClick()">
                 Cancelar
             </button>
-            <button type="button" class="ml-auto btn btn-outline-danger" (click)="deleteOnClick(auxLoan.loanId)">
-                Eliminar
-            </button>
-            <button type="submit" class="ml-auto btn btn-success">
-                Aprobar
-            </button>
+            <div class="ml-auto">
+                <button type="button" class=" btn btn-danger rounded-pill" (click)="deleteOnClick(auxLoan.loanId)">
+                    Rechazar
+                </button>
+                <button type="submit" class="ml-2 btn btn-success rounded-pill">
+                    Aprobar
+                </button>
+            </div>
         </div>
     </form>
 </div>

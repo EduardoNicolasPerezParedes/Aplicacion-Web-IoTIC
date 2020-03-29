@@ -92,8 +92,6 @@ const loan_controller = {
         try {
             let id = req.params.id;
             let dateEndAux = req.body.dateEnd;
-            let linkResourceAux = req.body.image_resource_link;
-            let linkFormatAux = req.body.image_format_link;
             let stateAux = req.body.state;
 
             if (!dateEndAux) {
@@ -101,12 +99,6 @@ const loan_controller = {
                 res.status(422).send({error: ERRORS.INVALID_DATE_END});
                 return;
             }
-            if (!linkResourceAux) {
-                // retorna error si no hay imagen de los recursos
-                res.status(422).send({error: ERRORS.INVALID_LINK_RESOURCE});
-                return;
-            }
-            
 
             let updated_loan = await Loan.findOne({_id: id});
 
@@ -119,10 +111,7 @@ const loan_controller = {
             // Se actualiza la información
             updated_loan.dateApproved = new Date();
             updated_loan.dateEnd = new Date(dateEndAux.year, dateEndAux.month, dateEndAux.day);
-            updated_loan.image_resource_link = linkResourceAux;
-            updated_loan.image_format_link = linkFormatAux;
             updated_loan.state = stateAux;
-
 
             let updated = await updated_loan.save();
 
@@ -166,6 +155,22 @@ const loan_controller = {
             await Loan.findByIdAndRemove({_id: id});
 
             res.sendStatus(200);
+        } catch (err) {
+            res.status(500).send({error: err.message});
+        }
+    },
+    /**
+     * Obtiene los prestamos de un usuario.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async getByUser(req, res) {
+        try {
+            let userId = req.params.userId;
+
+            let loans = await Loan.find({userId: userId});
+
+            res.status(200).send(loans);
         } catch (err) {
             res.status(500).send({error: err.message});
         }
