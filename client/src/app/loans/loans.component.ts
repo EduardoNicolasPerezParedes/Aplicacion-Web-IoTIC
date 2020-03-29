@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoanFormComponent } from './loan-form/loan-form.component';
 import { Loan } from 'src/_models/loan.model';
 import { AuthHelper } from 'src/_helpers/auth.helper';
+import { LoanInfoComponent } from '../admin-loans-finished/loan-info/loan-info.component';
 
 @Component({
   selector: 'app-loans',
@@ -73,5 +74,14 @@ export class LoansComponent implements OnInit {
    */
   private addOnClick() {
     this.modalService.open(LoanFormComponent)
+  }
+
+  /**
+   * Invocada al dar click en un prestamo
+   * @param loan prestamo a mostrar
+   */
+  private loanOnClick(loan: Loan) {
+    LoanInfoComponent.loan = loan;
+    this.modalService.open(LoanInfoComponent);
   }
 }

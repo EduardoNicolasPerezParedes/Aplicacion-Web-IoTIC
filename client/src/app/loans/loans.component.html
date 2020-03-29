@@ -4,9 +4,8 @@
             <div class="card-header shadow-sm bg-white text-center border-0">
                 <h4>En revisión</h4>
             </div>
-            <p *ngIf="requestedLoans.lenght == 0" class="text-muted mx-auto mt-3">No tienes nungún prestamo en revisión...</p>
             <div class="card-body" style="max-height: 80vh; overflow: hidden;">
-                <div *ngFor="let l of requestedLoans" class="card border-0 shadow-sm mb-3 btn-light btn">
+                <div (click)="loanOnClick(l)" *ngFor="let l of requestedLoans" class="card border-0 shadow-sm mb-3 btn-light btn">
                     <div class="card-body">
                         <p class="text-muted p-0 m-0">Solicitado el {{l.dateStart | date:'yyyy-MM-dd'}}</p>
                     </div>
@@ -19,9 +18,8 @@
             <div class="card-header shadow-sm bg-white text-center border-0">
                 <h4>En curso</h4>
             </div>
-            <p *ngIf="loansInProgress.lenght == 0" class="text-muted mx-auto mt-3">No tienes nungún prestamo en curso...</p>
             <div class="card-body" style="max-height: 80vh; overflow: hidden;">
-                <div *ngFor="let l of loansInProgress" class="card border-0 shadow-sm mb-3 btn-light btn">
+                <div (click)="loanOnClick(l)" *ngFor="let l of loansInProgress" class="card border-0 shadow-sm mb-3 btn-light btn">
                     <div class="card-body">
                         <p class="text-muted p-0 m-0">Solicitado el {{l.dateStart | date:'yyyy-MM-dd'}}</p>
                         <p class="text-muted p-0 m-0">Aprobado el {{l.dateApproved | date:'yyyy-MM-dd'}}</p>
@@ -36,9 +34,8 @@
             <div class="card-header shadow-sm bg-white text-center border-0">
                 <h4>Finalizados</h4>
             </div>
-            <p *ngIf="loansFinished.lenght == 0" class="text-muted mx-auto mt-3">No has finalizado ningún prestamo...</p>
             <div class="card-body" style="max-height: 80vh; overflow: hidden;">
-                <div *ngFor="let l of loansFinished" class="card border-0 shadow-sm mb-3 btn-light btn">
+                <div (click)="loanOnClick(l)" *ngFor="let l of loansFinished" class="card border-0 shadow-sm mb-3 btn-light btn">
                     <div class="card-body">
                         <p class="text-muted p-0 m-0">Solicitado el {{l.dateStart | date:'yyyy-MM-dd'}}</p>
                         <p class="text-muted p-0 m-0">Aprobado el {{l.dateApproved | date:'yyyy-MM-dd'}}</p>
