@@ -1,6 +1,8 @@
 const ERRORS = require('./user.errors');
 const User = require('./user.model');
 const mongoose = require('mongoose');
+const crypto = require('crypto');
+const mail = require('../../utils/mail');
 
 const user_controller = {
     /**
@@ -18,8 +20,6 @@ const user_controller = {
         let career = req.body.career;
         let student = req.body.student;
         let semester = req.body.semester;
-
-        console.log(req.body);
 
         if (!name) {
             // retorna error si el nombre no se encuentra
@@ -88,7 +88,6 @@ const user_controller = {
             // envía la información del usuario registrado
             res.status(200).send(user_saved);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send({error: err.message});
         }
     },
@@ -175,10 +174,20 @@ const user_controller = {
             // Se actualiza la información
             updated_user.admitted = true;
 
+            let token = crypto.randomBytes(8).toString('hex');
+            updated_user.password = token;
+
             let updated = await updated_user.save();
+
+            await mail.send(
+                'Solicitud de ingreso semillero', 
+                'Felicitaciones, su solicitud de ingreso al semillero fue aprobada.\n Utilice esta contraseña para acceder al sistema: ' + token, 
+                updated_user.email
+            );
 
             res.sendStatus(200).send(updated);
         } catch (err) {
+            console.log(err.message);
             res.status(500).send(err.message);
         }
     },

@@ -1,6 +1,8 @@
 const Loan = require('./loan.model');
 const ERRORS = require('./loan.errors');
 const ResourceLoaned = require('../resourceLoaned/resourceLoaned.model');
+const User = require('../user/user.model');
+const mail = require('../../utils/mail');
 
 const loan_controller = {
     /**
@@ -10,7 +12,6 @@ const loan_controller = {
      * @param {object} res - respuesta del servidor
      */
     async create(req, res) {
-        
         try {
             let dateStartAux = new Date();
             let stateAux = 0;
@@ -43,7 +44,16 @@ const loan_controller = {
                 });    
             }
 
-            
+            // Se notifica a los administradores
+            let admins = await User.find({admin: true, admitted: true});
+
+            admins.forEach(async a => {
+                await mail.send(
+                    'Nueva solicitud de prestamo', 
+                    'Se ha solicitado un nuevo prestamo en el semillero', 
+                    a.email);
+            });
+
             res.status(200).send(created);
         } catch (err) {
             res.status(500).send(err.message);
