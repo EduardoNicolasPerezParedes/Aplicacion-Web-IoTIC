@@ -6,6 +6,8 @@ import { ResourceFormComponent } from './resource-form/resource-form.component';
 import { ResourceService } from 'src/_services/resource.service';
 import { MsgHelper } from 'src/_helpers/msg.helper';
 import { ResourceInfoComponent } from './resource-info/resource-info.component';
+import { AuthHelper } from 'src/_helpers/auth.helper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-resources',
@@ -37,12 +39,16 @@ export class AdminResourcesComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private resourceService: ResourceService
+    private resourceService: ResourceService,
+    private router: Router
     ) { 
     this.setResources();
   }
 
   ngOnInit() {
+    if (!AuthHelper.getLoggedUser()) {
+      this.router.navigateByUrl("");
+    }
   }
 
   /**

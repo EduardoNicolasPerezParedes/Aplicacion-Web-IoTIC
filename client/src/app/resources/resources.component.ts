@@ -8,6 +8,7 @@ import { MsgHelper } from 'src/_helpers/msg.helper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceComponent } from '../resource/resource.component';
+import { AuthHelper } from 'src/_helpers/auth.helper';
 
 @Component({
   selector: 'app-resources',
@@ -59,6 +60,9 @@ export class ResourcesComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!AuthHelper.getLoggedUser()) {
+      this.router.navigateByUrl("");
+    }
   }
 
   /**

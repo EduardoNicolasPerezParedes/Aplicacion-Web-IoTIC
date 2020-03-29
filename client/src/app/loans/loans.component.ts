@@ -7,6 +7,7 @@ import { LoanFormComponent } from './loan-form/loan-form.component';
 import { Loan } from 'src/_models/loan.model';
 import { AuthHelper } from 'src/_helpers/auth.helper';
 import { LoanInfoComponent } from '../admin-loans-finished/loan-info/loan-info.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loans',
@@ -36,11 +37,16 @@ export class LoansComponent implements OnInit {
 
   constructor(
     private loanService: LoanService,
-    private modalService: NgbModal
-  ) { }
+    private modalService: NgbModal,
+    private router: Router
+  ) { 
+    this.setLoans();
+  }
 
   ngOnInit() {
-    this.setLoans();
+    if (!AuthHelper.getLoggedUser()) {
+      this.router.navigateByUrl("");
+    }
   }
 
   /**

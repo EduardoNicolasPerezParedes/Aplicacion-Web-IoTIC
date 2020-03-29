@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthHelper } from 'src/_helpers/auth.helper';
 
 @Component({
   selector: 'app-admin',
@@ -32,8 +33,10 @@ export class AdminComponent implements OnInit {
   constructor(private router: Router) {  }
 
   ngOnInit() {
+    if (!AuthHelper.getLoggedUser() || !AuthHelper.getLoggedUser().admin) {
+      this.router.navigateByUrl("");
+    }
     let url = this.router.url;
-    console.log(url);
     switch(url) {
       case '/admin/events':
         this.selectedOption = this.OPTIONS.EVENTS;
