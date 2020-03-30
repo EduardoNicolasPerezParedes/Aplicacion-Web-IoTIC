@@ -2,6 +2,8 @@ const IncomingForm = require('formidable').IncomingForm;
 const crypto = require('crypto');
 const fs = require('fs');
 
+const config = require('../../../config/config');
+
 const ERRORS = require('./file.errors');
 const Resource = require('../resource/resource.model');
 const Event = require('../event/event.model');
@@ -48,32 +50,32 @@ const file_controller = {
             switch (model) {
                 case "1":
                     let event = await Event.findById({_id: id});
-                    event.image_link = "http://localhost:3000/api/file/" + file_name;
+                    event.image_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await event.save();
                     break;
                 case "2":
                     let course = await Course.findById({_id: id});
-                    course.image_link = "http://localhost:3000/api/file/" + file_name;
+                    course.image_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await course.save();
                     break;
                 case "3":
                     let news = await News.findById({_id: id});
-                    news.image_link = "http://localhost:3000/api/file/" + file_name;
+                    news.image_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await news.save();
                     break;
                 case "4":
                     let resource = await Resource.findById({_id: id});
-                    resource.image_link = "http://localhost:3000/api/file/" + file_name;
+                    resource.image_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await resource.save();
                     break;
                 case "5":
                     let l = await Loan.findById({_id: id});
-                    l.image_resource_link = "http://localhost:3000/api/file/" + file_name;
+                    l.image_resource_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await l.save();
                     break;
                 case "6":
                     let loan = await Loan.findById({_id: id});
-                    loan.image_format_link = "http://localhost:3000/api/file/" + file_name;
+                    loan.image_format_link = config.host + ":" + config.port + "/api/file/" + file_name;
                     await loan.save();
                     break;
             }

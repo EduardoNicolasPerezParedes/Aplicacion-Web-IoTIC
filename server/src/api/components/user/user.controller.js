@@ -151,7 +151,13 @@ const user_controller = {
         try {
             let id = req.params.id;
 
-            await User.findByIdAndRemove({_id: id});
+            let user = await User.findByIdAndRemove({_id: id});
+
+            await mail.send(
+                'Solicitud de ingreso semillero', 
+                'Lo sentimos, su solicitud de ingreso al semillero fue rechazada.', 
+                user.email
+            );
 
             res.sendStatus(200);
         } catch (err) {
@@ -187,7 +193,6 @@ const user_controller = {
 
             res.sendStatus(200).send(updated);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send(err.message);
         }
     },
