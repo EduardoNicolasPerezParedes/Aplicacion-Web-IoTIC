@@ -12,7 +12,7 @@ const eventSchema = new Schema({
     },
     description: {
         type: String,
-        unique: true
+        unique: false
     },
     score: {
         type: Number,

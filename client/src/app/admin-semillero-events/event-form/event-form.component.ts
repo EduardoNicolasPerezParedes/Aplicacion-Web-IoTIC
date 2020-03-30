@@ -40,12 +40,14 @@ export class EventFormComponent implements OnInit {
    */
   public async addOnClick() {
     try {
-      let created:any = await this.eventService.create(this.event).toPromise();
-      this.eventsSharedService.add(Event.fromJSON(created));
-      // Se sube la imagen del evento
-      await this.fileHelper.upload(1, created._id);
-      this.close();
-      new MsgHelper().showSuccess('Evento registrado exitosamente');
+      if (this.fileHelper.file != null) {
+        let created:any = await this.eventService.create(this.event).toPromise();
+        this.eventsSharedService.add(Event.fromJSON(created));
+        // Se sube la imagen del evento
+        await this.fileHelper.upload(1, created._id);
+        new MsgHelper().showSuccess('Evento registrado exitosamente');
+        this.close();
+      }
     } catch (err) {
       new MsgHelper().showError(err.error);
     }

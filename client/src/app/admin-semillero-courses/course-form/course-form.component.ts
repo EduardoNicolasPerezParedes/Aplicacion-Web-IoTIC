@@ -54,11 +54,13 @@ export class CourseFormComponent implements OnInit {
   public async addOnClick() {
     let msg = new MsgHelper();
     try {
-      let res:any = await this.courseService.create(this.course).toPromise();
-      await this.fileHelper.upload(2, res._id);
-      msg.showSuccess('Curso agregado exitosamente');
-      this.close();
-      this.courseSharedService.add(Course.fromJSON(res));
+      if (this.fileHelper.file != null) {
+        let res:any = await this.courseService.create(this.course).toPromise();
+        await this.fileHelper.upload(2, res._id);
+        msg.showSuccess('Curso agregado exitosamente');
+        this.close();
+        this.courseSharedService.add(Course.fromJSON(res));
+      }
     } catch(err) {
       if (err.status == 422) { msg.showError(err.error.error); }
     }

@@ -209,7 +209,6 @@ const loan_controller = {
 
             res.status(200).send({msg: 'Mail sent!'});
         } catch (err) {
-            console.log(err.message)
             res.status(500).send(err.message);
         }
     }
