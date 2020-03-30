@@ -184,6 +184,34 @@ const loan_controller = {
         } catch (err) {
             res.status(500).send({error: err.message});
         }
+    },
+    /**
+     * Notifica a un usuario la devolución de un prestamo.
+     * @param {object} req - petición del cliente
+     * @param {oobject} res - respuesta del servidor
+     */
+    async notify(req, res) {
+        try {
+            let loanId = req.params.loanId;
+
+            let loan = await Loan.find({_id: loanId}).populate('userId');
+            let resources = await ResourceLoaned.find({loanId: loanId}).populate('resourceId');
+            let text = '(Recurso) -> (Cantidad)\n';
+            resources.forEach(r => {
+                text += r.resourceId.name + " -> " + r.quantity;
+                text += '\n';
+            });
+            await mail.send(
+                'Devolución de Recursos de Semillero',
+                'El semillero requiere la devolución de los siguientes recursos:\n' + text,
+                loan[0].userId.email
+            );
+
+            res.status(200).send({msg: 'Mail sent!'});
+        } catch (err) {
+            console.log(err.message)
+            res.status(500).send(err.message);
+        }
     }
 }
 

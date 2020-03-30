@@ -1,11 +1,10 @@
 <div class="container col-12">
     <!-- Título -->
     <div class="text-center mt-5">
-        <h2>Noticias</h2>
         <!-- En caso de que no hayan noticias -->
         <p class="text-muted" *ngIf="!weHaveNews">En el momento no tenemos Noticias disponibles</p>
     </div>
-    <div class="card row justify-content-center" *ngIf="weHaveNews">
+    <div class="px-2 row justify-content-center" *ngIf="weHaveNews">
       <ngb-carousel class="col-12">
         <ng-template ngbSlide *ngFor="let news_one of some_news" >
           <div (click)="ShowNews(news_one.id)">  

@@ -38,4 +38,9 @@ loan_router.post('/create/', loan_controller.create);
  */
 loan_router.get('/user/:userId', loan_controller.getByUser);
 
+/**
+ * Ruta que permite notificar al solicitante de un prestamo la devolución de los recursos.
+ */
+loan_router.post('/:loanId', loan_controller.notify);
+
 module.exports = loan_router;

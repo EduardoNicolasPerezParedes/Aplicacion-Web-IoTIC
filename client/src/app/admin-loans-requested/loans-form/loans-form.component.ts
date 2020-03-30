@@ -100,8 +100,8 @@ export class LoansFormComponent implements OnInit {
         await this.fileHelper.upload2(6, res._id);
       }
       new MsgHelper().showSuccess("Prestamo aprobado exitosamente");
-      location.reload();
       this.close();
+      location.reload();
     } catch (err) {
       if (err.status == 422) {
         new MsgHelper().showError(err.error.error);

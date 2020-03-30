@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar bg-white col-12 py-4 shadow-sm" style="z-index: 1;">
   <!-- Logo -->
-  <a class="navbar-brand text-dark" href="#">
-      <img src="assets/icons/logo.png" width="100" height="30" class="mx-auto d-inline-block align-top" alt="Logo">
+  <a class="navbar-brand text-dark mx-auto" href="#">
+      <img src="assets/icons/logo.png" width="100" height="30" class="ml-3 d-inline-block align-top" alt="Logo">
   </a>
   <!-- Menú Hamburguesa -->
   <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation">
@@ -33,19 +33,19 @@
       </li>
       <!-- Recursos -->
       <div *ngIf="loggedIn" class="mx-auto">
-        <li *ngIf="resourceActiveRoute" class="nav-item active">
+        <li *ngIf="resourceActiveRoute" class="nav-item active px-2">
           <a class="nav-link text-dark" href="resources">Recursos</a>
         </li>
-        <li *ngIf="!resourceActiveRoute" class="nav-item">
+        <li *ngIf="!resourceActiveRoute" class="nav-item px-2">
           <a class="nav-link text-muted" href="resources">Recursos</a>
         </li>
       </div>
       <!-- Prestamos -->
       <div *ngIf="loggedIn" class="mx-auto">
-        <li *ngIf="loansActiveRoute" class="nav-item active">
+        <li *ngIf="loansActiveRoute" class="nav-item active px-2">
           <a class="nav-link text-dark" href="loans">Prestamos</a>
         </li>
-        <li *ngIf="!loansActiveRoute" class="nav-item">
+        <li *ngIf="!loansActiveRoute" class="nav-item px-2">
           <a class="nav-link text-muted" href="loans">Prestamos</a>
         </li>
       </div>
@@ -58,17 +58,19 @@
       </div>
     </form>
     <!-- Cuando hay una sesión iniciada -->
-    <form class="form-inline mt-2 mt-md-0 pr-2 ml-5" *ngIf="loggedIn">
+    <form class="form-inline pr-2 col-3" *ngIf="loggedIn">
       <div ngbDropdown class="mx-auto">
         <button class="btn shadow-sm mr-4" style="border-radius: 30px;" id="dropdownBasic1" ngbDropdownToggle>
           <fa-icon [icon]="faCog"></fa-icon>
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button *ngIf="user.admin" ngbDropdownItem (click)="dashboardOnClick()">
-            <fa-icon [icon]="faClipboard"></fa-icon>
+            <fa-icon class="mr-2" [icon]="faClipboard"></fa-icon>
+            Admin
           </button>
           <button ngbDropdownItem (click)="logoutOnClick()">
-            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            <fa-icon class="mr-2" [icon]="faSignOutAlt"></fa-icon>
+            Cerrar Sesión
           </button>
         </div>
       </div>

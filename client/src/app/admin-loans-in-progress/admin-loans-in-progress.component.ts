@@ -100,12 +100,17 @@ export class AdminLoansInProgressComponent implements OnInit {
 
   }
 
-  public async sendMessage(){
+  public async sendMessage(loanId: string) {
     let msg = new MsgHelper();
-    let res = await msg.showConfirmMessage('¿Desea enviar correo de solicitud de recursos?','');
+    let res = await msg.showConfirmMessage('¿Está seguro?','Se notificará al solicitante la devolución de los recursos');
 
     if(res.value){
-
+      try {
+        await this.loanService.notify(loanId).toPromise();
+        new MsgHelper().showSuccess('La notificación ha sido enviada exitosamente')
+      } catch (err) {
+        new MsgHelper().showError(err.error);
+      }
     }
   }
 

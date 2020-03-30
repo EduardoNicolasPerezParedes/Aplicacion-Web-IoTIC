@@ -30,7 +30,7 @@
                     <button class="btn btn-light mr-3 shadow-sm rounded-circle" (click)="showOnClick(loan)">
                         <fa-icon [icon]="faEye"></fa-icon>
                     </button>
-                    <button class="btn btn-warning shadow-sm circle" (click)="sendMessage()">
+                    <button class="btn btn-warning shadow-sm circle" (click)="sendMessage(loan.loanId)">
                         <fa-icon [icon]="faExclamation"></fa-icon>
                     </button>
                 </div>

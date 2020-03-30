@@ -102,4 +102,18 @@ export class LoanService extends HttpService {
             },
         );
     }
+
+    /**
+     * Notifica al solicitante la devolución de los recursos.
+     * 
+     * @param id identificador del prestamo.
+     */
+    notify(id: string) {
+        return this.http.post(
+            `${this.apiUrl}/${id}`,
+            { 
+                headers: this.headers
+            },
+        );
+    }
 }
