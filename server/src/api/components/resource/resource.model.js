@@ -26,6 +26,10 @@ const resourceSchema = new Schema({
         type: String,
         default: ""
     },
+    deleted: {
+        type: Boolean,
+        default: false
+    },
     category: {
         type: mongoose.Types.ObjectId,
         ref: 'Category',

@@ -44,7 +44,6 @@ const resource_controller = {
 
             res.status(200).send(created);
         } catch (err) {
-            console.log(err.message);
             res.status(500).send(err.message);
         }
     },
@@ -56,7 +55,7 @@ const resource_controller = {
      */
     async list(req, res) {
         try {
-            let resources = await Resource.find({});
+            let resources = await Resource.find({deleted: false});
 
             res.status(200).send(resources);
         } catch (err) {
@@ -88,7 +87,7 @@ const resource_controller = {
     async get_by_category(req, res) {
         try {
             let category_id = req.params.category_id;
-            let resources = await Resource.find({category: category_id});
+            let resources = await Resource.find({category: category_id, deleted: false});
 
             res.status(200).send(resources);
         } catch (err) {
@@ -150,7 +149,10 @@ const resource_controller = {
     async delete(req, res) {
         try {
             let id = req.params.id;
-            let resource = await Resource.deleteOne({_id: id});
+            // Se modifica el estado
+            let resource = await Resource.find({_id: id});
+            resource.deleted = true;
+            await resource.save();
 
             res.status(200).send(resource);
         } catch (err) {
